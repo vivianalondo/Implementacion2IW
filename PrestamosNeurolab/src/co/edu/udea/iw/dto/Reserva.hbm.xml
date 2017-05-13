@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/05/2017 06:25:25 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.Reserva" table="RESERVAS">
+        <id name="idReserva" type="int">
+            <column name="IDRESERVA" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="estadoReserva" class="co.edu.udea.iw.dto.EstadoReserva" fetch="join">
+            <column name="ESTADORESERVA" length="12" not-null="true"/>
+        </many-to-one>
+        <property name="fechaRealizacion" type="java.util.Date">
+            <column name="FECHAREALIZACION" not-null="true"/>
+        </property>
+        <property name="horaInicio" type="java.lang.String">
+            <column name="HORAINICIO" length="12" not-null="true"/>
+        </property>
+        <property name="horaFinal" type="java.lang.String">
+            <column name="HORAFINAL" length="12" not-null="true"/>
+        </property>
+        <property name="horaRealizado" type="java.lang.String">
+            <column name="HORAREALIZADO" length="12" not-null="true"/>
+        </property>
+        <property name="fechaReserva" type="java.util.Date">
+            <column name="FECHARESERVA" not-null="true"/>
+        </property>
+        <many-to-one name="usuario" class="co.edu.udea.iw.dto.Usuario" fetch="join">
+            <column name="USUARIO" length="20" not-null="true"/>
+        </many-to-one>
+        <property name="fechaEntrega" type="java.util.Date">
+            <column name="FECHAENTREGA"/>
+        </property>
+        <property name="horaEntrega" type="java.lang.String">
+            <column name="HORAENTREGA" length="12"/>
+        </property>
+    </class>
+</hibernate-mapping>

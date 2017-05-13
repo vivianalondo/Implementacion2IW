@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/05/2017 06:25:25 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.EstadoReserva" table="ESTADOSRESERVAS">
+        <id name="idEstadoReserva" type="int">
+            <column name="IDESTADORESERVA" length="12" not-null="true"/>
+            <generator class="assigned" />
+        </id>
+        <property name="tipoEstadoReserva" type="java.lang.String">
+            <column name="TIPOESTADORESERVA" length="20" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

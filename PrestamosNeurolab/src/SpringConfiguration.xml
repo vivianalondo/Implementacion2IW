@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+	<!-- El bean debe tener un identificador que es para la funtede datos y una clase que responde a esta fuente -->
+	<!-- Para setear datos utilizo la etiqueta property -->
+	<bean id="DataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost:3306/prestamosneurolab">
+		</property>
+		<property name="username" value="root">
+		</property>
+		<property name="password" value=""></property>
+	</bean>
+	
+	<!-- Este bean es el que necesita hibernate para trabajar, se define como la factoría de sesiones -->
+	<!-- Este bean requiere 3 propiedades -->
+	<bean id="SessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource"></property>
+		<property name="mappingResources">
+			<list>
+				<value>co/edu/udea/iw/dto/Dispositivo.hbm.xml</value>
+				<value>co/edu/udea/iw/dto/EquipoXReserva.hbm.xml</value>
+				<value>co/edu/udea/iw/dto/EstadoDispositivo.hbm.xml</value>
+				<value>co/edu/udea/iw/dto/EstadoReserva.hbm.xml</value>
+				<value>co/edu/udea/iw/dto/EstadoUsuario.hbm.xml</value>
+				<value>co/edu/udea/iw/dto/Reserva.hbm.xml</value>
+				<value>co/edu/udea/iw/dto/Rol.hbm.xml</value>
+				<value>co/edu/udea/iw/dto/Usuario.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- propiedad para decirle como hace la validación de la información -->
+				<prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property>
+	</bean>
+		
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+		<property name="dataSource" ref="DataSource"></property>
+	</bean>
+	
+	<bean name="rolDAO" class="co.edu.udea.iw.dao.imp.RolDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+
+	<bean name="estadoUsuarioDAO" class="co.edu.udea.iw.dao.imp.EstadoUsuarioDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<bean name="estadoDispositivoDAO" class="co.edu.udea.iw.dao.imp.EstadoDispositivoDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<bean name="dispositivoDAO" class="co.edu.udea.iw.dao.imp.DispositivoDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<bean name="usuarioDAO" class="co.edu.udea.iw.dao.imp.UsuarioDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<bean name="reservaDAO" class="co.edu.udea.iw.dao.imp.ReservaDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<bean name="estadoReservaDAO" class="co.edu.udea.iw.dao.imp.EstadoReservaDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<bean name="equipoXReservaDAO" class="co.edu.udea.iw.dao.imp.EquipoXReservaDAOImplement">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<bean name="usuarioBl" class="co.edu.udea.iw.bl.UsuarioBl">
+		<property name="usuarioDAO" ref="usuarioDAO"></property>
+		<property name="estadoUsuarioDAO" ref="estadoUsuarioDAO"></property>
+		<property name="rolDAO" ref="rolDAO"></property>
+	</bean>
+	
+	<bean name="estadoDispositivoBl" class="co.edu.udea.iw.bl.EstadoDispositivoBl">
+		<property name="estadoDispositivoDAO" ref="estadoDispositivoDAO"></property>
+		<property name="usuarioDAO" ref="usuarioDAO"></property>
+	</bean>
+	
+	<bean id="dispositivoBl" class="co.edu.udea.iw.bl.DispositivoBl">
+	     <property name="dispositivoDao" ref="dispositivoDAO"></property>
+	     <property name="estadodispositivoDAO" ref="estadoDispositivoDAO"></property>
+	     <property name="usuarioDAO" ref="usuarioDAO"></property>
+ 	</bean>
+ 	
+ 	<bean name="estadoReservaBl" class="co.edu.udea.iw.bl.EstadoReservaBl">
+	    <property name="estadoReservaDAO" ref="estadoReservaDAO"></property>
+	    <property name="usuarioDAO" ref="usuarioDAO"></property>
+    </bean>
+    
+    <bean name="estadoUsuarioBl" class="co.edu.udea.iw.bl.EstadoUsuarioBl">
+	    <property name="estadoUsuarioDAO" ref="estadoUsuarioDAO"></property>
+	    <property name="usuarioDAO" ref="usuarioDAO"></property>
+    </bean>
+    
+    <bean name="rolBl" class="co.edu.udea.iw.bl.RolBl">
+	    <property name="rolDAO" ref="rolDAO"></property>
+	    <property name="usuarioDAO" ref="usuarioDAO"></property>
+    </bean>
+	
+	<bean id="reservaBL" class="co.edu.udea.iw.bl.ReservaBl">
+     <property name="reservaDAO" ref="reservaDAO"></property>
+     <property name="estadoReservaDAO" ref="estadoReservaDAO"></property>
+     <property name="usuarioDAO" ref="usuarioDAO"></property>
+ </bean>
+ 
+ <context:component-scan base-package="co.edu.udea.iw.ws" />
+ 
+</beans>

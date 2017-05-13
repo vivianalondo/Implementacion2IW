@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/05/2017 06:25:25 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.EquipoXReserva" table="EQUIPOSXRESERVA">
+    	<composite-id name="equiposXReservaId" class="co.edu.udea.iw.dto.EquipoXReservaId">
+			<key-many-to-one name="idReserva" class="co.edu.udea.iw.dto.Reserva">
+				<column name="IDRESERVA"></column>
+			</key-many-to-one>
+			<key-many-to-one name="idDispositivo" class="co.edu.udea.iw.dto.Dispositivo">
+				<column name="IDDISPOSITIVO"></column>
+			</key-many-to-one>
+			<key-many-to-one name="estadoReserva" class="co.edu.udea.iw.dto.EstadoReserva">
+				<column name="ESTADORESERVA"></column>
+			</key-many-to-one>
+    	</composite-id>
+    </class>
+</hibernate-mapping>
