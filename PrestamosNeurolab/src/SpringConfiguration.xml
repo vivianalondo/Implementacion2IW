@@ -120,6 +120,9 @@
      <property name="usuarioDAO" ref="usuarioDAO"></property>
  </bean>
  
+ <!-- Para decirle al bean cual es el bean que se va a encargar de hacer las transacciones -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+ 
  <context:component-scan base-package="co.edu.udea.iw.ws" />
  
 </beans>

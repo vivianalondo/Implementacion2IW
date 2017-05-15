@@ -61,7 +61,7 @@ public class EstadoReservaDAOImplement implements EstadoReservaDAO {
 	 */
 	@Override
 	public List<EstadoReserva> listaObtener() throws MyException {
-		List<EstadoReserva> estadoReservas = new ArrayList<>();
+		List<EstadoReserva> estadoReservas = new ArrayList();
 		Session session = null;
 		
 		try {

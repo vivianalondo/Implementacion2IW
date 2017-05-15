@@ -77,12 +77,11 @@ private UsuarioDAO usuarioDAO;
 	 * @param pwCrea
 	 * @throws MyException
 	 */
-	public void guardar(String tipoEstado, String loginCrea, String pwCrea) throws MyException{
-		
+	public void guardar(String tipoRol, String loginCrea, String pwCrea) throws MyException{
 		Rol rol = null;		
 		
-		if(tipoEstado==null|| "".equals(tipoEstado)){
-			throw new MyException("Tiene que ingresar el tipo de dispositivo");
+		if(tipoRol==null|| "".equals(tipoRol)){
+			throw new MyException("Tiene que ingresar el tipo de rol");
 		}
 		
 		//Verificación de que el usuario que esté creando un nuevo registro sea administrador
@@ -93,10 +92,10 @@ private UsuarioDAO usuarioDAO;
 		
 		//Creamos un objeto rol y comenzamos a llenarlo
 		rol = new Rol();
-		rol.setTipoRol(tipoEstado);
-		rolDAO.guardar(rol);
-		
+		rol.setTipoRol(tipoRol);
+		rolDAO.guardar(rol);	
 	}
+	
 	/**
 	 * Metodo que modifica un rol. Valida que los campos ingresados no sean nulos
 	 * @param id
@@ -105,11 +104,11 @@ private UsuarioDAO usuarioDAO;
 	 * @param pwCrea
 	 * @throws MyException
 	 */
-	public void modificar(int id, String tipoEstado, String loginCrea, String pwCrea) throws MyException{
+	public void modificar(int id, String tipoRol, String loginCrea, String pwCrea) throws MyException{
 		
 		Rol rol = null;
 		
-		if(tipoEstado==null|| "".equals(tipoEstado)){
+		if(tipoRol==null|| "".equals(tipoRol)){
 			throw new MyException("Tiene que ingresar el tipo de dispositivo");
 		}
 		
@@ -121,7 +120,7 @@ private UsuarioDAO usuarioDAO;
 		
 		//Creamos un objeto rol y comenzamos a llenarlo
 		rol = rolDAO.obtener(id);
-		rol.setTipoRol(tipoEstado);
+		rol.setTipoRol(tipoRol);
 		rolDAO.modificar(rol);
 	}
 	

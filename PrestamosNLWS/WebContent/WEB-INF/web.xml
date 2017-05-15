@@ -3,7 +3,7 @@
   <display-name>PrestamosNLWS</display-name>
   <servlet>
   	<servlet-name>ServiciosNL</servlet-name>
-  	<servlet-class>com.sun.jersey.spi.container.servlet.SpringServlet</servlet-class>
+  	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
   	<init-param>
 	  <param-name>com.sun.jersey.config.property.packages</param-name>
 	  <param-value>co.edu.udea.iw.ws</param-value>
@@ -26,4 +26,5 @@
   		classpath:SpringConfiguration.xml
   	</param-value>
   </context-param>
+  
 </web-app>
