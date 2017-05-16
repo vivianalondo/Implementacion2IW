@@ -57,6 +57,27 @@ public class UsuarioBl {
 	}
 	
 	/**
+	 * Metodo que retorna un rol, valida que el id ingresado no sea nulo
+	 * @param idRol
+	 * @return Rol
+	 * @throws MyException
+	 */
+	public Usuario obtener(String identificacion) throws MyException{
+		
+		if(identificacion==""|| "".equals(identificacion)){
+			throw new MyException("Tiene que ingresar el id del usuario");
+		}
+		
+		//Verificación de que el usuario exista
+		Usuario usuario = usuarioDAO.obtener(identificacion);
+		if (usuario==null) {
+			throw new MyException("El rol no se encuentra en la base de datos");
+		}
+		return usuarioDAO.obtener(identificacion);
+	}
+	
+	
+	/**
 	 * Método para registrar un usuario. Hacemos las validaciones de campos no nulos
 	 * @param identificacion
 	 * @param tipoDocumento

@@ -52,6 +52,26 @@ public class DispositivoBl {
 	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
+	
+	/**
+	 * Metodo que retorna un dispositivo, valida que el id ingresado no sea nulo
+	 * @param idDispositivo
+	 * @return Dispositivo
+	 * @throws MyException
+	 */
+	public Dispositivo obtener(int idDispositivo) throws MyException{
+		
+		if(idDispositivo==0|| "".equals(idDispositivo)){
+			throw new MyException("Tiene que ingresar el id del rol");
+		}
+		
+		//Verificación de que el dispositivo exista
+		Dispositivo dispositivo = dispositivoDAO.obtener(idDispositivo);
+		if (dispositivo==null) {
+			throw new MyException("El dispositivo no se encuentra en la base de datos");
+		}
+		return dispositivoDAO.obtener(idDispositivo);
+	}
 
 	/**
 	 * Método que guarda un dispositivo. Valida los campos ingresados y verifica el usuario
