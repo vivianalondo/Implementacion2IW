@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 import co.edu.udea.iw.bl.EquipoXReservaBl;
 import co.edu.udea.iw.dto.EquipoXReserva;
 import co.edu.udea.iw.dto.EquipoXReservaJersey;
-import co.edu.udea.iw.dto.Rol;
-import co.edu.udea.iw.dto.RolJersey;
 import co.edu.udea.iw.exception.MyException;
 
 @Path("EquipoXReserva")

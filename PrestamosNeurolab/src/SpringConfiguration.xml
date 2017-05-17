@@ -16,7 +16,7 @@
 		</property>
 		<property name="username" value="root">
 		</property>
-		<property name="password" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 	
 	<!-- Este bean es el que necesita hibernate para trabajar, se define como la factoría de sesiones -->
@@ -118,7 +118,16 @@
      <property name="reservaDAO" ref="reservaDAO"></property>
      <property name="estadoReservaDAO" ref="estadoReservaDAO"></property>
      <property name="usuarioDAO" ref="usuarioDAO"></property>
- </bean>
+ 	</bean>
+ 
+
+ 	<bean id="equipoXReservaBl" class="co.edu.udea.iw.bl.EquipoXReservaBl">
+     <property name="equipoXReservaDAO" ref="equipoXReservaDAO"></property>
+     <property name="reservaDAO" ref="reservaDAO"></property>
+     <property name="estadoReservaDAO" ref="estadoReservaDAO"></property>
+     <property name="usuarioDAO" ref="usuarioDAO"></property>
+     <property name="dispositivoDAO" ref="dispositivoDAO"></property>
+ 	</bean>
  
  <!-- Para decirle al bean cual es el bean que se va a encargar de hacer las transacciones -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
