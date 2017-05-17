@@ -83,8 +83,8 @@ public class UsuarioWS {
 	 */
 	@POST
 	@Produces(MediaType.TEXT_HTML)
-	@Path("guardar")
-	public void guardar(@QueryParam("identificacion")String identificacion, 
+	@Path("registrar")
+	public void registrar(@QueryParam("identificacion")String identificacion, 
 			@QueryParam("tipoDocumento")String tipoDocumento,
 			@QueryParam("nombre")String nombre,
 			@QueryParam("apellido")String apellido, 
