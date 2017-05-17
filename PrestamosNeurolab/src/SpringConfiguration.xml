@@ -16,7 +16,7 @@
 		</property>
 		<property name="username" value="root">
 		</property>
-		<property name="password" value=""></property>
+		<property name="password" value="root"></property>
 	</bean>
 	
 	<!-- Este bean es el que necesita hibernate para trabajar, se define como la factoría de sesiones -->
