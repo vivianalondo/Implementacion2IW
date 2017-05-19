@@ -2,6 +2,13 @@ package co.edu.udea.iw.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Dto de Estado Usuario
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
+
+
 @XmlRootElement
 public class EstadoUsuarioJersey {
 

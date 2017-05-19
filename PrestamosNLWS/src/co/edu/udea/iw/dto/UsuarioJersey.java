@@ -3,7 +3,7 @@ package co.edu.udea.iw.dto;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /***
- * Clase
+ * Dto de Usuario
  * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
  *
  */

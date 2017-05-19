@@ -19,6 +19,13 @@ import co.edu.udea.iw.dto.EstadoReserva;
 import co.edu.udea.iw.dto.EstadoReservaJersey;
 import co.edu.udea.iw.exception.MyException;
 
+/***
+ * Clase para implementar los servicios web de Estado reserva
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
+
+
 @Path("EstadoReserva")
 @Component
 public class EstadoReservaWS {

@@ -19,6 +19,12 @@ import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.dto.ReservaJersey;
 import co.edu.udea.iw.exception.MyException;
 
+/***
+ * Clase para implementar los servicios web de Reserva
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
+
 @Path("Reserva")
 @Component
 public class ReservaWS {

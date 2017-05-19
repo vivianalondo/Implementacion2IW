@@ -2,6 +2,12 @@ package co.edu.udea.iw.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Dto de Rol
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
+
 @XmlRootElement
 public class RolJersey {
 	private int idRol;

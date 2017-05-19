@@ -19,6 +19,13 @@ import co.edu.udea.iw.dto.EstadoUsuario;
 import co.edu.udea.iw.dto.EstadoUsuarioJersey;
 import co.edu.udea.iw.exception.MyException;
 
+
+/***
+ * Clase para implementar los servicios web de Estado Usuario
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
+
 @Path("EstadoUsuario")
 @Component
 public class EstadoUsuarioWS {
@@ -35,7 +42,7 @@ public class EstadoUsuarioWS {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	@Path("obtener")
-	public String autenticar(@QueryParam("idEstadoUsuario")int idEstadoUsuario){
+	public String obtener(@QueryParam("idEstadoUsuario")int idEstadoUsuario){
 		String retorno = "";
 		
 		try{

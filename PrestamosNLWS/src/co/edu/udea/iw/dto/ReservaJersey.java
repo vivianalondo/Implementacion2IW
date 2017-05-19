@@ -4,6 +4,12 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Dto de Reserva
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
+
 @XmlRootElement
 public class ReservaJersey {
 

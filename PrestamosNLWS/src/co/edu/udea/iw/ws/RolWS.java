@@ -43,7 +43,7 @@ public class RolWS {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	@Path("obtener")
-	public String autenticar(@QueryParam("idRol")int idRol){
+	public String obtener(@QueryParam("idRol")int idRol){
 		String retorno = "";
 		
 		try{

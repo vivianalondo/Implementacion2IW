@@ -19,6 +19,12 @@ import co.edu.udea.iw.dto.EquipoXReserva;
 import co.edu.udea.iw.dto.EquipoXReservaJersey;
 import co.edu.udea.iw.exception.MyException;
 
+
+/***
+ * Clase para implementar los servicios web de Equipo x Reserva
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
 @Path("EquipoXReserva")
 @Component
 public class EquipoXReservaWS {
@@ -27,8 +33,8 @@ public class EquipoXReservaWS {
 	EquipoXReservaBl equipoXReservaBl;
 	
 	/***
-	 * Método que implementa WS para obtener la lista de los usuarios
-	 * @return respuesta, retorna lista con todos los usuarios existetes
+	 * Método que implementa WS para obtener los equipos x reservas
+	 * @return respuesta, retorna lista con todos los equipos x reservas
 	 * @throws RemoteException
 	 */
 	@GET
@@ -55,12 +61,12 @@ public class EquipoXReservaWS {
 	}
 	
 	/***
-	 * Registrar
-	 * @param reserva
-	 * @param dispositivo
-	 * @param estadoReserva
-	 * @param loginCrea
-	 * @param pwCrea
+	 * Método que implementa WS para para guardar un equipo por reserva
+	 * @param reserva, numero de identificación de la reserva
+	 * @param dispositivo número de identificación del dispositivo al que se hizo una reserva
+	 * @param estadoReserva estado de la reserva
+	 * @param loginCrea, el login del usuario que está modificando el equipo por reserva
+	 * @param pwCrea, la contraseña del usuario que está modificando el equipo por reserva
 	 * @throws RemoteException
 	 */
 	@POST
@@ -74,10 +80,20 @@ public class EquipoXReservaWS {
 		try{
 			equipoXReservaBl.registrarEquipoXReserva(reserva, dispositivo, estadoReserva, loginCrea, pwCrea);
 		}catch(MyException e){
-			throw new RemoteException("Error creando el rol", e);
+			throw new RemoteException("Error creando el equipo x reserva", e);
 		}
 	}
 	
+	
+	/***
+	 * Método que implementa WS para para modificar un equipo por reserva
+	 * @param reserva, numero de identificación de la reserva
+	 * @param dispositivo número de identificación del dispositivo al que se hizo una reserva
+	 * @param estadoReserva estado de la reserva
+	 * @param loginCrea, el login del usuario que está modificando el equipo por reserva
+	 * @param pwCrea, la contraseña del usuario que está modificando el equipo por reserva
+	 * @throws RemoteException
+	 */
 	@POST
 	@Produces(MediaType.TEXT_HTML)
 	@Path("modificar")
@@ -89,7 +105,7 @@ public class EquipoXReservaWS {
 		try{
 			equipoXReservaBl.modificarBl(reserva, dispositivo, estadoReserva, loginCrea, pwCrea);
 		}catch(MyException e){
-			throw new RemoteException("Error creando el rol", e);
+			throw new RemoteException("Error creando el equipo x reserva", e);
 		}
 	}
 	

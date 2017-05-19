@@ -41,7 +41,7 @@ public class EstadoDispositivoWS {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	@Path("obtener")
-	public String autenticar(@QueryParam("idEstadoDispositivo")int idEstadoDispositivo){
+	public String obtener(@QueryParam("idEstadoDispositivo")int idEstadoDispositivo){
 		String retorno = "";
 		
 		try{

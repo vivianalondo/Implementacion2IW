@@ -38,6 +38,7 @@ public class DispositivoWS {
 	 * Método para implementar WS de obtener dispositivo
 	 * @param idDispositivo, Recibe el id del dispositivo que desea obtener
 	 * @return dispositivoJersey, retorna el dispositivo encontrado según el id que se ingresó
+	 * @throws RemoteException
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -159,6 +160,7 @@ public class DispositivoWS {
 	
 	/***
 	 * Método que implementa WS para obtener la lista de los dispositivos existentes según el nombre ingresado
+	 * @param listarPorNombre, nombre de los dispositivos que se quieren listar
 	 * @return respuesta, retorna lista con todos los dispositivos existentes
 	 * @throws RemoteException
 	 */

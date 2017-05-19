@@ -19,6 +19,12 @@ import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.dto.UsuarioJersey;
 import co.edu.udea.iw.exception.MyException;
 
+/***
+ * Clase para implementar los servicios web de Usuario
+ * @author Viviana Londoño, Johanna Arenas, Oscar Lopera
+ *
+ */
+
 @Path("Usuario")
 @Component
 public class UsuarioWS {
@@ -100,7 +106,7 @@ public class UsuarioWS {
 			
 			usuarioBL.registrarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login, pw, estadoUsuario, rol, loginCrea, pwCrea);
 		}catch(MyException e){
-			throw new RemoteException("Error creando el rol", e);
+			throw new RemoteException("Error creando el usuario", e);
 		}
 	}
 	
@@ -134,7 +140,7 @@ public class UsuarioWS {
 				respuesta.add(usuarioJersey);
 			}
 		}catch(MyException e){
-			throw new RemoteException("Problema consultando los roles", e);
+			throw new RemoteException("Problema consultando los usuarios", e);
 		}
 		
 		return respuesta;
@@ -177,7 +183,7 @@ public class UsuarioWS {
 		try{
 			usuarioBL.modificarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login, pw, estadoUsuario, rol, loginCrea, pwCrea);;
 		}catch(MyException e){
-			throw new RemoteException("Error modificando el rol", e);
+			throw new RemoteException("Error modificando el usuario", e);
 		}
 	}
 	
