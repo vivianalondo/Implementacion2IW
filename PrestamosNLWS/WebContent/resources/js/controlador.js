@@ -27,6 +27,16 @@ appNeurolab.service('usuarios', function($http, $cookies, $location){
 	}
 });
 
+//para llamar los servicios de dispositivo
+appNeurolab.service('dispositivos', function($http){	
+	//listar	
+	this.listaDispositivos = function(){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Dispositivo/listar',
+			method:'GET'
+		});
+	}
+});
 
 //coontrolador para el logueo del usuario
 appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
@@ -37,7 +47,6 @@ appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 		usuarios.autenticar($scope.nombreUsuario,
 				$scope.passwd).then(
 			function success(data){
-				console.log("Prueba");
 				if (data.data != ''){
 					alert(data.data);
 					$scope.nombreUsuario = '';
@@ -47,7 +56,7 @@ appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 				
 				$cookies.nombreUsuario = $scope.nombreUsuario;//Guardar nombre de usuario en la cookie. Debo inyectar el $cookies
 				console.log($scope.nombreUsuario);
-				$location.url('/listaDispositivos');
+				$location.url('/inicio');
 			},
 			function failure(data){
 				alert(data.data);
@@ -57,24 +66,47 @@ appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 });
 
 //Controlador de index
-appNeurolab.controller('listaDispositivos', function($scope, $location, usuarios){
+appNeurolab.controller('inicio', function($scope, $location, $cookies){
 	
+	$scope.nombreUsuario = $cookies.nombreUsuario;
+	
+	$scope.listarDispositivos = function(){
+		$location.url('/listaDispositivos');
+	}
 
 });
 
+//controlador para lista de dispositivos
+appNeurolab.controller('listaDispositivos', function($scope, $location, dispositivos, usuarios){
+	
+		
+		dispositivos.listaDispositivos().then(
+		function success(data){
+			alert(data.data);
+
+			alert(data.data.dispositivoJersey);
+			$scope.listaDispositivos = data.data.dispositivoJersey;	
+		});
+	
+});
 
 //Definir las rutas
 appNeurolab.config(['$routeProvider', function($routeProvider){
 	
-	$routeProvider.when('/listaDispositivos', {
-		templateUrl : 'ListaDispositivos.html',
-		controller: 'listaDispositivos'
+	$routeProvider.when('/inicio', {
+		templateUrl : 'Inicio.html',
+		controller: 'inicio'
 	});
 	
 	$routeProvider.when('/', {
 		templateUrl : 'Login.html',
 		controller: 'Login'
 	})	;
+	
+	$routeProvider.when('/listaDispositivos', {
+		templateUrl : 'ListaDispositivos.html',
+		controller: 'listaDispositivos'
+	});
 	
 }]);
 

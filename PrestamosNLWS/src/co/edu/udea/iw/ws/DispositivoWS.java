@@ -34,6 +34,7 @@ public class DispositivoWS {
 	Dispositivo  dispositivo;
 	
 	
+	
 	/***
 	 * Método para implementar WS de obtener dispositivo
 	 * @param idDispositivo, Recibe el id del dispositivo que desea obtener
@@ -67,7 +68,7 @@ public class DispositivoWS {
 	 * @throws RemoteException
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listar")
 	public List<DispositivoJersey> listaObtener() throws RemoteException{
 		List<DispositivoJersey> respuesta = new ArrayList<DispositivoJersey>();
