@@ -5,13 +5,16 @@
 		<th>Nombre</th>
 		<th>Estado</th>
 		<th>Descripción</th>
+		<th>Acciones</th>
 	</tr>
 	
 	<tr ng-repeat="dispositivo in listaDispositivos">
-		<td>{{dispositivo.idDispositivo}}333</td>
+		<td>{{dispositivo.idDispositivo}}</td>
 		<td>{{dispositivo.nombre}}</td>
 		<td>{{dispositivo.estadoDispositivo}}</td>
 		<td>{{dispositivo.descripcion}}</td>
+		<td><button data-id={{dispositivo.idDispositivo}}>Editar</button>
+		<button data-id={{dispositivo.idDispositivo}} ng-click="borrar()">Eliminar</button></td>
 	</tr>
 	</table>
 	<div> 
