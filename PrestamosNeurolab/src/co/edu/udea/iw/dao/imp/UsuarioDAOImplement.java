@@ -156,4 +156,13 @@ public class UsuarioDAOImplement implements UsuarioDAO {
 		return usuario;
 	}
 
+	/***
+	 * Método para verificar login del usuario
+	 */
+	@Override
+	public void verificarLogin(Usuario usuario) throws MyException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

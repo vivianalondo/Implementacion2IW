@@ -268,7 +268,16 @@ public class UsuarioBl {
 	public Usuario verificarLogin(String loginC, String pwC) throws MyException{
 		Usuario usuarioLogueado = null;
 		
-		try{
+		//Validar que los campos no sean nulos
+		
+		if(loginC==null|| "".equals(loginC)){
+			throw new MyException("El login no puede estar vacía");
+		}
+		if(pwC==null|| "".equals(pwC)){
+			throw new MyException("La contraseña no puede estar vacía");
+		}
+				
+		
 			usuarioLogueado = usuarioDAO.obtenerPorLogin(loginC);
 			if (usuarioLogueado==null) {
 				throw new MyException("Usuario no existe en el sistema");
@@ -278,13 +287,10 @@ public class UsuarioBl {
 					System.out.println("Los datos ingresados son correctos");
 				}else{
 					throw new MyException("La contraseña no es correcta");
-				}
-					
+				}		
 			}
-		}catch (MyException e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
+		
+		
 		
 		return usuarioLogueado;
 	}

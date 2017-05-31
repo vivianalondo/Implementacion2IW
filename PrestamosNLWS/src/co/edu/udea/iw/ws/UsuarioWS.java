@@ -188,4 +188,21 @@ public class UsuarioWS {
 	}
 	
 	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	@Path("autenticar")
+	public String autenticar(@QueryParam("login")String login, 
+			@QueryParam("pass")String pass){
+		
+		try{
+			System.out.println("usuario de validacion: " + login);
+			
+			usuarioBL.verificarLogin(login, pass);
+			System.out.println("Se logueó correctamente");
+		}catch(MyException e){
+			return e.getMessage();
+		}
+		
+		return "";
+	}
 }

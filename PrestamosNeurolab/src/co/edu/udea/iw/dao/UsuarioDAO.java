@@ -22,6 +22,8 @@ public interface UsuarioDAO {
 	public void guardar(Usuario usuario) throws MyException;
 	
 	public void modificar(Usuario usuario) throws MyException;
+	
+	public void verificarLogin(Usuario usuario) throws MyException;
 
 
 }
