@@ -97,19 +97,31 @@ appNeurolab.controller('listaDispositivos', function($scope, $location, disposit
 		$scope.listaDispositivos = data.data.dispositivoJersey;	
 	});
 	
-	$scope.borrar = function(){
-		$location.url('/eliminarDispositivo');
-	}
+	//$scope.borrar = function(){
+		//$location.url('/eliminarDispositivo');
+	//}
+	
+	$scope.eliminar = function(dispositivo) {
+		alert('acá en eliminar');
+		dispositivos.eliminar(dispositivo.idDispositivo).then(
+			function success(data){
+				alert('Se ha eliminado el dispositivo');
+				$scope.refrescar = function(){
+					$location.url('/listaDispositivos')
+				};
+				
+			});
+		};
 	
 });
 
 //controlador para eliminar de dispositivos
 appNeurolab.controller('eliminarDispositivos', function($scope, $location, dispositivos){
 			
-	$scope.idD = '';
+	//$scope.idD = '';
 	
-	$scope.eliminar = function() {
-		dispositivos.eliminar($scope.idDispositivo).then(
+	$scope.eliminar = function(dispositivo) {
+		dispositivos.eliminar(dispositivo.idDispositivo).then(
 			function success(data){
 				alert('Se ha eliminado el dispositivo');
 				$location.url('/listaDispositivos')
