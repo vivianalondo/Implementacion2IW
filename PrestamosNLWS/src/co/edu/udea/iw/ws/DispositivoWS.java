@@ -131,11 +131,9 @@ public class DispositivoWS {
 	public void modificar(@QueryParam("idDispositivo")int idDispositivo,
 			@QueryParam("nombre")String nombre,
 			@QueryParam("estado")int estado,
-			@QueryParam("descripcion")String descripcion,
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("pwCrea")String pwCrea) throws RemoteException {
+			@QueryParam("descripcion")String descripcion) throws RemoteException {
 		try{
-			dispositivoBl.modificar(idDispositivo, nombre, estado, descripcion, loginCrea, pwCrea);
+			dispositivoBl.modificar(idDispositivo, nombre, estado, descripcion);
 		}catch(MyException e){
 			throw new RemoteException("Error modificando el dispositivo", e);
 		}

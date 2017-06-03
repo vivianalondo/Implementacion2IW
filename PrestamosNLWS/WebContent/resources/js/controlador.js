@@ -46,6 +46,18 @@ appNeurolab.service('dispositivos', function($http){
 				idDispositivo: idD
 			}
 		});
+	},
+	
+	this.modificar = function(dispositivo){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Dispositivo/modificar',
+			method:'POST',
+			params:{
+				idDispositivo: dispositivo.idDispositivo,
+				nombre: dispositivo.nombre,
+				estado: dispositivo.estadoDispositivo,
+				descripcion: dispositivo.descripcion			}
+		});
 	}
 });
 
@@ -88,7 +100,7 @@ appNeurolab.controller('inicio', function($scope, $location, $cookies){
 });
 
 //controlador para lista de dispositivos
-appNeurolab.controller('listaDispositivos', function($scope, $location, dispositivos, usuarios){
+appNeurolab.controller('listaDispositivos', function($scope, $rootScope, $location, dispositivos, usuarios){
 	
 	//Lista dispositivos
 	dispositivos.listaDispositivos().then(
@@ -97,33 +109,62 @@ appNeurolab.controller('listaDispositivos', function($scope, $location, disposit
 		$scope.listaDispositivos = data.data.dispositivoJersey;	
 	});
 	
-	//$scope.borrar = function(){
-		//$location.url('/eliminarDispositivo');
-	//}
-	
+	//Función eliminar
 	$scope.eliminar = function(dispositivo) {
 		alert('acá en eliminar');
 		dispositivos.eliminar(dispositivo.idDispositivo).then(
 			function success(data){
 				alert('Se ha eliminado el dispositivo');
-				$scope.refrescar = function(){
-					$location.url('/listaDispositivos')
-				};
+				$location.url('/listaDispositivos');
 				
 			});
 		};
+		
+		//Funciones para editar
+		
+		$scope.editar = function(dispositivoM){			
+			$rootScope.dispositivoModificar = dispositivoM;
+			$location.url('/editarDispositivo');
+		};
+		
+		
+		$scope.modificar = function(dispositivoMod) {
+						
+			dispositivos.modificar(dispositivoMod).then(
+				function success(data){
+					alert('Se ha modificado el dispositivo');
+					$location.url('/listaDispositivos')
+				});
+			};
 	
 });
 
 //controlador para eliminar de dispositivos
 appNeurolab.controller('eliminarDispositivos', function($scope, $location, dispositivos){
-			
-	//$scope.idD = '';
+
 	
 	$scope.eliminar = function(dispositivo) {
 		dispositivos.eliminar(dispositivo.idDispositivo).then(
 			function success(data){
 				alert('Se ha eliminado el dispositivo');
+				$location.url('/listaDispositivos')
+			});
+		};
+		
+});
+
+//Controlador para editar de dispositivos
+appNeurolab.controller('editarDispositivo', function($scope, $location, dispositivos){
+
+	
+	$scope.modificar = function(dispositivoModificar) {
+		console.log(dispositivoModificar.nombre);
+		console.log(dispositivoModificar.estadoDispositivo);
+		console.log(dispositivoModificar.descripcion);
+		console.log(dispositivoModificar.idDispositivo);
+		dispositivos.modificar(dispositivo).then(
+			function success(data){
+				alert('Se ha modificado el dispositivo');
 				$location.url('/listaDispositivos')
 			});
 		};
@@ -148,6 +189,13 @@ appNeurolab.config(['$routeProvider', function($routeProvider){
 		controller: 'listaDispositivos'
 	});
 	
+	//Ruta editar
+	$routeProvider.when('/editarDispositivo', {
+		templateUrl : 'EditarDispositivo.html',
+		controller: 'listaDispositivos'
+	});
+	
+	//Ruta editar
 	$routeProvider.when('/eliminarDispositivo', {
 		templateUrl : 'EliminarDispositivos.html',
 		controller: 'eliminarDispositivos'

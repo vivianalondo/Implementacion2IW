@@ -94,12 +94,7 @@ public class DispositivoBl {
 				if(descripcion==null|| "".equals(descripcion)){
 					throw new MyException("La descripcion del dispositivo no puede estar vacia");
 				}
-				//Verificación de que el usuario que esté creando un nuevo registro sea administrador
-				  Usuario usuarioCrea = verificarLogin(loginCrea, pwCrea);
-				  if (usuarioCrea.getRol().getIdRol()!=1) {
-				   throw new MyException("No tiene permisos para ingresar un nuevo usuario");
-				  }
-				
+
 				Dispositivo dispositivo = new Dispositivo();
 				
 				dispositivo.setNombre(nombre);
@@ -164,80 +159,38 @@ public class DispositivoBl {
 		return dispositivos;
 	}
 	
-	/**
-	 * Método para verificar que el usuario esté logueado
-	 * @param loginC
-	 * @param pwC
-	 * @return Usuario
-	 * @throws MyException
-	 */
-	 public Usuario verificarLogin(String loginC, String pwC) throws MyException{
-		 System.out.println("pasó por aquí");
-		 Usuario usuarioLogueado = null;
-		 
-		 try{
-			 usuarioLogueado = usuarioDAO.obtenerPorLogin(loginC);
-			 System.out.println(usuarioLogueado);
-	   if (usuarioLogueado==null) {
-	    throw new MyException("Usuario no existe en el sistema");
-	   }else{
-	    
-	    if(usuarioLogueado.getPassword().equals(pwC)){
-	     System.out.println("Los datos ingresados son correctos");
-	    }else{
-	     throw new MyException("La contraseña no es correcta");
-	    }
-	     
-	   }
-	  }catch (MyException e) {
-	   e.printStackTrace();
-	   fail(e.getMessage());
-	  }
-	  
-	  return usuarioLogueado;
-	 }
+
 	 
-	 
-	 public void modificar(int idDispositivo , String nombre, int estado, String descripcion, String loginCrea, String pwCrea)throws MyException{
-					//Validar que los campos no sean nulos
-					
-					if (idDispositivo==0) {
-							throw new MyException("El campo idDispositivo del dispositivo no puede estar vacio");
-						}
-						
-					Dispositivo  dispositivo = dispositivoDAO.obtener(idDispositivo);
-					if(dispositivo == null){
-						throw new MyException("El dispositivo no existe en el sistema");
-						}
-		 			
-		 			if(nombre==null|| "".equals(nombre)){
-						throw new MyException("El nombre de dispositivo no puede estar vacio");
-					}
-		 			
-		 			if (estado==0) {
-		 				throw new MyException("El estado del dispositivo no puede estar vacio");
-					}
-		 			
-					EstadoDispositivo  estadoDispositivo = estadodispositivoDAO.obtener(estado);
-					if(estadoDispositivo == null){
-						throw new MyException("Debe seleccionar un estado valido");
-					}
-					if(descripcion==null|| "".equals(descripcion)){
-						throw new MyException("La descripcion del dispositivo no puede estar vacia");
-					}
-					//Verificación de que el usuario que esté modificando un nuevo registro sea administrador
-					  Usuario usuarioCrea = verificarLogin(loginCrea, pwCrea);
-					  if (usuarioCrea.getRol().getIdRol()!=1) {
-					   throw new MyException("No tiene permisos para ingresar un nuevo usuario");
-					  }
-					
-					dispositivo.setNombre(nombre);
-					dispositivo.setEstadoDispositivo(estadoDispositivo);
-					dispositivo.setDescripcion(descripcion);
-					
-					dispositivoDAO.modificar(dispositivo);
-			
-			
+	 public void modificar(int idDispositivo , String nombre, int estado, String descripcion)throws MyException{
+				//Validar que los campos no sean nulos
+
+				System.out.println("el id a modificar es: "+ idDispositivo);
+				Dispositivo  dispositivo = dispositivoDAO.obtener(idDispositivo);
+				if(dispositivo == null){
+					throw new MyException("El dispositivo no existe en el sistema");
+				}
+	 			
+	 			if(nombre==null|| "".equals(nombre)){
+					throw new MyException("El nombre de dispositivo no puede estar vacio");
+				}
+	 			
+	 			if (estado==0) {
+	 				throw new MyException("El estado del dispositivo no puede estar vacio");
+				}
+	 			
+				EstadoDispositivo  estadoDispositivo = estadodispositivoDAO.obtener(estado);
+				if(estadoDispositivo == null){
+					throw new MyException("Debe seleccionar un estado valido");
+				}
+				if(descripcion==null|| "".equals(descripcion)){
+					throw new MyException("La descripcion del dispositivo no puede estar vacia");
+				}
+				
+				dispositivo.setNombre(nombre);
+				dispositivo.setEstadoDispositivo(estadoDispositivo);
+				dispositivo.setDescripcion(descripcion);
+				
+				dispositivoDAO.modificar(dispositivo);
 		}
 	 
 	 	//Metodo para listar dispositivos

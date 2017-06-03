@@ -74,7 +74,7 @@ public class DispositivoBlTest {
 	public void testModificarDispositivo() {
 		
 		try{
-			dispositivoBl.modificar(1,"otro tubo de ensayo", 1, "no se como se escribe completo","sanvilc","12345");			
+			dispositivoBl.modificar(1,"otro tubo de ensayo", 1, "no se como se escribe completo");			
 			testBuscarDispositivoPorNombre();
 		}catch(MyException e){
 			e.printStackTrace();

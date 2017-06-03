@@ -13,8 +13,8 @@
 		<td>{{dispositivo.nombre}}</td>
 		<td>{{dispositivo.estadoDispositivo}}</td>
 		<td>{{dispositivo.descripcion}}</td>
-		<td><button data-id={{dispositivo.idDispositivo}}>Editar</button>
-		<button data-id={{dispositivo.idDispositivo}} ng-click="eliminar(dispositivo)">Eliminar</button></td>
+		<td><button ng-click=editar(dispositivo)>Editar</button>
+		<button ng-click="eliminar(dispositivo)">Eliminar</button></td>
 
 	</tr>
 	</table>
