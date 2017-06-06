@@ -11,9 +11,9 @@
 			<key-many-to-one name="idDispositivo" class="co.edu.udea.iw.dto.Dispositivo">
 				<column name="IDDISPOSITIVO"></column>
 			</key-many-to-one>
-			<key-many-to-one name="estadoReserva" class="co.edu.udea.iw.dto.EstadoReserva">
-				<column name="ESTADORESERVA"></column>
-			</key-many-to-one>
     	</composite-id>
+    	<many-to-one name="estadoReserva" class="co.edu.udea.iw.dto.EstadoReserva" fetch="join">
+            <column name="ESTADORESERVA" length="12" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

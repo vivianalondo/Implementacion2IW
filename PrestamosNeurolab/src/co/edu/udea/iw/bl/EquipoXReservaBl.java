@@ -61,7 +61,7 @@ public class EquipoXReservaBl {
 	}
 	
 	/***
-	 * 
+	 * Listar equipos por reserva
 	 * @return
 	 * @throws MyException
 	 */
@@ -70,10 +70,15 @@ public class EquipoXReservaBl {
 	}
 
 	/**
-	 * M�todo para registrar un usuario. Hacemos las validaciones de campos no nulos
-	 * 
-	 **/
-	public void registrarEquipoXReserva(int reserva, int dispositivo, int estadoReserva, String loginCrea,String pwCrea)throws MyException{
+	 * Registrar nuevo equipo por reserva
+	 * @param reserva
+	 * @param dispositivo
+	 * @param estadoReserva
+	 * @param loginCrea
+	 * @param pwCrea
+	 * @throws MyException
+	 */
+	public void registrarEquipoXReserva(int reserva, int dispositivo, int estadoReserva)throws MyException{
 		
 		Reserva reservaIngresar = null;
 		Dispositivo dispositivoIngresar = null;
@@ -89,12 +94,6 @@ public class EquipoXReservaBl {
 		}
 		if(dispositivo==0){
 			throw new MyException("El sispositivo no puede estar vac�a");
-		}
-
-		//Verificacion de que el usuario que est creando un nuevo registro sea administrador
-		Usuario usuarioCrea = verificarLogin(loginCrea, pwCrea);
-		if (usuarioCrea.getRol().getIdRol()!=1) {
-			throw new MyException("No tiene permisos para ingresar un nuevo usuario");
 		}
 		
 		EquipoXReserva equipoXReserva = null;
@@ -115,15 +114,24 @@ public class EquipoXReservaBl {
 		
 		equipoXReservaId.setIdReserva(registrarReserva);
 		equipoXReservaId.setIdDispositivo(registrarDispositivo);
-		equipoXReservaId.setEstadoReserva(registrarEstadoReserva);
+		//equipoXReservaId.setEstadoReserva(registrarEstadoReserva);
 
 		equipoXReserva.setEquiposXReservaId(equipoXReservaId);
+		equipoXReserva.setEstadoReserva(registrarEstadoReserva);
 		
 		equipoXReservaDAO.guardar(equipoXReserva);
 		
 	}
-	
-public void modificarBl(int reserva, int dispositivo, int estadoReserva, String loginCrea,String pwCrea) throws MyException{
+/***
+ * Modificar equipos por reserva	
+ * @param reserva
+ * @param dispositivo
+ * @param estadoReserva
+ * @param loginCrea
+ * @param pwCrea
+ * @throws MyException
+ */
+public void modificarBl(int reserva, int dispositivo, int estadoReserva) throws MyException{
 		
 		EstadoDispositivo estadoDispositivo = null;
 		Reserva reservaIngresar = null;
@@ -160,14 +168,21 @@ public void modificarBl(int reserva, int dispositivo, int estadoReserva, String 
 		
 		equipoXReservaId.setIdReserva(registrarReserva);
 		equipoXReservaId.setIdDispositivo(registrarDispositivo);
-		equipoXReservaId.setEstadoReserva(registrarEstadoReserva);
+		//equipoXReservaId.setEstadoReserva(registrarEstadoReserva);
 
 		equipoXReserva.setEquiposXReservaId(equipoXReservaId);
+		equipoXReserva.setEstadoReserva(registrarEstadoReserva);
 		
 		equipoXReservaDAO.modificar(equipoXReserva);
 
 	}
 
+/**
+ * 
+ * @param idEquipoXReserva
+ * @return
+ * @throws MyException
+ */
 public EquipoXReserva obtenerBl(EquipoXReservaId idEquipoXReserva) throws MyException{
 	
 	
@@ -182,31 +197,6 @@ public EquipoXReserva obtenerBl(EquipoXReservaId idEquipoXReserva) throws MyExce
 	}
 	
 }
-	
-	
-		public Usuario verificarLogin(String loginC, String pwC) throws MyException{
-			Usuario usuarioLogueado = null;
-			
-			try{
-				usuarioLogueado = usuarioDAO.obtenerPorLogin(loginC);
-				if (usuarioLogueado==null) {
-					throw new MyException("Usuario no existe en el sistema");
-				}else{
-					
-					if(usuarioLogueado.getPassword().equals(pwC)){
-						System.out.println("Los datos ingresados son correctos");
-					}else{
-						throw new MyException("La contrase�a no es correcta");
-					}
-						
-				}
-			}catch (MyException e) {
-				e.printStackTrace();
-				fail(e.getMessage());
-			}
-			
-			return usuarioLogueado;
-		}
 		
 
 }

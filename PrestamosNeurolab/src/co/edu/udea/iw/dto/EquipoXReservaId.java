@@ -13,7 +13,6 @@ public class EquipoXReservaId implements Serializable{
 
 	public Reserva idReserva;
 	public Dispositivo idDispositivo;
-	public EstadoReserva estadoReserva;
 	
 	public Reserva getIdReserva() {
 		return idReserva;
@@ -26,12 +25,6 @@ public class EquipoXReservaId implements Serializable{
 	}
 	public void setIdDispositivo(Dispositivo idDispositivo) {
 		this.idDispositivo = idDispositivo;
-	}
-	public EstadoReserva getEstadoReserva() {
-		return estadoReserva;
-	}
-	public void setEstadoReserva(EstadoReserva estadoReserva) {
-		this.estadoReserva = estadoReserva;
 	}
 	
 	

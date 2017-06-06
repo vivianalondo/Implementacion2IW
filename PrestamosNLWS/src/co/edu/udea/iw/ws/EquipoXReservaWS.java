@@ -38,7 +38,7 @@ public class EquipoXReservaWS {
 	 * @throws RemoteException
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listar")
 	public List<EquipoXReservaJersey> listaObtener() throws RemoteException{
 		List<EquipoXReservaJersey> respuesta = new ArrayList<EquipoXReservaJersey>();
@@ -48,7 +48,7 @@ public class EquipoXReservaWS {
 				EquipoXReservaJersey equipoXReservaJersey = new EquipoXReservaJersey(
 						equipoXReserva.getEquiposXReservaId().getIdReserva().getIdReserva(),
 						equipoXReserva.getEquiposXReservaId().getIdDispositivo().getIdDispositivo(),
-						equipoXReserva.getEquiposXReservaId().getEstadoReserva().getIdEstadoReserva()
+						equipoXReserva.getEstadoReserva().getIdEstadoReserva()
 						);
 				
 				respuesta.add(equipoXReservaJersey);
@@ -74,11 +74,9 @@ public class EquipoXReservaWS {
 	@Path("registrar")
 	public void registrar(@QueryParam("reserva")int reserva,
 			@QueryParam("dispositivo")int dispositivo,
-			@QueryParam("estadoReserva")int estadoReserva,
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("pwCrea")String pwCrea) throws RemoteException {
+			@QueryParam("estadoReserva")int estadoReserva) throws RemoteException {
 		try{
-			equipoXReservaBl.registrarEquipoXReserva(reserva, dispositivo, estadoReserva, loginCrea, pwCrea);
+			equipoXReservaBl.registrarEquipoXReserva(reserva, dispositivo, estadoReserva);
 		}catch(MyException e){
 			throw new RemoteException("Error creando el equipo x reserva", e);
 		}
@@ -99,11 +97,9 @@ public class EquipoXReservaWS {
 	@Path("modificar")
 	public void modificar(@QueryParam("reserva")int reserva,
 			@QueryParam("dispositivo")int dispositivo,
-			@QueryParam("estadoReserva")int estadoReserva,
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("pwCrea")String pwCrea) throws RemoteException {
+			@QueryParam("estadoReserva")int estadoReserva) throws RemoteException {
 		try{
-			equipoXReservaBl.modificarBl(reserva, dispositivo, estadoReserva, loginCrea, pwCrea);
+			equipoXReservaBl.modificarBl(reserva, dispositivo, estadoReserva);
 		}catch(MyException e){
 			throw new RemoteException("Error creando el equipo x reserva", e);
 		}

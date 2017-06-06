@@ -9,6 +9,7 @@ package co.edu.udea.iw.dto;
 public class EquipoXReserva {
 	
 	public EquipoXReservaId equiposXReservaId;
+	public EstadoReserva estadoReserva;
 
 	public EquipoXReservaId getEquiposXReservaId() {
 		return equiposXReservaId;
@@ -16,6 +17,13 @@ public class EquipoXReserva {
 
 	public void setEquiposXReservaId(EquipoXReservaId equiposXReservaId) {
 		this.equiposXReservaId = equiposXReservaId;
+	}
+	
+	public EstadoReserva getEstadoReserva() {
+		return estadoReserva;
+	}
+	public void setEstadoReserva(EstadoReserva estadoReserva) {
+		this.estadoReserva = estadoReserva;
 	}
 	
 

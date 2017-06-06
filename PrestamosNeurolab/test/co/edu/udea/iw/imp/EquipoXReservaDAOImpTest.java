@@ -52,7 +52,7 @@ public class EquipoXReservaDAOImpTest {
 		
 			equipoXReservaId.setIdReserva(reserva);
 			equipoXReservaId.setIdDispositivo(dispositivo);
-			equipoXReservaId.setEstadoReserva(estadoReserva);
+			//equipoXReservaId.setEstadoReserva(estadoReserva);
 			
 			equipoXReserva = equipoXReservaDAO.obtener(equipoXReservaId);
 			
@@ -81,7 +81,7 @@ public class EquipoXReservaDAOImpTest {
 			for(EquipoXReserva equipoXReserva:resultado){
 				System.out.println("El id de la reserva es: "+equipoXReserva.getEquiposXReservaId().getIdReserva().getIdReserva());
 				System.out.println("El id del dispositivo es: "+equipoXReserva.getEquiposXReservaId().getIdDispositivo().getIdDispositivo());
-				System.out.println("El estado de la reserva es: "+equipoXReserva.getEquiposXReservaId().getEstadoReserva().getTipoEstadoReserva());
+				System.out.println("El estado de la reserva es: "+equipoXReserva.getEstadoReserva().getTipoEstadoReserva());
 			}
 			assertTrue(resultado.size()>0);
 		}catch(MyException e){
@@ -113,9 +113,10 @@ public class EquipoXReservaDAOImpTest {
 		
 			equipoXReservaId.setIdReserva(reserva);
 			equipoXReservaId.setIdDispositivo(dispositivo);
-			equipoXReservaId.setEstadoReserva(estadoReserva);
+			//equipoXReservaId.setEstadoReserva(estadoReserva);
 			
 			equipoXReserva.setEquiposXReservaId(equipoXReservaId);
+			equipoXReserva.setEstadoReserva(estadoReserva);
 		
 			equipoXReservaDAO.guardar(equipoXReserva);
 			}catch(MyException e){
@@ -149,10 +150,11 @@ public class EquipoXReservaDAOImpTest {
 			
 				equipoXReservaId.setIdReserva(reserva);
 				equipoXReservaId.setIdDispositivo(dispositivo);
-				equipoXReservaId.setEstadoReserva(estadoReserva);
+				//equipoXReservaId.setEstadoReserva(estadoReserva);
 				
 				equipoXReserva.setEquiposXReservaId(equipoXReservaId);
-			
+				equipoXReserva.setEstadoReserva(estadoReserva);
+				
 				equipoXReservaDAO.modificar(equipoXReserva);
 				}catch(MyException e){
 					e.printStackTrace();

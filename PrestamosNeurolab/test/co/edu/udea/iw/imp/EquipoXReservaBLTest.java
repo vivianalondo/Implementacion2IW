@@ -23,16 +23,17 @@ public class EquipoXReservaBLTest {
 	@Autowired
 	private EquipoXReservaBl equipoXReservaBl;
 
-	@Test
+	//@Test
 	public void testObtenerEquiposXReserva() {
 		
 		try{
 			
-			
 			List<EquipoXReserva> resultado = null;
 			resultado = equipoXReservaBl.obtenerEquiposXReserva();
 			for(EquipoXReserva equipoXReserva:resultado){
-			    System.out.println(equipoXReserva.getEquiposXReservaId());
+			    System.out.println("Reserva número: "+equipoXReserva.getEquiposXReservaId().getIdReserva().getIdReserva());
+			    System.out.println("Dispositivo: "+equipoXReserva.getEquiposXReservaId().getIdDispositivo().getNombre());
+			    System.out.println("Estado de la reserva: "+equipoXReserva.getEstadoReserva().getTipoEstadoReserva());
 			}
 			
 		}catch(MyException e){
@@ -41,11 +42,22 @@ public class EquipoXReservaBLTest {
 		}
 	}
 
-	//@Test
+	
+	/**
+	 * Test registrar nuevo dispositivo
+	 */
+	@Test
 	public void testRegistrarEquipoXReserva() {
-		fail("Not yet implemented");
+		try{	
+			equipoXReservaBl.registrarEquipoXReserva(14, 7, 1);
+			System.out.println("Se ha guardado el registro");		
+		}catch(MyException e){
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
 	}
 
+	
 	//@Test
 	public void testModificarBl() {
 		fail("Not yet implemented");
