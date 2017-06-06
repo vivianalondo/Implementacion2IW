@@ -1,7 +1,7 @@
 /**
  * 
  */
-var appNeurolab = angular.module('neurolab', ['ngRoute', 'ngCookies', 'modUsuarios']);
+var appNeurolab = angular.module('neurolab', ['ngRoute', 'ngCookies', 'modUsuarios', 'modReservas']);
 
 //factoria que controla la autentificación, devuelve un objeto
 //$cookies para crear cookies
@@ -163,8 +163,14 @@ appNeurolab.controller('inicio', function($scope, $location, $cookies, auth){
 		$location.url('/listaDispositivos');
 	}
 	
+	//Ir a la lista de usuarios
 	$scope.listarUsuarios = function(){
 		$location.url('/listaUsuarios');
+	}
+	
+	//Ir a la lista de reservas
+	$scope.listarReservas = function(){
+		$location.url('/listaReservas');
 	}
 	
 	//Cerrar sesión

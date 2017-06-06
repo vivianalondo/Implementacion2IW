@@ -39,7 +39,7 @@ public class ReservaWS {
 	 * @throws RemoteException
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listar")
 	public List<ReservaJersey> listaObtener() throws RemoteException{
 
