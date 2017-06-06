@@ -1,4 +1,16 @@
 <div>
+	<form ng-submit="buscardispositivo(nombre)">
+		<div>
+			<label for="nombreDispositivo">Nombre Dispositivo:</label>
+			<input type="text" 
+				   placeholder="Nombre de dispositivo"
+				   required id="NombreDispositivo"
+				   ng-model="nombre"/>
+		</div>
+		<button type="submit">Buscar</button>
+	</form>
+</div>
+<div>
 	<table border="1" width="100%">
 	<tr>
 		<th>ID Dispositivo</th>
@@ -13,11 +25,12 @@
 		<td>{{dispositivo.nombre}}</td>
 		<td>{{dispositivo.estadoDispositivo}}</td>
 		<td>{{dispositivo.descripcion}}</td>
-		<td><button ng-click=editar(dispositivo)>Editar</button>
-		<button ng-click="eliminar(dispositivo)">Eliminar</button></td>
+		<td><button  ng-click="editar(dispositivo)">Editar</button>
+		<button  ng-click="eliminar(dispositivo)">Eliminar</button></td>
 
 	</tr>
 	</table>
-	<div> 
-	</div>
+	
+	<button  ng-click="save()">Nuevo</button>
+
 </div>

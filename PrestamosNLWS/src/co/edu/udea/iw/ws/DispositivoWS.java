@@ -105,11 +105,10 @@ public class DispositivoWS {
 	@Path("guardar")
 	public void guardar(@QueryParam("nombre")String nombre,
 			@QueryParam("estado")int estado,
-			@QueryParam("descripcion")String descripcion, 
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("pwCrea")String pwCrea) throws RemoteException {
+			@QueryParam("descripcion")String descripcion)
+			throws RemoteException {
 		try{
-			dispositivoBl.guardar(nombre, estado, descripcion, loginCrea, pwCrea);
+			dispositivoBl.guardar(nombre, estado, descripcion);
 		}catch(MyException e){
 			throw new RemoteException("Error creando el dispositivo", e);
 		}
@@ -164,7 +163,7 @@ public class DispositivoWS {
 	 * @throws RemoteException
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listarPorNombre")
 	public List<DispositivoJersey> listarPorNombre(@QueryParam("nombreDispositivo")String nombreDispositivo) throws RemoteException{
 		List<DispositivoJersey> respuesta = new ArrayList<DispositivoJersey>();

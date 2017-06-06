@@ -1,0 +1,35 @@
+<div>
+	<table border="1" width="100%">
+	<tr>
+		<th>Documento</th>
+		<th>Tipo de documento</th>
+		<th>Nombre</th>
+		<th>Apellido</th>
+		<th>Telefono</th>
+		<th>Emai</th>
+		<th>Login</th>
+		<th>Días de sanción</th>
+		<th>Estado Usuario</th>
+		<th>Rol</th>
+		<th>Acción</th>
+	</tr>
+	
+	<tr ng-repeat="usuario in listaUsuarios">
+		<td>{{usuario.identificacion}}</td>
+		<td>{{usuario.tipoDocumento}}</td>
+		<td>{{usuario.nombre}}</td>
+		<td>{{usuario.apellido}}</td>
+		<td>{{usuario.telefono}}</td>
+		<td>{{usuario.email}}</td>
+		<td>{{usuario.login}}</td>
+		<td>{{usuario.diasSanciones}}</td>
+		<td>{{usuario.estadoUsuario}}</td>
+		<td>{{usuario.rol}}</td>
+		<td><button >Editar</button>
+		<button >Eliminar</button></td>
+
+	</tr>
+	</table>
+	<div> 
+	</div>
+</div>

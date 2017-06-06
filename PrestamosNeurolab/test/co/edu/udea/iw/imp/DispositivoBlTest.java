@@ -39,7 +39,7 @@ public class DispositivoBlTest {
 		
 		try{
 			
-			dispositivoBl.guardar("otro tubo de ensayo", 1, "no se como se escribe completo","sanvilc","12345");			
+			dispositivoBl.guardar("otro tubo de ensayo", 1, "no se como se escribe completo");			
 			
 		}catch(MyException e){
 			e.printStackTrace();

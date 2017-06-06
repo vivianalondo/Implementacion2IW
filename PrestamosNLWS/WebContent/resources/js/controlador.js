@@ -1,7 +1,7 @@
 /**
  * 
  */
-var appNeurolab = angular.module('neurolab', ['ngRoute', 'ngCookies']);
+var appNeurolab = angular.module('neurolab', ['ngRoute', 'ngCookies', 'modUsuarios']);
 
 //Conjunto de servicios web de usuarios
 appNeurolab.service('usuarios', function($http, $cookies, $location){
@@ -27,6 +27,24 @@ appNeurolab.service('usuarios', function($http, $cookies, $location){
 	}
 });
 
+appNeurolab.service('productService', function() {
+	  var productList = [];
+
+	  var addProduct = function(newObj) {
+	      productList.push(newObj);
+	  };
+
+	  var getProducts = function(){
+	      return productList;
+	  };
+
+	  return {
+	    addProduct: addProduct,
+	    getProducts: getProducts
+	  };
+
+	});
+
 //para llamar los servicios de dispositivo
 appNeurolab.service('dispositivos', function($http){	
 	//listar	
@@ -46,7 +64,32 @@ appNeurolab.service('dispositivos', function($http){
 				idDispositivo: idD
 			}
 		});
-	},
+	}
+	
+	//guardar
+	this.guardar = function(dis){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Dispositivo/guardar',
+			method:'POST',
+			params:{
+				nombre: dis.nombre,
+				estado: dis.estadoDispositivo,
+				descripcion : dis.descripcion
+			}
+		});
+	}
+
+	//buscar
+	this.buscar = function(nombre){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Dispositivo/listarPorNombre',
+			method:'GET',
+			params:{
+				nombreDispositivo : nombre	
+			}
+		});
+	}
+	
 	
 	this.modificar = function(dispositivo){
 		return $http({
@@ -59,6 +102,8 @@ appNeurolab.service('dispositivos', function($http){
 				descripcion: dispositivo.descripcion			}
 		});
 	}
+
+	
 });
 
 //coontrolador para el logueo del usuario
@@ -78,7 +123,7 @@ appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 				}
 				
 				$cookies.nombreUsuario = $scope.nombreUsuario;//Guardar nombre de usuario en la cookie. Debo inyectar el $cookies
-				console.log($scope.nombreUsuario);
+	//			console.log($scope.nombreUsuario);
 				$location.url('/inicio');
 			},
 			function failure(data){
@@ -96,11 +141,34 @@ appNeurolab.controller('inicio', function($scope, $location, $cookies){
 	$scope.listarDispositivos = function(){
 		$location.url('/listaDispositivos');
 	}
+	
+	$scope.listarUsuarios = function(){
+		$location.url('/listaUsuarios');
+	}
 
 });
 
+appNeurolab.controller('guardardispositivo', function($scope, $location, $cookies, dispositivos){
+	
+
+	
+	
+	$scope.guardar = function() {
+		alert('acá en guardar');
+		dispositivos.guardar($scope.dispositivo).then(
+			function success(data){
+				alert('Se ha guardado el dispositivo');
+				$scope.refrescar = function(){
+					$location.url('/listaDispositivos')
+				};
+				
+			});
+	};
+});
+
+
 //controlador para lista de dispositivos
-appNeurolab.controller('listaDispositivos', function($scope, $rootScope, $location, dispositivos, usuarios){
+appNeurolab.controller('listaDispositivos', function($scope, $location,$rootScope, dispositivos, usuarios, productService){
 	
 	//Lista dispositivos
 	dispositivos.listaDispositivos().then(
@@ -109,39 +177,89 @@ appNeurolab.controller('listaDispositivos', function($scope, $rootScope, $locati
 		$scope.listaDispositivos = data.data.dispositivoJersey;	
 	});
 	
-	//Función eliminar
+	//$scope.borrar = function(){
+		//$location.url('/eliminarDispositivo');
+	//}
+	
 	$scope.eliminar = function(dispositivo) {
 		alert('acá en eliminar');
 		dispositivos.eliminar(dispositivo.idDispositivo).then(
 			function success(data){
 				alert('Se ha eliminado el dispositivo');
-				$location.url('/listaDispositivos');
+				$scope.refrescar = function(){
+					$location.url('/listaDispositivos')
+				};
 				
 			});
 		};
 		
-		//Funciones para editar
+	$scope.save = function(){
+		$location.url('/guardardispositivo');
+	}
+	
+	//$scope.listaDispositivosResultante
+	$scope.buscardispositivo = function(nombre){
 		
-		$scope.editar = function(dispositivoM){			
-			$rootScope.dispositivoModificar = dispositivoM;
-			$location.url('/editarDispositivo');
+		productService.addProduct(nombre);
+		$location.url('/buscardispositivo');
+		//$scope.buscar = function(nombre){
+					//};
+	}
+	
+	
+
+	//Funciones para editar
+	$scope.editar = function(dispositivoM){			
+		$rootScope.dispositivoModificar = dispositivoM;
+		$location.url('/editarDispositivo');
+	};
+	
+	
+	$scope.modificar = function(dispositivoMod) {
+					
+		dispositivos.modificar(dispositivoMod).then(
+			function success(data){
+				alert('Se ha modificado el dispositivo');
+				$location.url('/listaDispositivos')
+			});
 		};
-		
-		
-		$scope.modificar = function(dispositivoMod) {
-						
-			dispositivos.modificar(dispositivoMod).then(
-				function success(data){
-					alert('Se ha modificado el dispositivo');
-					$location.url('/listaDispositivos')
-				});
-			};
+	
+	
 	
 });
 
+
+//controlador para eliminar de dispositivos
+appNeurolab.controller('busqueda', function($scope, $location, dispositivos,productService){
+	
+	$scope.products = productService.getProducts();
+	
+	dispositivos.buscar($scope.products).then(
+			function success(data){
+				
+				alert(data.data.dispositivoJersey);
+					
+				$scope.listaDispositivosResultante = data.data.dispositivoJersey;	
+				
+				alert($scope.listaDispositivosResultante.idDispositivo);
+				alert($scope.listaDispositivosResultante.nombre);
+				alert($scope.listaDispositivosResultante.estadoDispositivo);
+				alert($scope.listaDispositivosResultante.descripcion);
+
+			});	
+	
+});
+
+
+
+
+
+
+
 //controlador para eliminar de dispositivos
 appNeurolab.controller('eliminarDispositivos', function($scope, $location, dispositivos){
-
+			
+	//$scope.idD = '';
 	
 	$scope.eliminar = function(dispositivo) {
 		dispositivos.eliminar(dispositivo.idDispositivo).then(
@@ -152,6 +270,8 @@ appNeurolab.controller('eliminarDispositivos', function($scope, $location, dispo
 		};
 		
 });
+
+
 
 //Controlador para editar de dispositivos
 appNeurolab.controller('editarDispositivo', function($scope, $location, dispositivos){
@@ -189,17 +309,27 @@ appNeurolab.config(['$routeProvider', function($routeProvider){
 		controller: 'listaDispositivos'
 	});
 	
+	$routeProvider.when('/eliminarDispositivo', {
+		templateUrl : 'EliminarDispositivos.html',
+		controller: 'eliminarDispositivos'
+	});
+	
+	$routeProvider.when('/guardardispositivo', {
+		templateUrl : 'GuardarDispositivos.html',
+		controller: 'guardardispositivo'
+	});
+	
 	//Ruta editar
 	$routeProvider.when('/editarDispositivo', {
 		templateUrl : 'EditarDispositivo.html',
 		controller: 'listaDispositivos'
 	});
 	
-	//Ruta editar
-	$routeProvider.when('/eliminarDispositivo', {
-		templateUrl : 'EliminarDispositivos.html',
-		controller: 'eliminarDispositivos'
+	$routeProvider.when('/buscardispositivo', {
+		templateUrl : 'Buscardispositivo.html',
+		controller: 'busqueda'
 	});
+	
 	
 }]);
 
