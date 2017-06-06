@@ -1,4 +1,18 @@
 <div>
+	<form ng-submit="buscarusuario(identificacion)">
+		<div>
+			<label for="Usuario">Id del usuario:</label>
+			<input type="text" 
+				   placeholder="Id del usuario"
+				   required id="idUsuario"
+				   ng-model="identificacion"/>
+		</div>
+		<button type="submit">Buscar</button>
+	</form>
+</div>
+
+
+<div>
 	<table border="1" width="100%">
 	<tr>
 		<th>Documento</th>
@@ -26,7 +40,7 @@
 		<td>{{usuario.estadoUsuario}}</td>
 		<td>{{usuario.rol}}</td>
 		<td><button >Editar</button>
-		<button >EliminarHOla</button></td>
+		<button ng-click="eliminar(usuario)">Eliminar</button></td>
 
 	</tr>
 	</table>

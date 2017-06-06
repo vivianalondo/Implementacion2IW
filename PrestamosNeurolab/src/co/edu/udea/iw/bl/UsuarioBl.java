@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import co.edu.udea.iw.dao.EstadoUsuarioDAO;
 import co.edu.udea.iw.dao.RolDAO;
 import co.edu.udea.iw.dao.UsuarioDAO;
+import co.edu.udea.iw.dto.Dispositivo;
+import co.edu.udea.iw.dto.EstadoDispositivo;
 import co.edu.udea.iw.dto.EstadoUsuario;
 import co.edu.udea.iw.dto.Rol;
 import co.edu.udea.iw.dto.Usuario;
@@ -69,6 +71,7 @@ public class UsuarioBl {
 		}
 		
 		//Verificación de que el usuario exista
+		System.out.println(identificacion);
 		Usuario usuario = usuarioDAO.obtener(identificacion);
 		if (usuario==null) {
 			throw new MyException("El rol no se encuentra en la base de datos");
@@ -91,8 +94,7 @@ public class UsuarioBl {
 	 * @throws MyException
 	 */
 	public void registrarUsuario(String identificacion, String tipoDocumento, String nombre, String apellido,
-			String telefono, String email, String login, String pw, int estadoUsuario, int rol, 
-			String loginCrea, String pwCrea)throws MyException{
+			String telefono, String email, String login, String pw, int estadoUsuario, int rol)throws MyException{
 		
 		Usuario usuarioIngresar = null;
 		Rol rolIngresar = null;
@@ -131,11 +133,7 @@ public class UsuarioBl {
 			throw new MyException("El rol no puede estar vacía");
 		}
 		
-		//Verificación de que el usuario que esté creando un nuevo registro sea administrador
-		Usuario usuarioCrea = verificarLogin(loginCrea, pwCrea);
-		if (usuarioCrea.getRol().getIdRol()!=1) {
-			throw new MyException("No tiene permisos para ingresar un nuevo usuario");
-		}
+
 		
 		
 		//Verificación de la existencia del usuario, para no ingresar usuarios repetidos
@@ -182,8 +180,7 @@ public class UsuarioBl {
 	 * @throws MyException
 	 */
 	public void modificarUsuario(String identificacion, String tipoDocumento, String nombre, String apellido,
-			String telefono, String email, String login, String pw, int estadoUsuario, int rol, 
-			String loginCrea, String pwCrea)throws MyException{
+			String telefono, String email, String login, String pw, int estadoUsuario, int rol)throws MyException{
 		
 		Usuario usuarioIngresar = null;
 		Rol rolModificar = null;
@@ -220,12 +217,6 @@ public class UsuarioBl {
 		}
 		if(rol==0){
 			throw new MyException("El rol no puede estar vacía");
-		}
-		
-		//Verificación de que el usuario que esté creando un nuevo registro sea administrador
-		Usuario usuarioCrea = verificarLogin(loginCrea, pwCrea);
-		if (usuarioCrea.getRol().getIdRol()!=1) {
-			throw new MyException("No tiene permisos para modificar un nuevo usuario");
 		}
 		
 		
@@ -294,5 +285,35 @@ public class UsuarioBl {
 		
 		return usuarioLogueado;
 	}
+
+	public void eliminar(String identificacion)throws MyException{
+		
+		//Validar que los campos no sean nulos
+				
+				if(identificacion == null||identificacion.equals("")){
+					throw new MyException("ID del usuario no puede ser vacio");
+				}
+		
+				Usuario usuario = new Usuario();
+				usuario = usuarioDAO.obtener(identificacion);
+				if(usuario == null){
+					throw new MyException("El usuario a eliminar no existe");
+				}
+		
+		
+				EstadoUsuario  estadoUsuario = usuario.getEstadoUsuario();
+				if(estadoUsuario.getIdEstadoUsuario()==2){
+					throw new MyException("El usuario ya se encuentra inhabilitado");
+				}
+				
+				
+				estadoUsuario = estadoUsuarioDAO.obtener(2);
+				usuario.setEstadoUsuario(estadoUsuario);
+								
+				usuarioDAO.modificar(usuario);
+		
+		
+	}
+
 
 }

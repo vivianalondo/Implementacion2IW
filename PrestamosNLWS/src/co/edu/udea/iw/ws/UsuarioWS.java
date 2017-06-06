@@ -99,12 +99,10 @@ public class UsuarioWS {
 			@QueryParam("login")String login,
 			@QueryParam("pw")String pw,
 			@QueryParam("estadoUsuario")int estadoUsuario, 
-			@QueryParam("rol")int rol, 
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("pwCrea")String pwCrea) throws RemoteException {
+			@QueryParam("rol")int rol) throws RemoteException {
 		try{
 			
-			usuarioBL.registrarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login, pw, estadoUsuario, rol, loginCrea, pwCrea);
+			usuarioBL.registrarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login, pw, estadoUsuario, rol);
 		}catch(MyException e){
 			throw new RemoteException("Error creando el usuario", e);
 		}
@@ -177,11 +175,9 @@ public class UsuarioWS {
 			@QueryParam("login")String login,
 			@QueryParam("pw")String pw,
 			@QueryParam("estadoUsuario")int estadoUsuario, 
-			@QueryParam("rol")int rol, 
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("pwCrea")String pwCrea) throws RemoteException {
+			@QueryParam("rol")int rol) throws RemoteException {
 		try{
-			usuarioBL.modificarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login, pw, estadoUsuario, rol, loginCrea, pwCrea);;
+			usuarioBL.modificarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login, pw, estadoUsuario, rol);;
 		}catch(MyException e){
 			throw new RemoteException("Error modificando el usuario", e);
 		}
@@ -205,4 +201,27 @@ public class UsuarioWS {
 		
 		return "";
 	}
+	
+	
+	/***
+	 * Método para implementar WS de eliminar Ususario
+	 * @param identificacion; Recibe el documento de identificacion del Ususario que se desea eliminar
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("Eliminar")
+	public void eliminar (@QueryParam("identificacion")String identificacion){
+
+		
+		try{
+			usuarioBL.eliminar(identificacion);
+			
+		}catch(MyException e){
+			e.getMessage();
+		}
+
+	}
+	
+	
+	
 }

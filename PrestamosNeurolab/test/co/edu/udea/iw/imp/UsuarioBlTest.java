@@ -36,7 +36,7 @@ public class UsuarioBlTest {
 	@Test
 	public void testRegistrarUsuario() {
 		try {
-			usuarioBl.registrarUsuario("3333", "Cedula", "Sandra Viviana", "Londoño", "333355", "prueba1@prueba1.com", "sanvil", "sanvilp", 1, 2, "sanvilc", "12345");
+			usuarioBl.registrarUsuario("3333", "Cedula", "Sandra Viviana", "Londoño", "333355", "prueba1@prueba1.com", "sanvil", "sanvilp", 1, 2);
 			System.out.println("Se ha registrado correctamente el usuario");
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class UsuarioBlTest {
 	@Test
 	public void testModificarUsuario() {
 		try {
-			usuarioBl.modificarUsuario("3333", "Cedula", "Oscar", "Lopera", "333355", "prueba1@prueba1.com", "sanvil", "sanvilp", 1, 2, "sanvilc", "12345");
+			usuarioBl.modificarUsuario("3333", "Cedula", "Oscar", "Lopera", "333355", "prueba1@prueba1.com", "sanvil", "sanvilp", 1, 2);
 			System.out.println("Se ha modificado correctamente el usuario");
 		} catch (MyException e) {
 			e.printStackTrace();
