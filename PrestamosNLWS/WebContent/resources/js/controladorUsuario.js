@@ -1,7 +1,7 @@
 /**
  * 
  */
-var moduloUsuarios = angular.module('modUsuarios', ['ngRoute', 'ngCookies']);
+var moduloUsuarios = angular.module('modUsuarios', ['ngRoute', 'ngCookies', 'neurolab']);
 
 moduloUsuarios.service('usuariosServices', function($http, $cookies, $location){
 	
@@ -53,6 +53,11 @@ moduloUsuarios.controller('usuarioController', function($scope, $rootScope, $loc
 				});
 			};
 	*/
+	
+	//Función que me lleva al inicio
+	$scope.back = function(){
+		$location.url('/inicio');
+	}
 });
 
 

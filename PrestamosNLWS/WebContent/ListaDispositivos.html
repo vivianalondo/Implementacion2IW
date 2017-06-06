@@ -25,12 +25,13 @@
 		<td>{{dispositivo.nombre}}</td>
 		<td>{{dispositivo.estadoDispositivo}}</td>
 		<td>{{dispositivo.descripcion}}</td>
-		<td><button  ng-click="editar(dispositivo)">Editar</button>
-		<button  ng-click="eliminar(dispositivo)">Eliminar</button></td>
+		<td><button  ng-click="editar(dispositivo)" >Editar</button>
+		<button  ng-click="eliminar(dispositivo)" ng-click="listarUsuario">Eliminar</button></td>
 
 	</tr>
 	</table>
 	
 	<button  ng-click="save()">Nuevo</button>
+	<button  ng-click="back()">Regresar</button>
 
 </div>
