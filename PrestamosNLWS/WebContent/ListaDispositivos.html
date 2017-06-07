@@ -1,4 +1,23 @@
-<div>
+<div class="menu" style="width:100%;>
+	    <div class="container-fluid">
+			<div class="navbar-header">
+				 <img src="resources/img/Logo.png" >
+			</div>
+			  <ul class="nav navbar-nav">
+			      <li><a href="#">   Inicio</a></li>
+			      <li class="active"><a ng-click="listarDispositivos()">Dispositivos</a></li>
+			      <li><a href="#">Page 2</a></li>
+			  </ul>
+			 <div>
+				<ul class="nav navbar-nav navbar-right">
+				
+					<li><a href="#" ><span class="glyphicon glyphicon-user"></span> {{nombreUsuario}}</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+				</ul>
+			</div>
+		</div>
+
+
 	<form ng-submit="buscardispositivo(nombre)">
 		<div>
 			<label for="nombreDispositivo">Nombre Dispositivo:</label>
@@ -9,29 +28,31 @@
 		</div>
 		<button type="submit">Buscar</button>
 	</form>
-</div>
-<div>
-	<table border="1" width="100%">
-	<tr>
-		<th>ID Dispositivo</th>
+<div class="container" id="#scroll">
+    <div class="row col-lg-10 col-lg-offset-2 custyle">
+
+    <img src="resources\img\laboratorio5.png">
+    <table class="table table-striped custab">
+    <thead>
+     <tr>
+		<th>ID</th>
 		<th>Nombre</th>
 		<th>Estado</th>
-		<th>Descripción</th>
-		<th>Acciones</th>
+		<th>Descripci&ograve;n</th>
+		<th align="center" colspan="3">Acciones</th>
 	</tr>
-	
-	<tr ng-repeat="dispositivo in listaDispositivos">
-		<td>{{dispositivo.idDispositivo}}</td>
-		<td>{{dispositivo.nombre}}</td>
-		<td>{{dispositivo.estadoDispositivo}}</td>
-		<td>{{dispositivo.descripcion}}</td>
-		<td><button  ng-click="editar(dispositivo)" >Editar</button>
-		<button  ng-click="eliminar(dispositivo)" ng-click="listarUsuario">Eliminar</button></td>
-
-	</tr>
-	</table>
-	
+    </thead>
+            <tr ng-repeat="dispositivo in listaDispositivos">
+                <td>{{dispositivo.idDispositivo}}</td>
+				<td>{{dispositivo.nombre}}</td>
+				<td>{{dispositivo.estadoDispositivo}}</td>
+				<td>{{dispositivo.descripcion}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' ng-click=editar(dispositivo)><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
+                <td class="text-center"><a ng-click="eliminar(dispositivo)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+            </tr>
+      
+    </table>
+    </div>
 	<button  ng-click="save()">Nuevo</button>
 	<button  ng-click="back()">Regresar</button>
-
 </div>
