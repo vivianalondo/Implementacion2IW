@@ -14,6 +14,7 @@ import co.edu.udea.iw.dao.EstadoReservaDAO;
 import co.edu.udea.iw.dao.ReservaDAO;
 import co.edu.udea.iw.dao.UsuarioDAO;
 import co.edu.udea.iw.dto.Dispositivo;
+import co.edu.udea.iw.dto.EstadoDispositivo;
 import co.edu.udea.iw.dto.EstadoReserva;
 import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.dto.Usuario;
@@ -62,6 +63,38 @@ public class ReservaBl {
 		
 		reservas = reservaDAO.listaObtener();
 		return reservas;
+	}
+	
+	/**
+	 * Método que permite imhabilitar dispositivos. Valida los campos ingresados, que el dispositivo exista y verifica el usuario
+	 * que elimina el dispositivo.
+	 * @param iddispositivo
+	 * @throws MyException
+ 	*/
+	public void eliminar(int idReserva)throws MyException{
+		
+		//Validar que los campos no sean nulos
+				
+			if(idReserva == 0){
+				throw new MyException("ID de la reserva no puede ser vacio");
+			}
+		
+			Reserva reserva = new Reserva();
+			reserva = reservaDAO.obtener(idReserva);
+				
+			if(reserva == null){
+					throw new MyException("La reserva a eliminar no existe");
+			}
+
+			EstadoReserva estadoReserva = reserva.getEstadoReserva();
+			if(estadoReserva.idEstadoReserva==4){
+				throw new MyException("La reserva ya se encuentra cancelada");
+			}
+			
+			estadoReserva = estadoReservaDAO.obtener(4);
+			reserva.setEstadoReserva(estadoReserva);
+								
+			reservaDAO.modificar(reserva);
 	}
 	
 	

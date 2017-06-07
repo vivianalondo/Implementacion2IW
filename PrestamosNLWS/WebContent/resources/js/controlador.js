@@ -163,6 +163,11 @@ appNeurolab.controller('inicio', function($scope, $location, $cookies, auth){
 		$location.url('/listaDispositivos');
 	}
 	
+	//Ir al inicio
+	$scope.home = function(){
+		$location.url('/inicio');
+	}
+	
 	//Ir a la lista de usuarios
 	$scope.listarUsuarios = function(){
 		$location.url('/listaUsuarios');

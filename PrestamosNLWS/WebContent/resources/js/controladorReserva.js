@@ -24,18 +24,23 @@ moduloReservas.controller('reservaController', function($scope, $rootScope, $loc
 		alert(data.data.reservaJersey);
 		$scope.listaReservas = data.data.reservaJersey;	
 	});
-	/**
-	//Función eliminar
+	
+	//Función para eliminar Reservas
 	$scope.eliminar = function(dispositivo) {
 		alert('acá en eliminar');
 		dispositivos.eliminar(dispositivo.idDispositivo).then(
 			function success(data){
 				alert('Se ha eliminado el dispositivo');
-				$location.url('/listaDispositivos');
-				
+				dispositivos.listaDispositivos().then(
+						function success(data){
+							$scope.listaDispositivos = data.data.dispositivoJersey;	
+						console.log($scope.listaDispositivos);
+						});	
 			});
-		};
-		
+	};
+	
+	/**
+	 * 	
 		
 		//Funciones para editar
 		$scope.editar = function(dispositivoM){			
