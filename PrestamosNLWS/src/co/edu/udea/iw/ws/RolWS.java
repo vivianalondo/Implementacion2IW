@@ -62,7 +62,7 @@ public class RolWS {
 	 * @throws RemoteException
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listar")
 	public List<RolJersey> listaObtener() throws RemoteException{
 		List<RolJersey> respuesta = new ArrayList<RolJersey>();

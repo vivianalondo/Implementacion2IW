@@ -1,0 +1,33 @@
+<div>
+	<form ng-submit="buscarrol(nombreRol)">
+		<div>
+			<label for="nomRol">Nombre Rol:</label>
+			<input type="text" 
+				   placeholder="Nombre del rol"
+				   required id="NombreRol"
+				   ng-model="nombreRol"/>
+		</div>
+		<button type="submit">Buscar</button>
+	</form>
+</div>
+<div>
+	<table border="1" width="100%">
+	<tr>
+		<th>ID Rol</th>
+		<th>Tipo Rol</th>
+		<th>Acciones</th>
+	</tr>
+	
+	<tr ng-repeat="rol in listaRoles">
+		<td>{{rol.idRol}}</td>
+		<td>{{rol.tipoRol}}</td>
+		<td><button  ng-click="editar(dispositivo)" >Editar</button>
+		<button  ng-click="eliminar(dispositivo)" ng-click="listarUsuario">Eliminar</button></td>
+
+	</tr>
+	</table>
+	
+	<button  ng-click="save()">Nuevo</button>
+	<button  ng-click="back()">Regresar</button>
+
+</div>
