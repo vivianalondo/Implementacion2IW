@@ -1,0 +1,32 @@
+<div>
+
+	<form ng-submit="guardar()">
+	<p>Usuario {{ nombreUsuario }}</p>
+		<div>
+			<label for="nombre">Fecha de Reserva*:</label>
+			<input type="text" 
+				   placeholder="Fecha de la reserva"
+				   required id="fechaReserva"
+				   ng-model="reserva.fechaReserva"/>
+		</div>
+		
+		<div>
+			<label for="nombre">Hora Inicio*:</label>
+			<input type="text" 
+				   placeholder="Hora inicio"
+				   required id="horaInicio"
+				   ng-model="reserva.horaInicio"/>
+		</div>
+		
+		<div>
+			<label for="nombre">Hora Final*:</label>
+			<input type="text" 
+				   placeholder="Hora final"
+				   required id="horaFinal"
+				   ng-model="reserva.horaFinal"/>
+		</div>
+		
+		<button type="submit">Save</button>
+		<button  ng-click="backListD()">Regresar</button>
+	</form>
+</div>

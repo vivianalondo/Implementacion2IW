@@ -109,7 +109,7 @@ public class ReservaBl {
 	 * @param pwCrea
 	 * @throws MyException
  	*/
-	public void guardar( String fechaReserva, String horaInicio, String horaFinal,String login,String psw)throws MyException{
+	public void guardar( String fechaReserva, String horaInicio, String horaFinal, String login)throws MyException{
 		//Validar que los campos no sean nulo
 		if(fechaReserva==null|| "".equals(fechaReserva)){
 			throw new MyException("Debe ser igresada una fecha de reserva");
@@ -122,21 +122,7 @@ public class ReservaBl {
 		if(horaFinal==null|| "".equals(horaFinal)){
 			throw new MyException("Debe ser ingerasada una hora inicial de la reserva");
 		}
-		
-		if(login==null|| "".equals(login)){
-			throw new MyException("el campo usuario no puede estar vacio");
-		}
-		
-		if(psw==null|| "".equals(psw)){
-			throw new MyException("el campo contrasena no puede estar vacio");
-		}
-		
-		//Verificación de que el usuario que esté creando un nuevo registro sea administrador
-		  Usuario usuarioCrea = verificarLogin(login, psw);
-		  if (usuarioCrea.getRol().getIdRol()!=1) {
-		   throw new MyException("No tiene permisos para ingresar un nuevo usuario");
-		  }
-		  
+			
 		Usuario  usuario = usuarioDAO.obtenerPorLogin(login);
 		if(usuario == null){
 			throw new MyException("usuario no existe");
@@ -155,14 +141,11 @@ public class ReservaBl {
 		int horastotal = horasfinal-horasinicio;
 		System.out.println(horasinicio);
 		System.out.println(horasfinal);
-		System.out.println(horastotal);
-	
+		System.out.println(horastotal);	
 		
-			if (((horastotal)==8)&&(minutosfinal>minutosinicio)||horastotal>8) {
-				throw new MyException("Debe tene maximo 8 horas");
-			}
-		 
-		
+		if (((horastotal)==8)&&(minutosfinal>minutosinicio)||horastotal>8) {
+			throw new MyException("Debe tene maximo 8 horas");
+		}
 		
 		Reserva reserva = new Reserva();
 		reserva.setEstadoReserva(estadoReserva);
@@ -174,9 +157,6 @@ public class ReservaBl {
 		reserva.setUsuario(usuario);
 		
 		reservaDAO.guardar(reserva);
-		
-					
-		
 	}
 	
 	/**

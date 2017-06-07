@@ -1,10 +1,10 @@
 <div>
-	<form ng-submit="buscardispositivo(nombre)">
+	<form ng-submit="buscarReserva(nombre)">
 		<div>
-			<label for="nombreDispositivo">Nombre Dispositivo:</label>
+			<label for="nombreReserva">Id Reserva:</label>
 			<input type="text" 
-				   placeholder="Nombre de dispositivo"
-				   required id="NombreDispositivo"
+				   placeholder="Nombre de reserva"
+				   required id="NombreReserva"
 				   ng-model="nombre"/>
 		</div>
 		<button type="submit">Buscar</button>
@@ -40,7 +40,7 @@
 		<td>{{reserva.fechaEntrega}}</td>
 		<td>{{reserva.horaEntrega}}</td>
 		<td><button  ng-click="editar(reserva)" >Editar</button>
-		<button  ng-click="eliminar(reserva)">Eliminar</button></td>
+		<button  ng-click="eliminar(reserva)">Cancelar</button></td>
 
 	</tr>
 	</table>
