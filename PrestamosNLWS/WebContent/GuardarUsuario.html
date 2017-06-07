@@ -1,0 +1,84 @@
+<div>
+	<form ng-submit="guardaruser()">
+		<div>
+			<label for="Identificacion">Identificacion*:</label>
+			<input type="text" 
+				   placeholder="ID del usuario"
+				   required id="idUsusario"
+				   ng-model="usuario.identificacion"/>
+		</div>
+		
+		<div>
+			<label for="tipoDocumento">Tipo Documento*:</label>
+			<input type="text" 
+				   placeholder="Tipo Documento"
+				   required id="tipoDocumento"
+				   ng-model="usuario.tipoDocumento"/>
+		</div>
+		
+		<div>
+			<label for="nombre">Nombre*:</label>
+			<input type="text" 
+				   placeholder="nombre"
+				   required id="nombre"
+				   ng-model="usuario.nombre"/>
+		</div>
+		
+		<div>
+			<label for="apellido">Apellido*:</label>
+			<input type="text" 
+				   placeholder="apellido"
+				   required id="apellido"
+				   ng-model="usuario.apellido"/>
+		</div>
+		
+		<div>
+			<label for="telefono">Telefono*:</label>
+			<input type="text" 
+				   placeholder="telefono"
+				   required id="telefono"
+				   ng-model="usuario.telefono"/>
+		</div>
+		
+		<div>
+			<label for="email">Email*:</label>
+			<input type="text" 
+				   placeholder="email"
+				   required id="email"
+				   ng-model="usuario.email"/>
+		</div>
+		<div>
+			<label for="login">login*:</label>
+			<input type="text" 
+				   placeholder="login"
+				   required id="login"
+				   ng-model="usuario.login"/>
+		</div>
+		<div>
+			<label for="pw">Password*:</label>
+			<input type="text" 
+				   placeholder="Password"
+				   required id="pw"
+				   ng-model="usuario.pw"/>
+		</div>	
+
+		<div>
+			<label for="estadoUsuario">Estado Usuario*:</label>
+			<input type="text" 
+				   placeholder="estadoUsuario"
+				   required id="estadoUsuario"
+				   ng-model="usuario.estadoUsuario"/>
+		</div>
+		<div>
+			<label for="rol">Rol*:</label>
+			<input type="text" 
+				   placeholder="rol"
+				   required id="rol"
+				   ng-model="usuario.rol"/>
+		</div>	
+
+		
+		<button type="submit">Save</button>
+		<button  ng-click="backListD()">Regresar</button>
+	</form>
+</div>

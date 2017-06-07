@@ -51,7 +51,9 @@ appNeurolab.service('productService', function() {
 	  var productList = [];
 
 	  var addProduct = function(newObj) {
-	      productList.push(newObj);
+		  productList = [];
+		  productList.push(newObj);
+	      
 	  };
 
 	  var getProducts = function(){
@@ -274,7 +276,11 @@ appNeurolab.controller('busqueda', function($scope, $location, dispositivos,prod
 	dispositivos.buscar($scope.products).then(
 		function success(data){				
 			$scope.listaDispositivosResultante = data.data.dispositivoJersey;
+			alert($scope.listaDispositivosResultante);
+			alert(data);
+			alert("edit")
 		});	
+	
 	
 	//Función que me lleva a la lista dispositivos
 	$scope.backListD = function(){

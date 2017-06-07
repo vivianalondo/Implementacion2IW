@@ -42,7 +42,7 @@ moduloUsuarios.service('usuariosServices', function($http, $cookies, $location){
 	//guardar
 	this.guardar = function(user){
 		return $http({
-			url:'http://localhost:8080/PrestamosNLWS/neurolab/Dispositivo/guardar',
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Usuario/registrar',
 			method:'POST',
 			params:{
 						identificacion:user.identificacion,
@@ -60,6 +60,26 @@ moduloUsuarios.service('usuariosServices', function($http, $cookies, $location){
 		});
 	}
 
+	//modificar
+	this.modificar = function(user){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Usuario/modificar',
+			method:'POST',
+			params:{
+						identificacion:user.identificacion,
+						tipoDocumento:user.tipoDocumento,
+						nombre:user.nombre,
+						apellido:user.apellido,
+						telefono:user.telefono,
+						email:user.email,
+						login:user.login,
+						pw:user.pw,
+						estadoUsuario: user.estadoUsuario,
+						rol:user.rol
+
+			}
+		});
+	}
 	
 
 	
@@ -145,7 +165,7 @@ moduloUsuarios.controller('usuarioController', function($scope, $rootScope, $loc
 moduloUsuarios.controller('busquedausuario', function($scope, $location, usuariosServices,productService){
 	
 	$scope.products = productService.getProducts();
-//	alert($scope.products)
+	alert($scope.products)
 //	alert("editado")
 	usuariosServices.buscar($scope.products).then(
 		function success(data){		
@@ -201,7 +221,7 @@ moduloUsuarios.config(['$routeProvider', function($routeProvider){
 	});
 	
 	$routeProvider.when('/guardarusuario', {
-		templateUrl : 'BuscarUsuario.html',
+		templateUrl : 'GuardarUsuario.html',
 		controller: 'guardarusuario'
 	});
 	
