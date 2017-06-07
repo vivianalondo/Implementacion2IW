@@ -37,11 +37,28 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 				loginCrea : login
 			}
 		});
+	},
+	
+	//Modificar
+	this.modificar = function(reserva, login){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/modificar',
+			method:'POST',
+			params:{
+				idReserva: reserva.idReserva,
+				fechaReserva: reserva.fechaReserva,
+				horaInicio: reserva.horaInicio,
+				horaFinal: reserva.horaFinal,
+				fechaEntrega: reserva.fechaEntrega,
+				horaEntrega: reserva.horaEntrega,
+				estadoreserva: reserva.estadoreserva,
+				loginCrea: login			}
+		});
 	}
 	
 });
 
-moduloReservas.controller('reservaController', function($scope, $rootScope, $location, reservasServices){
+moduloReservas.controller('reservaController', function($scope, $rootScope, $cookies, $location, reservasServices){
 	
 	//Lista reservas
 	reservasServices.listaReservas().then(
@@ -69,25 +86,23 @@ moduloReservas.controller('reservaController', function($scope, $rootScope, $loc
 		$location.url('/guardarReserva');
 	}
 	
-	/**
-	 * 	
-		
-		//Funciones para editar
-		$scope.editar = function(dispositivoM){			
-			$rootScope.dispositivoModificar = dispositivoM;
-			$location.url('/editarDispositivo');
-		};
-		
-		
-		$scope.modificar = function(dispositivoMod) {
+	//Funciones para editar
+	$scope.editar = function(reservaM){			
+		$rootScope.reservaModificar = reservaM;
+		$location.url('/editarReserva');
+	};
+	
+	$scope.nombreUsuario = $cookies.nombreUsuario;
+	
+	$scope.modificar = function(reservaoMod) {
 						
-			dispositivos.modificar(dispositivoMod).then(
-				function success(data){
-					alert('Se ha modificado el dispositivo');
-					$location.url('/listaDispositivos')
-				});
-			};
-	*/
+		reservasServices.modificar(reservaoMod,$scope.nombreUsuario).then(
+			function success(data){
+				alert('Se ha modificado la reserva');
+				$location.url('/listaReservas')
+			});
+		};
+
 	
 	//Función que me lleva al inicio
 	$scope.back = function(){
@@ -122,7 +137,7 @@ moduloReservas.controller('guardarReserva', function($scope, $location, $cookies
 });
 
 //Definir las rutas
-moduloUsuarios.config(['$routeProvider', function($routeProvider){
+moduloReservas.config(['$routeProvider', function($routeProvider){
 	
 	$routeProvider.when('/listaReservas', {
 		templateUrl : 'ListaReservas.html',
@@ -134,13 +149,12 @@ moduloUsuarios.config(['$routeProvider', function($routeProvider){
 		controller: 'guardarReserva'
 	});
 	
-	/**
+	
 	//Ruta editar
-	$routeProvider.when('/editarDispositivo', {
-		templateUrl : 'EditarDispositivo.html',
-		controller: 'listaDispositivos'
+	$routeProvider.when('/editarReserva', {
+		templateUrl : 'EditarReserva.html',
+		controller: 'reservaController'
 	});
 	
-	*/
 	
 }]);

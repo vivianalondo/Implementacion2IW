@@ -1,0 +1,71 @@
+<div class="container">
+<div class="col-md-5">
+    <div class="form-area">  
+    <H2 align="center">Editar Reserva</H2>
+        <form ng-submit="modificar(reservaModificar)">
+		<div class="form-group" >
+			<label for="idReserva">Id reserva:</label>
+			<input type="text" 
+				   required id="idReserva"
+				   ng-model="reservaModificar.idReserva"
+				   value="{{reservaModificar.idReserva}}"
+				   readonly="readonly"
+				   class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label for="fechaReserva">Fecha Reserva:</label>
+			<input type="text" 
+				   class="form-control"
+				   required id="fechaReserva"
+				   ng-model="reservaModificar.fechaReserva"
+				   value="{{reservaModificar.fechaReserva}}"/>
+		</div>
+		<div class="form-group">
+			<label for="horaInicio">Hora Inicio:</label>
+			<input type="text" 
+				   class="form-control"
+				   required id="horaInicio"
+				   ng-model="reservaModificar.horaInicio"
+				   value="{{reservaModificar.horaInicio}}"/>
+		</div>
+		<div class="form-group">
+			<label for="horaFinal">Hora Final:</label>
+			<input type="text" 
+				   class="form-control"
+				   required id="horaFinal"
+				   ng-model="reservaModificar.horaFinal"
+				   value="{{reservaModificar.horaFinal}}"/>
+		</div>
+		<div class="form-group">
+			<label for="fechaEntrega">Fecha Entrega:</label>
+			<input type="text" 
+				   class="form-control"
+				   id="fechaEntrega"
+				   ng-model="reservaModificar.fechaEntrega"
+				   value="{{reservaModificar.fechaEntrega}}"/>
+		</div>
+		<div class="form-group">
+			<label for="horaEntrega">Fecha Entrega</label>
+			<input type="text" 
+				   class="form-control"
+				   id="horaEntrega"
+				   ng-model="reservaModificar.horaEntrega"
+				   value="{{reservaModificar.horaEntrega}}"/>
+		</div>
+		<div class="form-group">
+			<label for="estadoreserva">Estado:</label>
+			<select name="estadoreserva" size="1"  class="form-control"  ng-model="reservaModificar.estadoreserva">
+				<option value="1">Pendiente</option>
+				<option value="2">Aprobada</option>
+				<option value="3">Entregado</option>
+				<option value="3">Cancelada</option>
+			</select>
+			
+		</div>
+		
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Enviar modificaci&ograve;n</button>
+	</form>
+    </div>
+    <button  class='btn btn-info' ng-click="backListD()">Regresar</button>
+</div>
+</div>

@@ -160,10 +160,9 @@ public class ReservaWS {
 			@QueryParam("fechaEntrega")String fechaEntrega,
 			@QueryParam("horaEntrega")String horaEntrega,
 			@QueryParam("estadoreserva")int estadoreserva,
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("psw")String psw) throws RemoteException {
+			@QueryParam("loginCrea")String loginCrea) throws RemoteException {
 		try{
-			reservaBL.modificar(idReserva, fechaReserva, horaInicio, horaFinal, fechaEntrega, horaEntrega, estadoreserva, loginCrea, psw);
+			reservaBL.modificar(idReserva, fechaReserva, horaInicio, horaFinal, fechaEntrega, horaEntrega, estadoreserva, loginCrea);
 		}catch(MyException e){
 			throw new RemoteException("Error modificando la reserva", e);
 		}
