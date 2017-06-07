@@ -7314,8 +7314,8 @@ div.clanky .row {
 
 .custab{
     border: 1px solid #ccc;
-    padding: 5px;
-    margin: 5% 0;
+    padding: 2px;
+    margin: 1% 0;
     box-shadow: 3px 3px 2px #ccc;
     transition: 0.5s;
     }
@@ -7337,7 +7337,7 @@ div.clanky .row {
 .form-area
 {
     background-color: #FAFAFA;
-	padding: 10px 40px 60px;
-	margin: 10px 0px 60px;
+	padding: 1px 20px 30px;
+	margin: 1px 0px 30px;
 	border: 1px solid GREY;
 	}

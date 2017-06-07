@@ -1,30 +1,39 @@
-<div>
-	<form ng-submit="guardar()">
-		<div>
-			<label for="nombre">Nombre*:</label>
+<div class="container">
+<div class="col-md-5">
+    <div class="form-area">  
+    <H2 align="center">Editar dispositivo</H2>
+        	<form ng-submit="guardar()">
+		<div class="form-group">
+			<label for="nombre">Nombre:</label>
 			<input type="text" 
+				  class="form-control" 
 				   placeholder="ID del dispositivo"
 				   required id="idDispositivo"
 				   ng-model="dispositivo.nombre"/>
 		</div>
 		
 		<div>
-			<label for="nombre">Estado*:</label>
-			<input type="text" 
-				   placeholder="ID del dispositivo"
-				   required id="idDispositivo"
-				   ng-model="dispositivo.estadoDispositivo"/>
+			<label for="nombre">Estado:</label>
+				<select name="nombre" size="1"  class="form-control" ng-model="dispositivo.estadoDispositivo">
+				<option value="1">Disponible</option>
+				<option value="2">Ocupado</option>
+				<option value="3">Dado de baja</option>
+			</select>
 		</div>
 		
-		<div>
-			<label for="nombre">Descripcion*:</label>
-			<input type="text" 
+		<div class="form-group">
+			<label for="nombre">Descripcion:</label>
+			<input type="textarea"
 				   placeholder="ID del dispositivo"
 				   required id="idDispositivo"
-				   ng-model="dispositivo.descripcion"/>
+				   class="form-control" 
+				   ng-model="dispositivo.descripcion"
+				   maxlength="140" rows="5"/>
 		</div>
 		
-		<button type="submit">Save</button>
-		<button  ng-click="backListD()">Regresar</button>
+		<button  class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
 	</form>
+    </div>
+    <button  class='btn btn-info' ng-click="backListD()">Regresar</button>
+</div>
 </div>
