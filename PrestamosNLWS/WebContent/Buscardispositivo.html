@@ -1,19 +1,24 @@
-<div>
-	<table border="1" width="100%">
-	<tr>
-		<th>ID Dispositivo</th>
+
+<div class="container" id="#scroll">
+    <div class="row col-lg-10 col-lg-offset-2 custyle">
+    <img src="resources\img\laboratorio5.png">
+    <table class="table table-striped custab">
+    <thead>
+     <tr>
+		<th>ID</th>
 		<th>Nombre</th>
 		<th>Estado</th>
-		<th>Descripción2</th>
+		<th>Descripci&ograve;n</th>
 	</tr>
-	
-	<tr >
-		<td>{{listaDispositivosResultante.idDispositivo}}1</td>
-		<td>{{listaDispositivosResultante.nombre}}2</td>
-		<td>{{listaDispositivosResultante.estadoDispositivo}}3</td>
-		<td>{{listaDispositivosResultante.descripcion}}"4</td>
-	</tr>
-	</table>
-	<button  ng-click="backListD()">Regresar</button>
-	
+    </thead>
+          
+		<td>{{listaDispositivosResultante.idDispositivo}}</td>
+		<td>{{listaDispositivosResultante.nombre}}</td>
+		<td>{{listaDispositivosResultante.estadoDispositivo}}</td>
+		<td>{{listaDispositivosResultante.descripcion}}"</td>
+
+    </table>
+    <button class='btn btn-info' ng-click="backListD()">Regresar</button>
+    </div>
+
 </div>

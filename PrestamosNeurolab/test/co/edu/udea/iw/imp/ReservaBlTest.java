@@ -37,7 +37,7 @@ public class ReservaBlTest {
 	public void testCrearReserva() {
 		
 		try{	
-			reservaBl.guardar("2017-05-25", "06:06:00", "06:08:00","sanvilc","12345");			
+			reservaBl.guardar("2017-05-25", "06:06:00", "06:08:00","sanvilc");			
 			
 		}catch(MyException e){
 			e.printStackTrace();

@@ -39,7 +39,7 @@ public class ReservaWS {
 	 * @throws RemoteException
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listar")
 	public List<ReservaJersey> listaObtener() throws RemoteException{
 
@@ -91,6 +91,23 @@ public class ReservaWS {
 	
 	
 	/***
+	 * Método que implementa WS para eliminar un dispositivo
+	 * @param iddispositivo, el id del dispositivo a eliminar
+	 * @throws RemoteException
+	 */
+	@POST
+	@Produces(MediaType.TEXT_HTML)
+	@Path("eliminar")
+	public void eliminar(@QueryParam("idReserva")int idReserva) throws RemoteException {
+		try{
+			reservaBL.eliminar(idReserva);
+		}catch(MyException e){
+			throw new RemoteException("Error cancelando la reserva", e);
+		}
+	}
+	
+	
+	/***
 	 * Método que implementa WS para crear un nuevo usuario
 	 * @param fechaReserva, fecha de la reserva
 	 * @param horaInicio, hora inicial de la reserva
@@ -107,12 +124,11 @@ public class ReservaWS {
 	public void guardar(@QueryParam("fechaReserva")String fechaReserva, 
 			@QueryParam("horaInicio")String horaInicio,
 			@QueryParam("horaFinal")String horaFinal, 
-			@QueryParam("loginCrea")String loginCrea,
-			@QueryParam("psw")String psw) throws RemoteException {
+			@QueryParam("loginCrea")String loginCrea) throws RemoteException {
 		
 		try{
 			
-			reservaBL.guardar(fechaReserva, horaInicio, horaFinal, loginCrea, psw);
+			reservaBL.guardar(fechaReserva, horaInicio, horaFinal, loginCrea);
 		}catch(MyException e){
 			throw new RemoteException("Error creando la reserva", e);
 		}

@@ -1,7 +1,7 @@
 /**
  * 
  */
-var appNeurolab = angular.module('neurolab', ['ngRoute', 'ngCookies', 'modUsuarios']);
+var appNeurolab = angular.module('neurolab', ['ngRoute', 'ngCookies', 'modUsuarios', 'modReservas', 'modRoles']);
 
 //factoria que controla la autentificación, devuelve un objeto
 //$cookies para crear cookies
@@ -53,7 +53,6 @@ appNeurolab.service('productService', function() {
 	  var addProduct = function(newObj) {
 		  productList = [];
 		  productList.push(newObj);
-	      
 	  };
 
 	  var getProducts = function(){
@@ -161,14 +160,31 @@ appNeurolab.controller('inicio', function($scope, $location, $cookies, auth){
 	$scope.nombreUsuario = $cookies.nombreUsuario;
 	console.log($cookies.nombreUsuario);
 	console.log($scope.nombreUsuario);
+	
 	$scope.listarDispositivos = function(){
 		$location.url('/listaDispositivos');
 	}
 	
+	//Ir al inicio
+	$scope.home = function(){
+		$location.url('/inicio');
+	}
+	
+	//Ir a la lista de usuarios
 	$scope.listarUsuarios = function(){
 		$location.url('/listaUsuarios');
 	}
 	
+	//Ir a la lista de reservas
+	$scope.listarReservas = function(){
+		$location.url('/listaReservas');
+	}
+
+	//Ir a la lista de roles
+	$scope.listarRoles = function(){
+		$location.url('/listaRoles');
+	}
+
 	//Cerrar sesión
 	$scope.logout = function(){
 		auth.logout();

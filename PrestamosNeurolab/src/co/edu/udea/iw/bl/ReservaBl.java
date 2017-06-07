@@ -14,6 +14,7 @@ import co.edu.udea.iw.dao.EstadoReservaDAO;
 import co.edu.udea.iw.dao.ReservaDAO;
 import co.edu.udea.iw.dao.UsuarioDAO;
 import co.edu.udea.iw.dto.Dispositivo;
+import co.edu.udea.iw.dto.EstadoDispositivo;
 import co.edu.udea.iw.dto.EstadoReserva;
 import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.dto.Usuario;
@@ -64,6 +65,38 @@ public class ReservaBl {
 		return reservas;
 	}
 	
+	/**
+	 * Método que permite imhabilitar dispositivos. Valida los campos ingresados, que el dispositivo exista y verifica el usuario
+	 * que elimina el dispositivo.
+	 * @param iddispositivo
+	 * @throws MyException
+ 	*/
+	public void eliminar(int idReserva)throws MyException{
+		
+		//Validar que los campos no sean nulos
+				
+			if(idReserva == 0){
+				throw new MyException("ID de la reserva no puede ser vacio");
+			}
+		
+			Reserva reserva = new Reserva();
+			reserva = reservaDAO.obtener(idReserva);
+				
+			if(reserva == null){
+					throw new MyException("La reserva a eliminar no existe");
+			}
+
+			EstadoReserva estadoReserva = reserva.getEstadoReserva();
+			if(estadoReserva.idEstadoReserva==4){
+				throw new MyException("La reserva ya se encuentra cancelada");
+			}
+			
+			estadoReserva = estadoReservaDAO.obtener(4);
+			reserva.setEstadoReserva(estadoReserva);
+								
+			reservaDAO.modificar(reserva);
+	}
+	
 	
 	/**
 	 * Método que guarda una reserva. Valida los campos ingresados 
@@ -76,7 +109,7 @@ public class ReservaBl {
 	 * @param pwCrea
 	 * @throws MyException
  	*/
-	public void guardar( String fechaReserva, String horaInicio, String horaFinal,String login,String psw)throws MyException{
+	public void guardar( String fechaReserva, String horaInicio, String horaFinal, String login)throws MyException{
 		//Validar que los campos no sean nulo
 		if(fechaReserva==null|| "".equals(fechaReserva)){
 			throw new MyException("Debe ser igresada una fecha de reserva");
@@ -89,21 +122,7 @@ public class ReservaBl {
 		if(horaFinal==null|| "".equals(horaFinal)){
 			throw new MyException("Debe ser ingerasada una hora inicial de la reserva");
 		}
-		
-		if(login==null|| "".equals(login)){
-			throw new MyException("el campo usuario no puede estar vacio");
-		}
-		
-		if(psw==null|| "".equals(psw)){
-			throw new MyException("el campo contrasena no puede estar vacio");
-		}
-		
-		//Verificación de que el usuario que esté creando un nuevo registro sea administrador
-		  Usuario usuarioCrea = verificarLogin(login, psw);
-		  if (usuarioCrea.getRol().getIdRol()!=1) {
-		   throw new MyException("No tiene permisos para ingresar un nuevo usuario");
-		  }
-		  
+			
 		Usuario  usuario = usuarioDAO.obtenerPorLogin(login);
 		if(usuario == null){
 			throw new MyException("usuario no existe");
@@ -122,14 +141,11 @@ public class ReservaBl {
 		int horastotal = horasfinal-horasinicio;
 		System.out.println(horasinicio);
 		System.out.println(horasfinal);
-		System.out.println(horastotal);
-	
+		System.out.println(horastotal);	
 		
-			if (((horastotal)==8)&&(minutosfinal>minutosinicio)||horastotal>8) {
-				throw new MyException("Debe tene maximo 8 horas");
-			}
-		 
-		
+		if (((horastotal)==8)&&(minutosfinal>minutosinicio)||horastotal>8) {
+			throw new MyException("Debe tene maximo 8 horas");
+		}
 		
 		Reserva reserva = new Reserva();
 		reserva.setEstadoReserva(estadoReserva);
@@ -141,9 +157,6 @@ public class ReservaBl {
 		reserva.setUsuario(usuario);
 		
 		reservaDAO.guardar(reserva);
-		
-					
-		
 	}
 	
 	/**
