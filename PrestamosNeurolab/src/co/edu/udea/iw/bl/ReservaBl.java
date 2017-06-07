@@ -64,6 +64,29 @@ public class ReservaBl {
 		reservas = reservaDAO.listaObtener();
 		return reservas;
 	}
+
+
+	/**
+	 * Metodo que retorna una reserva, valida que el id ingresado no sea nulo
+	 * @param identificacion
+	 * @return
+	 * @throws MyException
+	 */
+	public Reserva obtener(int idReserva) throws MyException{
+		
+		if(idReserva==0|| "".equals(idReserva)){
+			throw new MyException("Debe ingresar el id de la reserva");
+		}
+		
+		//Verificación de que la reserva exista
+		System.out.println(idReserva);
+		Reserva reserva =  reservaDAO.obtener(idReserva);
+		if (reserva==null) {
+			throw new MyException("La reserva no se encuentra en la base de datos");
+		}
+		return reservaDAO.obtener(idReserva);
+	}
+	
 	
 	/**
 	 * Método que permite imhabilitar dispositivos. Valida los campos ingresados, que el dispositivo exista y verifica el usuario

@@ -6,7 +6,9 @@ var moduloReservas = angular.module('modReservas', ['ngRoute', 'ngCookies', 'neu
 
 moduloReservas.service('reservasServices', function($http, $cookies, $location){
 	
-	//listar 
+	/**
+	 * Método que hace llamado al web services de listar reserva
+	 */
 	this.listaReservas = function(){
 		return $http({
 			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/listar',
@@ -53,6 +55,17 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 				horaEntrega: reserva.horaEntrega,
 				estadoreserva: reserva.estadoreserva,
 				loginCrea: login			}
+		});
+	},
+	
+	//buscar
+	this.buscar = function(id){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/obtener',
+			method:'GET',
+			params:{
+				identificacion : id	
+			}
 		});
 	}
 	

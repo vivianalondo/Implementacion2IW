@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import co.edu.udea.iw.bl.ReservaBl;
 import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.dto.ReservaJersey;
+import co.edu.udea.iw.dto.UsuarioJersey;
 import co.edu.udea.iw.exception.MyException;
 
 /***
@@ -32,6 +33,42 @@ public class ReservaWS {
 	@Autowired
 	ReservaBl reservaBL;
 	Reserva reserva;
+	
+	
+	/***
+	 * Método para implementar WS de obtener Ususario
+	 * @param identificacion; Recibe el documento de identificacion del Ususario que se desea obtener
+	 * @return usuarioJersey, retorna el usuario obtenido
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("obtener")
+	public ReservaJersey obtener(@QueryParam("idReserva")int idReserva){
+		ReservaJersey reservaJersey = null;
+		
+		try{
+			reserva = reservaBL.obtener(idReserva);
+			
+			reservaJersey = new ReservaJersey(
+				reserva.getIdReserva(),
+				reserva.getEstadoReserva().getIdEstadoReserva(),
+				reserva.getFechaRealizacion().toString(),
+				reserva.getHoraInicio(),
+				reserva.getHoraFinal(),
+				reserva.getHoraRealizado(),
+				reserva.getFechaReserva().toString(),
+				reserva.getUsuario().getIdentificacion(),
+				reserva.getFechaEntrega().toString(),
+				reserva.getHoraEntrega()
+					
+			);
+			
+			
+		}catch(MyException e){
+			e.getMessage();
+		}
+		return reservaJersey;
+	}
 	
 	/***
 	 * Método que implementa WS para obtener la lista de las reservas
