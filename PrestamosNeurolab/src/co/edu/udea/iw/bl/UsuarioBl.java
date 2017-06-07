@@ -180,7 +180,7 @@ public class UsuarioBl {
 	 * @throws MyException
 	 */
 	public void modificarUsuario(String identificacion, String tipoDocumento, String nombre, String apellido,
-			String telefono, String email, String login, String pw, int estadoUsuario, int rol)throws MyException{
+			String telefono, String email, String login,  int estadoUsuario, int rol)throws MyException{
 		
 		Usuario usuarioIngresar = null;
 		Rol rolModificar = null;
@@ -208,9 +208,7 @@ public class UsuarioBl {
 		if(login==null|| "".equals(login)){
 			throw new MyException("El login no puede ser vacío");
 		}
-		if(pw==null|| "".equals(pw)){
-			throw new MyException("La contraseña no puede estar vacía");
-		}
+
 		
 		if(estadoUsuario==0){
 			throw new MyException("El estado del usuario no puede estar vacío");
@@ -236,7 +234,7 @@ public class UsuarioBl {
 			usuarioModificar.setTelefono(telefono);
 			usuarioModificar.setEmail(email);
 			usuarioModificar.setLogin(login);
-			usuarioModificar.setPassword(pw);
+//			usuarioModificar.setPassword(pw);
 			rolModificar = rolDAO.obtener(rol);
 			usuarioModificar.setRol(rolModificar);
 			estadoModificar = estadoUsuarioDAO.obtener(estadoUsuario);

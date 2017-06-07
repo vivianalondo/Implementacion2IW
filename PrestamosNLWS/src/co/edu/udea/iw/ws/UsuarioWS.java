@@ -173,11 +173,10 @@ public class UsuarioWS {
 			@QueryParam("telefono")String telefono,
 			@QueryParam("email")String email,
 			@QueryParam("login")String login,
-			@QueryParam("pw")String pw,
 			@QueryParam("estadoUsuario")int estadoUsuario, 
 			@QueryParam("rol")int rol) throws RemoteException {
 		try{
-			usuarioBL.modificarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login, pw, estadoUsuario, rol);;
+			usuarioBL.modificarUsuario(identificacion, tipoDocumento, nombre, apellido, telefono, email, login,  estadoUsuario, rol);;
 		}catch(MyException e){
 			throw new RemoteException("Error modificando el usuario", e);
 		}

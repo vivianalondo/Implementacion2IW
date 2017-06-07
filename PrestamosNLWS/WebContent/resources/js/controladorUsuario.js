@@ -73,7 +73,6 @@ moduloUsuarios.service('usuariosServices', function($http, $cookies, $location){
 						telefono:user.telefono,
 						email:user.email,
 						login:user.login,
-						pw:user.pw,
 						estadoUsuario: user.estadoUsuario,
 						rol:user.rol
 
@@ -112,6 +111,20 @@ moduloUsuarios.controller('usuarioController', function($scope, $rootScope, $loc
 			});
 	};
 
+	//Funciones para editar
+	$scope.editar = function(usuarioM){			
+		$rootScope.usuarioModificar = usuarioM;
+		$location.url('/editarUsuario');
+	};
+	
+	//Función para modificar
+	$scope.modificaruser = function(usuarioMod) {				
+		usuariosServices.modificar(usuarioMod).then(
+			function success(data){
+				alert('Se ha modificado el dispositivo');
+				$location.url('/listaUsuarios')
+			});
+	};
 	
 	/**
 	//Función eliminar
@@ -224,6 +237,13 @@ moduloUsuarios.config(['$routeProvider', function($routeProvider){
 		templateUrl : 'GuardarUsuario.html',
 		controller: 'guardarusuario'
 	});
+	
+	$routeProvider.when('/editarUsuario', {
+		templateUrl : 'EditarUsuario.html',
+		controller: 'usuarioController'
+	});
+	
+	
 	
 	
 	

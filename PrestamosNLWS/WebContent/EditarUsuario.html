@@ -1,0 +1,85 @@
+<div>
+	<form ng-submit="modificaruser(usuarioModificar)">
+		<div>
+			<label for="identificacion">Identificacion*:</label>
+			<input type="text" 
+				   required id="identificacion"
+				   ng-model="usuarioModificar.identificacion"
+				   value="{{usuarioModificar.identificacion}}"
+				   readonly="readonly"/>
+		</div>
+		
+		<div>
+			<label for="tipoDocumento">Tipo Documento*:</label>
+			<input type="text" 
+				   required id="tipoDocumento"
+				   ng-model="usuarioModificar.tipoDocumento"
+				   value="{{usuarioModificar.tipoDocumento}}"
+				   />
+		</div>
+		
+		
+		<div>
+			<label for="nombre">Nombre*:</label>
+			<input type="text" 
+				   required id="nombre"
+				   ng-model="usuarioModificar.nombre"
+				   value="{{usuarioModificar.nombre}}"
+				   />
+		</div>
+		
+		
+				<div>
+			<label for="apellido">Apellido*:</label>
+			<input type="text" 
+				   required id="apellido"
+				   ng-model="usuarioModificar.apellido"
+				   value="{{usuarioModificar.apellido}}"
+				   />
+			</div>  
+				   
+							<div>
+			<label for="telefono">Telefono*:</label>
+			<input type="text" 
+				   required id="telefono"
+				   ng-model="usuarioModificar.telefono"
+				   value="{{usuarioModificar.telefono}}"
+				   />
+			</div>
+							<div>
+			<label for="email">Email*:</label>
+			<input type="text" 
+				   required id="email"
+				   ng-model="usuarioModificar.email"
+				   value="{{usuarioModificar.email}}"
+				   />
+			</div>  
+						<div>
+			<label for="login">login*:</label>
+			<input type="text" 
+				   required id="login"
+				   ng-model="usuarioModificar.login"
+				   value="{{usuarioModificar.login}}"
+				   />
+				   </div>
+		
+		<div>		   
+					<label for="estadoUsuario">Estado Usuario*:</label>
+			<input type="text" 
+				   required id="estadoUsuario"
+				   ng-model="usuarioModificar.estadoUsuario"
+				   value="{{usuarioModificar.estadoUsuario}}"
+				   />
+		</div>
+		<div>		   
+					<label for="rol">Rol*:</label>
+			<input type="text" 
+				   required id="rol"
+				   ng-model="usuarioModificar.rol"
+				   value="{{usuarioModificar.rol}}"
+				   />
+		</div>
+		<button type="submit">Enviar modificación</button>
+		<button  ng-click="backListD()">Regresar</button>
+	</form>
+</div>
