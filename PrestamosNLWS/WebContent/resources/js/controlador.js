@@ -32,6 +32,8 @@ appNeurolab.factory('auth', function($cookies,$cookieStore,$location)
 });
 
 
+
+
 //Conjunto de servicios web de usuarios
 appNeurolab.service('usuarios', function($http, $cookies, $location){
 	//funcion que hace uso del servicio web autenticar de usuario
@@ -45,6 +47,19 @@ appNeurolab.service('usuarios', function($http, $cookies, $location){
 			}
 		});
 	}
+	
+	this.obtenerRol = function(usuario, passwd){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Usuario/obtenerRol',
+			method:'GET',
+			params: {
+		login: usuario,
+		pass: passwd
+			}
+		});
+	}
+	
+	
 });
 
 appNeurolab.service('productService', function() {
@@ -130,6 +145,8 @@ appNeurolab.service('dispositivos', function($http){
 //coontrolador para el logueo del usuario
 appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 	
+	
+
 	$scope.nombreUsuario = '';
 	$scope.passwd = '';
 	$scope.login = function(){
@@ -143,16 +160,41 @@ appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 					return;
 				}
 				
+				
+				
+						
 				$cookies.nombreUsuario = $scope.nombreUsuario;//Guardar nombre de usuario en la cookie. Debo inyectar el $cookies
 	//			console.log($scope.nombreUsuario);
-				$location.url('/inicio');
+
+				
+				
+				usuarios.obtenerRol($scope.nombreUsuario,
+						$scope.passwd).then(
+					function success(data){
+						if (data.data == "1"){
+							$location.url('/inicio');
+						}else{
+							alert(data.data);
+							$location.url('/inicio2');
+						}
+				
+				
+				
 			},
 			function failure(data){
 				alert(data.data);
+				
+							
 			}
+			
+		)
+	        }
+		
 		)
 	}
 });
+
+
 
 //Controlador de index
 appNeurolab.controller('inicio', function($scope, $location, $cookies, auth){
@@ -161,6 +203,10 @@ appNeurolab.controller('inicio', function($scope, $location, $cookies, auth){
 	
 	$scope.listarDispositivos = function(){
 		$location.url('/listaDispositivos');
+	}
+	
+	$scope.listarDispositivosUsuario = function(){
+		$location.url('/listaDispositivosUsuario');
 	}
 	
 	//Ir al inicio
@@ -177,7 +223,12 @@ appNeurolab.controller('inicio', function($scope, $location, $cookies, auth){
 	$scope.listarReservas = function(){
 		$location.url('/listaReservas');
 	}
-
+	
+	//Ir a la lista de reservas
+	$scope.listarReservasUsuario = function(){
+		$location.url('/listaReservasUsuario');
+	}
+	
 	//Ir a la lista de roles
 	$scope.listarRoles = function(){
 		$location.url('/listaRoles');
@@ -281,6 +332,48 @@ appNeurolab.controller('listaDispositivos', function($scope, $location,$rootScop
 		$location.url('/inicio');
 	}
 	
+	$scope.backD = function(){
+		$location.url('/inicio2');
+	}
+	
+	$scope.listarDispositivos = function(){
+		$location.url('/listaDispositivos');
+	}
+	
+	$scope.listarDispositivosUsuario = function(){
+		$location.url('/listaDispositivosUsuario');
+	}
+	
+	//Ir al inicio
+	$scope.home = function(){
+		$location.url('/inicio');
+	}
+	
+	//Ir a la lista de usuarios
+	$scope.listarUsuarios = function(){
+		$location.url('/listaUsuarios');
+	}
+	
+	//Ir a la lista de reservas
+	$scope.listarReservas = function(){
+		$location.url('/listaReservas');
+	}
+	
+	//Ir a la lista de reservas
+	$scope.listarReservasUsuario = function(){
+		$location.url('/listaReservasUsuario');
+	}
+	
+	//Ir a la lista de roles
+	$scope.listarRoles = function(){
+		$location.url('/listaRoles');
+	}
+
+	//Cerrar sesión
+	$scope.logout = function(){
+		auth.logout();
+	}
+	
 	//Función que me lleva a la lista dispositivos
 	$scope.backListD = function(){
 		$location.url('/listaDispositivos');
@@ -343,6 +436,11 @@ appNeurolab.config(['$routeProvider', function($routeProvider){
 		controller: 'listaDispositivos'
 	});
 	
+	$routeProvider.when('/listaDispositivosUsuario', {
+		templateUrl : 'ListaDispositivos2.html',
+		controller: 'listaDispositivos'
+	});
+	
 	
 	$routeProvider.when('/guardardispositivo', {
 		templateUrl : 'GuardarDispositivos.html',
@@ -360,6 +458,10 @@ appNeurolab.config(['$routeProvider', function($routeProvider){
 		controller: 'busqueda'
 	});
 	
+	$routeProvider.when('/inicio2', {
+		templateUrl : 'Inicio2.html',
+		controller: 'inicio'
+	});
 	
 }]);
 

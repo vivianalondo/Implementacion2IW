@@ -5,17 +5,16 @@
 			</div>
 			  <ul class="nav navbar-nav">
 			      <li><a class="active" ng-click="home()">Inicio</a></li>
-			      <li><a ng-click="listarDispositivos()">Dispositivos</a></li>
-			      <li><a ng-click="listarUsuarios()">Usuarios</a></li>
-			       <li><a ng-click="listarReservas()">Reservas</a></li>
-			       <li><a ng-click="listarRoles()">Roles</a></li>
+			      <li><a ng-click="listarDispositivosUsuario()">Dispositivos</a></li>
+			       <li><a ng-click="listarReservasUsuario()">Reservas</a></li>
+		
 			       
 			  </ul>
 			 <div>
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li><a><span class="glyphicon glyphicon-user"></span> {{nombreUsuario}}</a></li>
-					<li><a ng-click=logout()><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+					<li><a ng-click="logout()"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
 				</ul>
 			</div>
 		</div>
@@ -32,7 +31,6 @@
 				   required id="NombreDispositivo"
 				   ng-model="nombre"/>
 				   <button class="btn btn-info btn-sm" type="submit">Buscar</button>
-				   <button class="btn btn-info btn-sm pull-right" ng-click="save()">Nuevo</button>
 		</div>
 	</form>
     <table class="table table-striped custab">
@@ -42,7 +40,6 @@
 		<th>Nombre</th>
 		<th>Estado</th>
 		<th>Descripci&ograve;n</th>
-		<th align="center" colspan="3">Acciones</th>
 	</tr>
     </thead>
             <tr ng-repeat="dispositivo in listaDispositivos">
@@ -50,12 +47,10 @@
 				<td>{{dispositivo.nombre}}</td>
 				<td>{{dispositivo.estadoDispositivo}}</td>
 				<td>{{dispositivo.descripcion}}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' ng-click=editar(dispositivo)><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
-                <td class="text-center"><a ng-click="eliminar(dispositivo)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
             </tr>
       
     </table>
-    <button class='btn btn-info' ng-click="back()">Regresar</button>
+    <button class='btn btn-info' ng-click="backD()">Regresar</button>
     </div>
 </div>
 
