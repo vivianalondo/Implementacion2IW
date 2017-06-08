@@ -2,7 +2,44 @@
  * Clase para implementar el controlador de la reserva
  */
 
-var moduloReservas = angular.module('modReservas', ['ngRoute', 'ngCookies', 'neurolab']);
+var moduloReservas = angular.module('modReservas', ['ngRoute', 'ngCookies', 'neurolab','modUsuarios']);
+
+
+//Conjunto de servicios web de usuarios
+moduloReservas.service('dispositivosdisponibles', function($http, $cookies, $location){
+	//funcion que hace uso del servicio web autenticar de usuario
+	this.listardisponibles = function(est, date){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/Dispositivo/listardisponibles',
+			method:'GET',
+			params: {
+				estado: est,
+				fecha: date
+			}
+		});
+	}
+	
+	
+});
+
+//Conjunto de servicios web de usuarios
+moduloReservas.service('asociardispositivos', function($http, $cookies, $location){	
+	/**
+	 * Método que hace llamado al web services de guardar reserva
+	 */	
+	this.asociardispositivo = function(idreserva, iddispositivo, idestadoreserva){
+		return $http({
+			url:'http://localhost:8080/PrestamosNLWS/neurolab/EquipoXReserva/registrar',
+			method:'POST',
+			params:{
+				reserva: idreserva,
+				dispositivo: iddispositivo,
+				estadoReserva : idestadoreserva
+			}
+		});
+	}
+	
+});
 
 moduloReservas.service('reservasServices', function($http, $cookies, $location){
 	
@@ -77,6 +114,8 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 		});
 	}
 	
+	
+	
 });
 
 /**
@@ -91,6 +130,8 @@ moduloReservas.controller('reservaController', function($scope, $rootScope, $coo
 		$scope.listaReservas = data.data.reservaJersey;	
 	});
 	
+	
+	
 	//Función para eliminar Reservas
 	$scope.eliminar = function(reserva) {
 		alert('acá en eliminar reserva');
@@ -104,6 +145,13 @@ moduloReservas.controller('reservaController', function($scope, $rootScope, $coo
 						});
 			});
 	};
+	
+	//Funcón que me lleva al guardar
+	$scope.asociar = function(idReserva,fecha){
+		productService.addProduct(fecha);
+		productService.addProduct2(idReserva);
+		$location.url('/listaDispositivosActivos');
+	}
 	
 	//Funcón que me lleva al guardar
 	$scope.save = function(){
@@ -167,7 +215,7 @@ moduloReservas.controller('buscarReserva', function($scope, $location, reservasS
 
 
 //Controlador para guardar nuevo dispositivo
-moduloReservas.controller('guardarReserva', function($scope, $location, $cookies, reservasServices){
+moduloReservas.controller('guardarReserva', function($scope, $location, $cookies, reservasServices,productService){
 	
 	console.log('entré al guardar')
 	$scope.nombreUsuario = $cookies.nombreUsuario;
@@ -175,11 +223,13 @@ moduloReservas.controller('guardarReserva', function($scope, $location, $cookies
 	console.log($scope.nombreUsuario);
 	console.log('usuario guardar');
 	
-	$scope.guardar = function() {
+	$scope.guardar = function(reserva) {
 		alert('acá en guardar reserva');
 		reservasServices.guardar($scope.reserva, $scope.nombreUsuario).then(
 			function success(data){
 				alert('Se ha guardado la reserva');
+				alert($scope.reserva.fechaReserva)
+//				productService.addProduct($scope.reserva.fechaReserva);
 				$location.url('/listaReservas');
 				
 			});
@@ -190,6 +240,46 @@ moduloReservas.controller('guardarReserva', function($scope, $location, $cookies
 		$location.url('/listaReservas');
 	}
 });
+
+//controlador para lista de dispositivos
+moduloReservas.controller('listaDispositivosActivos', function($scope, $location,$rootScope, dispositivos,dispositivosdisponibles,asociardispositivos, $cookies, usuarios, productService){
+	
+	$scope.nombreUsuario = $cookies.nombreUsuario;
+	
+	//Lista dispositivos
+	$scope.products = productService.getProducts();
+	$scope.products2 = productService.getProducts2();
+	alert($scope.products)
+	alert($scope.products2)
+	
+	dispositivosdisponibles.listardisponibles(1, $scope.products).then(
+	function success(data){
+		//alert(data.data.dispositivoJersey);
+		$scope.listaDispositivosDisponibles = data.data.dispositivoJersey;	
+	});
+	
+	//Funcón que me lleva al guardar
+	$scope.Asociarreserva = function(iddispositivo){
+		asociardispositivos.asociardispositivo($scope.products2, iddispositivo, 1)
+		$location.url('/listaDispositivosActivos');
+	}
+	
+	//$scope.listaDispositivosResultante
+	$scope.buscardispositivo = function(nombre){	
+		productService.addProduct(nombre);
+		$location.url('/buscardispositivo');
+	}
+	//Función que me lleva al inicio
+	$scope.back = function(){
+		$location.url('/inicio');
+	}
+	
+	//Función que me lleva a la lista dispositivos
+	$scope.backListD = function(){
+		$location.url('/listaDispositivos');
+	}
+});
+
 
 //Definir las rutas
 moduloReservas.config(['$routeProvider', function($routeProvider){
@@ -216,5 +306,12 @@ moduloReservas.config(['$routeProvider', function($routeProvider){
 		templateUrl : 'BuscarReserva.html',
 		controller: 'buscarReserva'
 	});
+	
+	$routeProvider.when('/listaDispositivosActivos', {
+		templateUrl : 'AgregarDispostivos.html',
+		controller: 'listaDispositivosActivos'
+	});
+	
+	
 	
 }]);

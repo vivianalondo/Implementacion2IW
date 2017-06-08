@@ -93,7 +93,7 @@ public class DispositivoBlTest {
 		try{
 			
 //			System.out.println(dispositivoBl.verificarDispositivoDisponible(3, "2017-05-02"));
-			resultado = dispositivoBl.listaObtenerDisponiblesPorNombre("Computador", 1, "2017-05-02");
+			resultado = dispositivoBl.listaObtenerDisponibles(1, "2017-05-02");
 			for(Dispositivo dispositivo:resultado){
 				System.out.println(dispositivo.getIdDispositivo());
 			    System.out.println(dispositivo.getNombre());

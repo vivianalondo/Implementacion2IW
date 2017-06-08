@@ -172,4 +172,27 @@ public class DispositivoDAOImplement implements DispositivoDAO {
 	}
 
 	
+	/**
+	 * Implementación del método que entrega una lista con todos los dispositivos en la BD
+	 * @param 
+	 * @return List<Dispositivo>
+	 * @throws MyException
+	 */
+	@Override
+	public List<Dispositivo> listaObtenerActivos(int idEstado) throws MyException {
+		// TODO Auto-generated method stub
+		List<Dispositivo> dispositivos = new ArrayList();
+		Session session = null;
+		
+		try {
+			session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(Dispositivo.class).add(Restrictions.like("estadoDispositivo.idEstadoDispositivo", idEstado));
+			dispositivos = criteria.list();
+		} 
+		catch (HibernateException e) {
+			throw new MyException("Error consultando los dispositivos", e);
+			}
+		return dispositivos;
+	}
+	
 }

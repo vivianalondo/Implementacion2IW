@@ -66,6 +66,7 @@
 		<td>{{reserva.horaEntrega}}</td>
                 <td class="text-center"><a class='btn btn-info btn-xs' ng-click= "editar(reserva)"><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
                 <td class="text-center"><a ng-click="eliminar(reserva)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+            	<td class="text-center"><a class='btn btn-info btn-xs' ng-click= "asociar(reserva.idReserva,reserva.fechaReserva)"><span class="glyphicon glyphicon-edit"></span> Asignar Dispositivos</a></td>
             </tr>
       
     </table>

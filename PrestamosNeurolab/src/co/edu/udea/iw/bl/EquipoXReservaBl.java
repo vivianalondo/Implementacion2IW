@@ -226,7 +226,7 @@ public boolean verificarDispositivoDisponible(int idDispositivo, String fecha) t
 	equipoXreservas = equipoXReservaDAO.obtenerPorDispositivo(idDispositivo);
 	for (EquipoXReserva datos : equipoXreservas) {
 		System.out.println(datos.getEquiposXReservaId().getIdReserva().getFechaReserva().toString().substring(0, 10));
-		if (datos.getEquiposXReservaId().getIdReserva().getFechaReserva().toString().substring(0, 10).equals(fecha)) {
+		if (datos.getEquiposXReservaId().getIdReserva().getFechaReserva().toString().substring(0, 10).equals(fecha.substring(0, 10))) {
 			check = false;
 		}
 	}

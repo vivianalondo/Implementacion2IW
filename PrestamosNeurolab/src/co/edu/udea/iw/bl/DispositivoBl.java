@@ -314,5 +314,31 @@ public class DispositivoBl {
 			
 			return dispositivos;
 		}
+		
+		
+public List<Dispositivo> listaObtenerDisponibles(int idEstado, String fecha) throws MyException{
+			
+			
+			List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+			
+			
+			dispositivos = dispositivoDAO.listaObtenerActivos(idEstado);
+			List<Dispositivo> disponibles = new ArrayList<Dispositivo>();
+			
+			for (Dispositivo data : dispositivos) {
+				System.out.println("id "+ data.idDispositivo);
+				if (equipoXReservaBl.verificarDispositivoDisponible(data.idDispositivo, fecha)) {
+					System.out.println("entro a agregar");
+					System.out.println(data.getIdDispositivo());
+					disponibles.add(data);
+				}
+			}
+			
+			for (Dispositivo dato : disponibles) {
+				System.out.println("id interno "+ dato.idDispositivo);
+			}
+			return disponibles;
+		}
+
 
 }
