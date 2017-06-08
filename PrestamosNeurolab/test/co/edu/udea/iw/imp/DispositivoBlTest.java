@@ -34,7 +34,7 @@ public class DispositivoBlTest {
 	 * Test para crear un dispositivo
 	 * @throws MyException
 	 */
-	@Test
+//	@Test
 	public void testCrearDispositivo() {
 		
 		try{
@@ -52,7 +52,7 @@ public class DispositivoBlTest {
 	 * Test para eliminar un dispositivo
 	 * @throws MyException
 	 */
-	@Test
+//	@Test
 	public void testEliminarDispositivo() {
 		try{
 			
@@ -70,7 +70,7 @@ public class DispositivoBlTest {
 	 * Test para modificar un dispositivo
 	 * @throws MyException
 	 */
-	@Test
+//	@Test
 	public void testModificarDispositivo() {
 		
 		try{
@@ -92,10 +92,12 @@ public class DispositivoBlTest {
 		List<Dispositivo> resultado = null;
 		try{
 			
-			
-			resultado = dispositivoBl.listaObtenerPorNombre("computador");
+//			System.out.println(dispositivoBl.verificarDispositivoDisponible(3, "2017-05-02"));
+			resultado = dispositivoBl.listaObtenerDisponiblesPorNombre("Computador", 1, "2017-05-02");
 			for(Dispositivo dispositivo:resultado){
+				System.out.println(dispositivo.getIdDispositivo());
 			    System.out.println(dispositivo.getNombre());
+			    System.out.println(dispositivo.getEstadoDispositivo().getTipoEstadoDispositivo());
 			}
 			
 		}catch(MyException e){
@@ -111,7 +113,7 @@ public class DispositivoBlTest {
 	 * Test para buscar un dispositivo por el nombre
 	 * @throws MyException
 	 */
-	@Test
+//	@Test
 	public void testListarInventario() {
 		List<Dispositivo> resultado = null;
 		try{

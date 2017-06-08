@@ -16,7 +16,7 @@
 		</property>
 		<property name="username" value="root">
 		</property>
-		<property name="password" value="root">
+		<property name="password" value="">
 		</property>
 	</bean>
 	
@@ -98,6 +98,7 @@
 	     <property name="dispositivoDao" ref="dispositivoDAO"></property>
 	     <property name="estadodispositivoDAO" ref="estadoDispositivoDAO"></property>
 	     <property name="usuarioDAO" ref="usuarioDAO"></property>
+	     <property name="equipoXReservaBl" ref="equipoXReservaBl"></property>
  	</bean>
  	
  	<bean name="estadoReservaBl" class="co.edu.udea.iw.bl.EstadoReservaBl">

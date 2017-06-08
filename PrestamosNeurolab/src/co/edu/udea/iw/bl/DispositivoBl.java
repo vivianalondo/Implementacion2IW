@@ -7,9 +7,11 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.dao.DispositivoDAO;
+import co.edu.udea.iw.dao.EquipoXReservaDAO;
 import co.edu.udea.iw.dao.EstadoDispositivoDAO;
 import co.edu.udea.iw.dao.UsuarioDAO;
 import co.edu.udea.iw.dto.Dispositivo;
+import co.edu.udea.iw.dto.EquipoXReserva;
 import co.edu.udea.iw.dto.EstadoDispositivo;
 import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.exception.MyException;
@@ -26,6 +28,15 @@ public class DispositivoBl {
 	private DispositivoDAO dispositivoDAO;
 	private EstadoDispositivoDAO estadodispositivoDAO;
 	private UsuarioDAO usuarioDAO;
+	private EquipoXReservaBl equipoXReservaBl;
+
+	public EquipoXReservaBl getEquipoXReservaBl() {
+		return equipoXReservaBl;
+	}
+
+	public void setEquipoXReservaBl(EquipoXReservaBl equipoXReservaBl) {
+		this.equipoXReservaBl = equipoXReservaBl;
+	}
 
 	public DispositivoDAO getDispositivoDao() {
 		return dispositivoDAO;
@@ -242,6 +253,65 @@ public class DispositivoBl {
 			List<Dispositivo> dispositivos = new ArrayList();
 			
 			dispositivos = dispositivoDAO.listaObtener();
+			return dispositivos;
+		}
+
+
+		/**
+		 * Metodo que retorna una lista con los dispositivo por el nombre. 
+		 * @return dispositivos
+		 * @param nombreDispositivo
+		 * @throws MyException
+		 */
+		public List<Dispositivo> listaObtenerDisponiblesPorNombre(String nombreDispositivo, int idEstado, String fecha) throws MyException{
+			
+			if(nombreDispositivo==null|| "".equals(nombreDispositivo)){
+				throw new MyException("El nombre de dispositivo no puede estar vacio");
+			}
+			
+			List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+			
+			
+			dispositivos = dispositivoDAO.listaObtenerActivosPorNombre(nombreDispositivo, idEstado);
+			
+			List<Dispositivo> disponibles = new ArrayList<Dispositivo>();
+			
+			for (Dispositivo data : dispositivos) {
+				System.out.println("id "+ data.idDispositivo);
+				if (equipoXReservaBl.verificarDispositivoDisponible(data.idDispositivo, fecha)) {
+					System.out.println("entro a agregar");
+					System.out.println(data.getIdDispositivo());
+					disponibles.add(data);
+				}
+			}
+			System.out.println("el"+nombreDispositivo);
+			
+			for (Dispositivo dato : disponibles) {
+				System.out.println("id interno "+ dato.idDispositivo);
+			}
+			return disponibles;
+		}
+
+		
+
+		/**
+		 * Metodo que retorna una lista con los dispositivo por el nombre. 
+		 * @return dispositivos
+		 * @param nombreDispositivo
+		 * @throws MyException
+		 */
+		public List<Dispositivo> listaObtenerActivosPorNombre(String nombreDispositivo, int idEstado) throws MyException{
+			
+			if(nombreDispositivo==null|| "".equals(nombreDispositivo)){
+				throw new MyException("El nombre de dispositivo no puede estar vacio");
+			}
+			
+			List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+			
+			
+			dispositivos = dispositivoDAO.listaObtenerActivosPorNombre(nombreDispositivo, idEstado);
+			
+			
 			return dispositivos;
 		}
 

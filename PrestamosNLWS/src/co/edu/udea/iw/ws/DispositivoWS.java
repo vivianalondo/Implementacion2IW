@@ -186,4 +186,65 @@ public class DispositivoWS {
 		return respuesta;
 	}
 	
+	/***
+	 * Método que implementa WS para obtener la lista de los dispositivos existentes según el nombre ingresado
+	 * @param listarPorNombre, nombre de los dispositivos que se quieren listar
+	 * @return respuesta, retorna lista con todos los dispositivos existentes
+	 * @throws RemoteException
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("listarpornombreactivos")
+	public List<DispositivoJersey> listarPorNombreActivos(@QueryParam("nombreDispositivo")String nombreDispositivo,@QueryParam("estado")int estadoDispositivo) throws RemoteException{
+		List<DispositivoJersey> respuesta = new ArrayList<DispositivoJersey>();
+		
+		try{
+			for(Dispositivo dispositivo: dispositivoBl.listaObtenerActivosPorNombre(nombreDispositivo, estadoDispositivo)){
+				DispositivoJersey dispositivoJersey = new DispositivoJersey(
+						dispositivo.getIdDispositivo(),
+						dispositivo.getNombre(),
+						dispositivo.getEstadoDispositivo().getTipoEstadoDispositivo(),
+						dispositivo.getDescripcion()
+						);
+				
+				respuesta.add(dispositivoJersey);
+			}
+		}catch(MyException e){
+			throw new RemoteException("Problema consultando los dispositivos", e);
+		}
+		
+		return respuesta;
+	}
+	
+	/***
+	 * Método que implementa WS para obtener la lista de los dispositivos existentes según el nombre ingresado
+	 * @param listarPorNombre, nombre de los dispositivos que se quieren listar
+	 * @return respuesta, retorna lista con todos los dispositivos existentes
+	 * @throws RemoteException
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("listarpornombredisponibles")
+	public List<DispositivoJersey> listarPorNombreDisponibles(@QueryParam("nombreDispositivo")String nombreDispositivo,@QueryParam("estado")int estadoDispositivo,@QueryParam("fecha")String fecha) throws RemoteException{
+		List<DispositivoJersey> respuesta = new ArrayList<DispositivoJersey>();
+		
+		try{
+			for(Dispositivo dispositivo: dispositivoBl.listaObtenerDisponiblesPorNombre(nombreDispositivo, estadoDispositivo, fecha)){
+				DispositivoJersey dispositivoJersey = new DispositivoJersey(
+						dispositivo.getIdDispositivo(),
+						dispositivo.getNombre(),
+						dispositivo.getEstadoDispositivo().getTipoEstadoDispositivo(),
+						dispositivo.getDescripcion()
+						);
+				
+				respuesta.add(dispositivoJersey);
+			}
+		}catch(MyException e){
+			throw new RemoteException("Problema consultando los dispositivos", e);
+		}
+		
+		return respuesta;
+	}
+
+	
 }

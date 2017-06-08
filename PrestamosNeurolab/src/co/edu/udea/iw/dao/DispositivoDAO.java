@@ -22,5 +22,7 @@ public interface DispositivoDAO {
 	public void modificar(Dispositivo dispositivo) throws MyException;
 	
 	public List<Dispositivo> listaObtenerPorNombre(String nombreDispositivo) throws MyException;
+	
+	public List<Dispositivo> listaObtenerActivosPorNombre(String nombreDispositivo, int idEstado) throws MyException;
 
 }

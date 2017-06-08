@@ -23,18 +23,19 @@ public class EquipoXReservaBLTest {
 	@Autowired
 	private EquipoXReservaBl equipoXReservaBl;
 
-	//@Test
+	@Test
 	public void testObtenerEquiposXReserva() {
 		
 		try{
 			
-			List<EquipoXReserva> resultado = null;
-			resultado = equipoXReservaBl.obtenerEquiposXReserva();
-			for(EquipoXReserva equipoXReserva:resultado){
-			    System.out.println("Reserva número: "+equipoXReserva.getEquiposXReservaId().getIdReserva().getIdReserva());
-			    System.out.println("Dispositivo: "+equipoXReserva.getEquiposXReservaId().getIdDispositivo().getNombre());
-			    System.out.println("Estado de la reserva: "+equipoXReserva.getEstadoReserva().getTipoEstadoReserva());
-			}
+			System.out.println(equipoXReservaBl.verificarDispositivoDisponible(3, "2017-05-03 00:00:00.0"));
+//			List<EquipoXReserva> resultado = null;
+//			resultado = equipoXReservaBl.obtenerEquiposXReserva();
+//			for(EquipoXReserva equipoXReserva:resultado){
+//			    System.out.println("Reserva número: "+equipoXReserva.getEquiposXReservaId().getIdReserva().getIdReserva());
+//			    System.out.println("Dispositivo: "+equipoXReserva.getEquiposXReservaId().getIdDispositivo().getNombre());
+//			    System.out.println("Estado de la reserva: "+equipoXReserva.getEstadoReserva().getTipoEstadoReserva());
+//			}
 			
 		}catch(MyException e){
 			e.printStackTrace();
@@ -46,7 +47,7 @@ public class EquipoXReservaBLTest {
 	/**
 	 * Test registrar nuevo dispositivo
 	 */
-	@Test
+//	@Test
 	public void testRegistrarEquipoXReserva() {
 		try{	
 			equipoXReservaBl.registrarEquipoXReserva(14, 7, 1);

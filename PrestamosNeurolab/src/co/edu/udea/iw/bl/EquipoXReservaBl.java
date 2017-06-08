@@ -2,6 +2,7 @@ package co.edu.udea.iw.bl;
 
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -214,5 +215,25 @@ public List<EquipoXReserva> obtenerXDispositivo(int dispositivoId) throws MyExce
 	
 	return equipoXReservaDAO.obtenerPorDispositivo(dispositivoId);
 }
+
+public boolean verificarDispositivoDisponible(int idDispositivo, String fecha) throws MyException{
+	
+	boolean check = true ;
+	List<EquipoXReserva> equipoXreservas = new ArrayList();
+	
+	System.out.println(idDispositivo);
+	
+	equipoXreservas = equipoXReservaDAO.obtenerPorDispositivo(idDispositivo);
+	for (EquipoXReserva datos : equipoXreservas) {
+		System.out.println(datos.getEquiposXReservaId().getIdReserva().getFechaReserva().toString().substring(0, 10));
+		if (datos.getEquiposXReservaId().getIdReserva().getFechaReserva().toString().substring(0, 10).equals(fecha)) {
+			check = false;
+		}
+	}
+	return check;
+}
+
+
+
 
 }
