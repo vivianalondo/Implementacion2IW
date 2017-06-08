@@ -54,7 +54,7 @@ public class ReservaBlTest {
 	public void testModificarReserva() {
 		
 		try{	
-			reservaBl.modificar(2,"2017-05-25", "06:06:00", "06:08:00","2017-05-25", "07:06:00",2,"sanvilc","12345");			
+			reservaBl.modificar(2,"2017-05-25", "06:06:00", "06:08:00","2017-05-25", "07:06:00",2,"sanvilc");			
 			
 		}catch(MyException e){
 			e.printStackTrace();

@@ -64,6 +64,29 @@ public class ReservaBl {
 		reservas = reservaDAO.listaObtener();
 		return reservas;
 	}
+
+
+	/**
+	 * Metodo que retorna una reserva, valida que el id ingresado no sea nulo
+	 * @param identificacion
+	 * @return
+	 * @throws MyException
+	 */
+	public Reserva obtener(int idReserva) throws MyException{
+		
+		if(idReserva==0|| "".equals(idReserva)){
+			throw new MyException("Debe ingresar el id de la reserva");
+		}
+		
+		//Verificación de que la reserva exista
+		System.out.println(idReserva);
+		Reserva reserva =  reservaDAO.obtener(idReserva);
+		if (reserva==null) {
+			throw new MyException("La reserva no se encuentra en la base de datos");
+		}
+		return reservaDAO.obtener(idReserva);
+	}
+	
 	
 	/**
 	 * Método que permite imhabilitar dispositivos. Valida los campos ingresados, que el dispositivo exista y verifica el usuario
@@ -122,12 +145,14 @@ public class ReservaBl {
 		if(horaFinal==null|| "".equals(horaFinal)){
 			throw new MyException("Debe ser ingerasada una hora inicial de la reserva");
 		}
-			
-		Usuario  usuario = usuarioDAO.obtenerPorLogin(login);
-		if(usuario == null){
-			throw new MyException("usuario no existe");
+		
+		if(login==null|| "".equals(login)){
+			throw new MyException("el campo usuario no puede estar vacio");
 		}
 		
+		  
+		Usuario  usuario = usuarioDAO.obtenerPorLogin(login);
+			
 		EstadoReserva  estadoReserva = estadoReservaDAO.obtener(1);
 		Date fechaRealizado = new Date();
 		String horaRealizado= generarHora();
@@ -173,7 +198,7 @@ public class ReservaBl {
 	 * @throws MyException
  	*/
 	public void modificar(int idReserva, String fechaReserva, String horaInicio, String horaFinal,
-			String fechaEntrega,String horaEntrega,int estadoreserva, String login,String psw)throws MyException{
+			String fechaEntrega,String horaEntrega,int estadoreserva, String login)throws MyException{
 		//Validar que los campos no sean nulo
 		
 		
@@ -198,15 +223,6 @@ public class ReservaBl {
 			throw new MyException("el campo usuario no puede estar vacio");
 		}
 		
-		if(psw==null|| "".equals(psw)){
-			throw new MyException("el campo contrasena no puede estar vacio");
-		}
-		
-		//Verificación de que el usuario que esté creando un nuevo registro sea administrador
-		  Usuario usuarioCrea = verificarLogin(login, psw);
-		  if (usuarioCrea.getRol().getIdRol()!=1) {
-		   throw new MyException("No tiene permisos para ingresar un nuevo usuario");
-		  }
 		  
 		Usuario  usuario = usuarioDAO.obtenerPorLogin(login);
 		if(usuario == null){
