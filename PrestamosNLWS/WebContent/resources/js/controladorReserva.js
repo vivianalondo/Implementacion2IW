@@ -16,7 +16,9 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 		});
 	},
 	
-	//eliminar	
+	/**
+	 * Método que hace llamado al web services de eliminar reserva
+	 */	
 	this.eliminar = function(idD){
 		return $http({
 			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/eliminar',
@@ -27,7 +29,9 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 		});
 	},
 	
-	//guardar
+	/**
+	 * Método que hace llamado al web services de guardar reserva
+	 */	
 	this.guardar = function(reserva, login){
 		return $http({
 			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/guardar',
@@ -41,7 +45,9 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 		});
 	},
 	
-	//Modificar
+	/**
+	 * Método que hace llamado al web services de modificar reserva
+	 */	
 	this.modificar = function(reserva, login){
 		return $http({
 			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/modificar',
@@ -58,7 +64,9 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 		});
 	},
 	
-	//buscar
+	/**
+	 * Método que hace llamado al web services de buscar reserva
+	 */	
 	this.buscar = function(id){
 		return $http({
 			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/obtener',
@@ -71,6 +79,9 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 	
 });
 
+/**
+ * Controlador para reserva
+ */
 moduloReservas.controller('reservaController', function($scope, $rootScope, $cookies, $location, reservasServices, productService){
 	
 	//Lista reservas
@@ -111,18 +122,22 @@ moduloReservas.controller('reservaController', function($scope, $rootScope, $coo
 						
 		reservasServices.modificar(reservaoMod,$scope.nombreUsuario).then(
 			function success(data){
-				alert('Se ha modificado la reserva');
+				alert('SE HA MODIFICADO LA ESERVA EXITOSAMENTE');
 				$location.url('/listaReservas')
 			});
 		};
 
-		//Buscar reserva por id
+		/**
+		 * función para pasar a la vista buscar reserva
+		 */
 		$scope.buscarReserva = function(idReserva){
 			productService.addProduct(idReserva);
 			$location.url('/buscarReserva');
 		}
 	
-	//Función que me lleva al inicio
+	/**
+	 * Función para regresar al inicio de la página
+	 */
 	$scope.back = function(){
 		$location.url('/inicio');
 	}
