@@ -1,33 +1,60 @@
-<div>
-	<form ng-submit="buscarrol(nombreRol)">
+
+
+<div class="menu" style="width:100%;>
+	    <div class="container-fluid">
+			<div class="navbar-header">
+				 <img src="resources/img/Logo.png" >
+			</div>
+			  <ul class="nav navbar-nav">
+			      <li><a ng-click="home()">Inicio</a></li>
+			      <li><a ng-click="listarDispositivos()">Dispositivos</a></li>
+			      <li><a ng-click="listarUsuarios()">Usuarios</a></li>
+			       <li><a ng-click="listarReservas()">Reservas</a></li>
+			       <li><a class="active" ng-click="listarRoles()">Roles</a></li>
+			       
+			  </ul>
+			 <div>
+				<ul class="nav navbar-nav navbar-right">
+				
+					<li><a><span class="glyphicon glyphicon-user"></span> {{nombreUsuario}}</a></li>
+					<li><a ng-click=logout()><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+<div class="row">
+    <div class="row col-sm-8 col-sm-offset-2 custyle">
+    <img src="resources\img\roles.jpg">
+    	<form ng-submit="buscarrol(nombreRol)">
 		<div>
-			<label for="nomRol">Nombre Rol:</label>
+			<label for="nombreDispositivo">Nombre:</label>
 			<input type="text" 
 				   placeholder="Nombre del rol"
-				   required id="NombreRol"
-				   ng-model="nombreRol"/>
+				   required id="NombreDispositivo"
+				   ng-model="nombre"/>
+				   <button class="btn btn-info btn-sm" type="submit">Buscar</button>
+				   <button class="btn btn-info btn-sm pull-right" ng-click="save()">Nuevo</button>
 		</div>
-		<button type="submit">Buscar</button>
 	</form>
-</div>
-<div>
-	<table border="1" width="100%">
-	<tr>
+    <table class="table table-striped custab">
+    <thead>
+     <tr>
 		<th>ID Rol</th>
 		<th>Tipo Rol</th>
-		<th>Acciones</th>
+		<th align="center" colspan="3">Acciones</th>
 	</tr>
-	
-	<tr ng-repeat="rol in listaRoles">
-		<td>{{rol.idRol}}</td>
-		<td>{{rol.tipoRol}}</td>
-		<td><button  ng-click="editar(dispositivo)" >Editar</button>
-		<button  ng-click="eliminar(dispositivo)" ng-click="listarUsuario">Eliminar</button></td>
-
-	</tr>
-	</table>
-	
-	<button  ng-click="save()">Nuevo</button>
-	<button  ng-click="back()">Regresar</button>
-
+    </thead>
+            <tr ng-repeat="rol in listaRoles">
+		        <td>{{rol.idRol}}</td>
+				<td>{{rol.tipoRol}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' ng-click=editar(dispositivo)><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
+                <td class="text-center"><a ng-click="eliminar(dispositivo)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+            </tr>
+      
+    </table>
+    <button class='btn btn-info' ng-click="back()">Regresar</button>
+    </div>
 </div>
+
+

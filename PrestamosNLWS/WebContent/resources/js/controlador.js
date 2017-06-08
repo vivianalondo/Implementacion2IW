@@ -174,11 +174,9 @@ appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 						if (data.data == "1"){
 							$location.url('/inicio');
 						}else{
-							alert(data.data);
 							$location.url('/inicio2');
 						}
-				
-				
+
 				
 			},
 			function failure(data){
@@ -433,11 +431,6 @@ appNeurolab.config(['$routeProvider', function($routeProvider){
 	
 	$routeProvider.when('/listaDispositivos', {
 		templateUrl : 'ListaDispositivos.html',
-		controller: 'listaDispositivos'
-	});
-	
-	$routeProvider.when('/listaDispositivosUsuario', {
-		templateUrl : 'ListaDispositivos2.html',
 		controller: 'listaDispositivos'
 	});
 	
