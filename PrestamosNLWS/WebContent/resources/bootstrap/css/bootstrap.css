@@ -7089,9 +7089,8 @@ body {
 }
 
 #scroll {
-    width: auto;
-    height: auto;
-    overflow-y: scroll;
+  padding-top: 500px;
+  margin-top: 600px;
 }
 
 .menu
@@ -7341,3 +7340,5 @@ div.clanky .row {
 	margin: 1px 0px 30px;
 	border: 1px solid GREY;
 	}
+	
+	

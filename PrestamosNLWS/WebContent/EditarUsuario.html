@@ -1,85 +1,95 @@
-<div>
-	<form ng-submit="modificaruser(usuarioModificar)">
-		<div>
-			<label for="identificacion">Identificacion*:</label>
+<div class="row">
+<div class="col-md-5 col-sm-offset-1">
+    <div class="form-area">  
+    <H2 align="center">Editar usuario</H2>
+       <form ng-submit="modificaruser(usuarioModificar)">
+		<div  class="form-group">
+			<label for="Identificacion">Identificacion:</label>
 			<input type="text" 
-				   required id="identificacion"
-				   ng-model="usuarioModificar.identificacion"
-				   value="{{usuarioModificar.identificacion}}"
-				   readonly="readonly"/>
+				   placeholder="ID del usuario"
+				   class="form-control" 
+				   required id="idUsusario"
+				   ng-model="usuario.identificacion"/>
 		</div>
 		
-		<div>
-			<label for="tipoDocumento">Tipo Documento*:</label>
+		<div  class="form-group">
+			<label for="tipoDocumento">Tipo Documento:</label>
 			<input type="text" 
+				   placeholder="Tipo Documento"
+				   class="form-control" 
 				   required id="tipoDocumento"
-				   ng-model="usuarioModificar.tipoDocumento"
-				   value="{{usuarioModificar.tipoDocumento}}"
-				   />
+				   ng-model="usuario.tipoDocumento"/>
 		</div>
 		
-		
-		<div>
-			<label for="nombre">Nombre*:</label>
+		<div  class="form-group">
+			<label for="nombre">Nombre:</label>
 			<input type="text" 
+				   placeholder="nombre"
+				   class="form-control" 
 				   required id="nombre"
-				   ng-model="usuarioModificar.nombre"
-				   value="{{usuarioModificar.nombre}}"
-				   />
+				   ng-model="usuario.nombre"/>
 		</div>
 		
-		
-				<div>
+		<div class="form-group">
 			<label for="apellido">Apellido*:</label>
 			<input type="text" 
+				   placeholder="apellido"
 				   required id="apellido"
-				   ng-model="usuarioModificar.apellido"
-				   value="{{usuarioModificar.apellido}}"
-				   />
-			</div>  
-				   
-							<div>
-			<label for="telefono">Telefono*:</label>
-			<input type="text" 
-				   required id="telefono"
-				   ng-model="usuarioModificar.telefono"
-				   value="{{usuarioModificar.telefono}}"
-				   />
-			</div>
-							<div>
-			<label for="email">Email*:</label>
-			<input type="text" 
-				   required id="email"
-				   ng-model="usuarioModificar.email"
-				   value="{{usuarioModificar.email}}"
-				   />
-			</div>  
-						<div>
-			<label for="login">login*:</label>
-			<input type="text" 
-				   required id="login"
-				   ng-model="usuarioModificar.login"
-				   value="{{usuarioModificar.login}}"
-				   />
-				   </div>
+				   class="form-control" 
+				   ng-model="usuario.apellido"/>
+		</div>
 		
-		<div>		   
-					<label for="estadoUsuario">Estado Usuario*:</label>
+		<div  class="form-group">
+			<label for="telefono">Telefono:</label>
 			<input type="text" 
-				   required id="estadoUsuario"
-				   ng-model="usuarioModificar.estadoUsuario"
-				   value="{{usuarioModificar.estadoUsuario}}"
-				   />
+				   placeholder="telefono"
+				   required id="telefono"
+				   class="form-control" 
+				   ng-model="usuario.telefono"/>
 		</div>
-		<div>		   
-					<label for="rol">Rol*:</label>
+		
+		<div  class="form-group">
+			<label for="email">Email:</label>
 			<input type="text" 
-				   required id="rol"
-				   ng-model="usuarioModificar.rol"
-				   value="{{usuarioModificar.rol}}"
-				   />
+				   placeholder="email"
+				   required id="email"
+				   class="form-control" 
+				   ng-model="usuario.email"/>
 		</div>
-		<button type="submit">Enviar modificación</button>
-		<button  ng-click="backListD()">Regresar</button>
+		<div   class="form-group">
+			<label for="login">login:</label>
+			<input type="text" 
+				   placeholder="login"
+				   required id="login"
+				   class="form-control" 
+				   ng-model="usuario.login"/>
+		</div>
+		<div  class="form-group">
+			<label for="pw">Password:</label>
+			<input type="text" 
+				   placeholder="Password"
+				   required id="pw"
+				   class="form-control" 
+				   ng-model="usuario.pw"/>
+		</div>	
+
+		<div  class="form-group">
+			<label for="estadoUsuario">Estado Usuario:</label>
+				   	<select name="nombre" size="1"  class="form-control" ng-model="usuario.estadoUsuario">
+				    <option value="1">Habilitado</option>
+				    <option value="2">No habilitado</option>
+					</select>
+		</div>
+		<div  class="form-group">
+			<label for="rol">Rol*:</label>
+			        <select name="nombre" size="1"  class="form-control" ng-model="usuario.rol">
+				    <option value="1">Administrador</option>
+				    <option value="2">Usuario</option>
+					</select>
+		</div>
+		<button  class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
 	</form>
+    </div>
+    <button  class='btn btn-info' ng-click="backListD()">Regresar</button>
+</div>
 </div>

@@ -1,20 +1,47 @@
-<div>
+<div class="menu" style="width:100%;>
+	    <div class="container-fluid">
+			<div class="navbar-header">
+				 <img src="resources/img/Logo.png" >
+			</div>
+			  <ul class="nav navbar-nav">
+			      <li><a ng-click="home()">Inicio</a></li>
+			      <li><a ng-click="listarDispositivos()">Dispositivos</a></li>
+			      <li><a class="active" ng-click="listarUsuarios()">Usuarios</a></li>
+			       <li><a ng-click="listarReservas()">Reservas</a></li>
+			       <li><a ng-click="listarRoles()">Roles</a></li>
+			       
+			  </ul>
+			 <div>
+				<ul class="nav navbar-nav navbar-right">
+				
+					<li><a><span class="glyphicon glyphicon-user"></span> {{nombreUsuario}}</a></li>
+					<li><a ng-click="logout()"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+<div class="row">
+    <div class="row col-sm-7 col-sm-offset-1 custyle">
+    <img src="resources\img\usuarios.png">
+    	<div>
 	<form ng-submit="buscarusuario(identificacion)">
 		<div>
 			<label for="Usuario">Id del usuario:</label>
 			<input type="text" 
-				   placeholder="Id del usuario"
-				   required id="idUsuario"
-				   ng-model="identificacion"/>
+					placeholder="Id del usuario"
+					required id="idUsuario"
+					ng-model="identificacion"/>
+					<button class="btn btn-info btn-sm type="submit">Buscar</button>
+					<button  class="btn btn-info btn-sm pull-right"  ng-click="saveuser()">Nuevo</button>
+				</div>
+				  
+			</form>
+			
 		</div>
-		<button type="submit">Buscar</button>
-	</form>
-</div>
-
-
-<div>
-	<table border="1" width="100%">
-	<tr>
+    <table class="table table-striped custab">
+    <thead>
+     <tr>
 		<th>Documento</th>
 		<th>Tipo de documento</th>
 		<th>Nombre</th>
@@ -22,32 +49,31 @@
 		<th>Telefono</th>
 		<th>Emai</th>
 		<th>Login</th>
-		<th>Días de sanción</th>
+		<th>Dias de sanci&ograve;n</th>
 		<th>Estado Usuario</th>
 		<th>Rol</th>
-		<th>Acción</th>
+		<th align="center" colspan="3">Acciones</th>
 	</tr>
-	
-	<tr ng-repeat="usuario in listaUsuarios">
-		<td>{{usuario.identificacion}}</td>
-		<td>{{usuario.tipoDocumento}}</td>
-		<td>{{usuario.nombre}}</td>
-		<td>{{usuario.apellido}}</td>
-		<td>{{usuario.telefono}}</td>
-		<td>{{usuario.email}}</td>
-		<td>{{usuario.login}}</td>
-		<td>{{usuario.diasSanciones}}</td>
-		<td>{{usuario.estadoUsuario}}</td>
-		<td>{{usuario.rol}}</td>
-		<td><button ng-click="editar(usuario)">Editar</button>
-		<button ng-click="eliminar(usuario)">Eliminar</button></td>
-
-	</tr>
-	</table>
-	
-	<button  ng-click="saveuser()">Nuevo</button>
-	<button  ng-click="back()">Regresar</button>
-	
-	<div> 
-	</div>
+    </thead>
+            <tr ng-repeat="usuario in listaUsuarios">
+		     	<td>{{usuario.identificacion}}</td>
+				<td>{{usuario.tipoDocumento}}</td>
+				<td>{{usuario.nombre}}</td>
+				<td>{{usuario.apellido}}</td>
+				<td>{{usuario.telefono}}</td>
+				<td>{{usuario.email}}</td>
+				<td>{{usuario.login}}</td>
+				<td align = "center">{{usuario.diasSanciones}}</td>
+				<td>{{usuario.estadoUsuario}}</td>
+				<td>{{usuario.rol}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' ng-click="editar(usuario)"><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
+                <td class="text-center"><a ng-click="eliminar(usuario)"class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+            </tr>
+      
+    </table>
+    <button class='btn btn-info' ng-click="back()">Regresar</button>
+    </div>
 </div>
+
+
+

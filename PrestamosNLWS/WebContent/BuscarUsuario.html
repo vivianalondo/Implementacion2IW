@@ -1,6 +1,9 @@
-<div>
-	<table border="1" width="100%">
-	<tr>
+<div ng-if= "!listaDispositivosResultante.idDispositivo" class="container" id="#scroll">
+    <div class="row col-lg-10 col-lg-offset-2 custyle">
+    <img src="resources\img\usuarios.png">
+    <table class="table table-striped custab">
+    <thead>
+     <tr>
 		<th>Documento</th>
 		<th>Tipo de documento</th>
 		<th>Nombre</th>
@@ -12,7 +15,8 @@
 		<th>Estado Usuario</th>
 		<th>Rol</th>
 	</tr>
-	<tr >
+    </thead>
+        <tr>
 		<td>{{listaUsuariosResultante.identificacion}}</td>
 		<td>{{listaUsuariosResultante.tipoDocumento}}</td>
 		<td>{{listaUsuariosResultante.nombre}}</td>
@@ -23,8 +27,34 @@
 		<td>{{listaUsuariosResultante.diasSanciones}}</td>
 		<td>{{listaUsuariosResultante.estadoUsuario}}</td>
 		<td>{{listaUsuariosResultante.rol}}</td>
+		</tr>
+    </table>
+    <button class='btn btn-info' ng-click="backListD()">Regresar</button>
+    </div>
+
+</div>
+
+
+<div ng-if="listaDispositivosResultante.idDispositivo" class="container" id="#scroll">
+    <div class="row col-lg-10 col-lg-offset-2 custyle">
+    <img src="resources\img\laboratorio5.png">
+    <table class="table table-striped custab">
+    <thead>
+     <tr>
+		<th>ID</th>
+		<th>Nombre</th>
+		<th>Estado</th>
+		<th>Descripci&ograve;n</th>
 	</tr>
-	</table>
-	<button  ng-click="backListD()">Regresar</button>
-	
+    </thead>
+        <tr>
+		<td>{{listaDispositivosResultante.idDispositivo}}</td>
+		<td>{{listaDispositivosResultante.nombre}}</td>
+		<td>{{listaDispositivosResultante.estadoDispositivo}}</td>
+		<td>{{listaDispositivosResultante.descripcion}}</td>
+		</tr>
+    </table>
+    <button class='btn btn-info' ng-click="backListD()">Regresar</button>
+    </div>
+
 </div>

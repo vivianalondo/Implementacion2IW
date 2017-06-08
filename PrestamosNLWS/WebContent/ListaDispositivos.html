@@ -4,10 +4,12 @@
 				 <img src="resources/img/Logo.png" >
 			</div>
 			  <ul class="nav navbar-nav">
-			      <li><a ng-click="home()">Inicio</a></li>
-			      <li class="active"><a ng-click="listarDispositivos()">Dispositivos</a></li>
+			      <li><a class="active" ng-click="home()">Inicio</a></li>
+			      <li><a ng-click="listarDispositivos()">Dispositivos</a></li>
 			      <li><a ng-click="listarUsuarios()">Usuarios</a></li>
 			       <li><a ng-click="listarReservas()">Reservas</a></li>
+			       <li><a ng-click="listarRoles()">Roles</a></li>
+			       
 			  </ul>
 			 <div>
 				<ul class="nav navbar-nav navbar-right">
@@ -18,8 +20,9 @@
 			</div>
 		</div>
 
-<div class="container" id="#scroll">
-    <div class="row col-lg-10 col-lg-offset-2 custyle">
+
+<div class="row">
+    <div class="row col-sm-8 col-sm-offset-2 custyle">
     <img src="resources\img\laboratorio5.png">
     	<form ng-submit="buscardispositivo(nombre)">
 		<div>
@@ -54,5 +57,6 @@
     </table>
     <button class='btn btn-info' ng-click="back()">Regresar</button>
     </div>
-
 </div>
+
+
