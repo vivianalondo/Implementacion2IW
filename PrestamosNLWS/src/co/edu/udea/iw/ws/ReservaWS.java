@@ -58,7 +58,7 @@ public class ReservaWS {
 			
 			reservaJersey = new ReservaJersey(
 				reserva.getIdReserva(),
-				reserva.getEstadoReserva().getIdEstadoReserva(),
+				reserva.getEstadoReserva().getTipoEstadoReserva(),
 				reserva.getFechaRealizacion().toString(),
 				reserva.getHoraInicio(),
 				reserva.getHoraFinal(),
@@ -97,7 +97,7 @@ public class ReservaWS {
 					
 					reservaJersey = new ReservaJersey(
 							reserva.getIdReserva(),
-							reserva.getEstadoReserva().getIdEstadoReserva(),
+							reserva.getEstadoReserva().getTipoEstadoReserva(),
 							reserva.getFechaRealizacion().toString(),
 							reserva.getHoraInicio(),
 							reserva.getHoraFinal(),
@@ -111,7 +111,7 @@ public class ReservaWS {
 					
 					reservaJersey = new ReservaJersey(
 							reserva.getIdReserva(),
-							reserva.getEstadoReserva().getIdEstadoReserva(),
+							reserva.getEstadoReserva().getTipoEstadoReserva(),
 							reserva.getFechaRealizacion().toString(),
 							reserva.getHoraInicio(),
 							reserva.getHoraFinal(),

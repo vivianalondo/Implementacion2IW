@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ReservaJersey {
 
 	private int idReserva;
-	private int estadoReserva;
+	private String estadoReserva;
 	private String fechaRealizacion;
 	private String horaInicio;
 	private String horaFinal;
@@ -28,7 +28,7 @@ public class ReservaJersey {
 		
 	}
 
-	public ReservaJersey(int idReserva, int estadoReserva, String fechaRealizacion, String horaInicio,
+	public ReservaJersey(int idReserva, String estadoReserva, String fechaRealizacion, String horaInicio,
 			String horaFinal, String horaRealizado, String fechaReserva, String usuario, String fechaEntrega,
 			String horaEntrega) {
 		super();
@@ -46,7 +46,7 @@ public class ReservaJersey {
 	
 	
 
-	public ReservaJersey(int idReserva, int estadoReserva, String fechaRealizacion, String horaInicio, String horaFinal,
+	public ReservaJersey(int idReserva, String estadoReserva, String fechaRealizacion, String horaInicio, String horaFinal,
 			String horaRealizado, String fechaReserva, String usuario) {
 		super();
 		this.idReserva = idReserva;
@@ -67,11 +67,11 @@ public class ReservaJersey {
 		this.idReserva = idReserva;
 	}
 
-	public int getEstadoReserva() {
+	public String getEstadoReserva() {
 		return estadoReserva;
 	}
 
-	public void setEstadoReserva(int estadoReserva) {
+	public void setEstadoReserva(String estadoReserva) {
 		this.estadoReserva = estadoReserva;
 	}
 
