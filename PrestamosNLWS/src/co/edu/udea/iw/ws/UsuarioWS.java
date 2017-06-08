@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.edu.udea.iw.bl.UsuarioBl;
+import co.edu.udea.iw.dto.Rol;
 import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.dto.UsuarioJersey;
 import co.edu.udea.iw.exception.MyException;
@@ -199,6 +200,30 @@ public class UsuarioWS {
 		}
 		
 		return "";
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	@Path("obtenerRol")
+	public String obtenerId(@QueryParam("login")String login, 
+			@QueryParam("pass")String pass){
+
+		 Rol rol;
+		 int aux;
+		 String idRol = " ";
+		 
+		try{
+			System.out.println("usuario de validacion:" + login);
+			
+			rol = usuarioBL.verificarLogin(login, pass).getRol();
+			aux= rol.getIdRol();
+			idRol = Integer.toString(aux);
+			System.out.println(idRol);
+		}catch(MyException e){
+			 e.getMessage();
+		}
+		
+		return idRol;
 	}
 	
 	
