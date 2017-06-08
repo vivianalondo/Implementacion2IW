@@ -1,10 +1,11 @@
 <div class="row">
 <div class="col-md-5 col-sm-offset-1">
+<img src="http://hotelcasamolina.com/wp-content/uploads/2016/03/logo-transparente-pq.png">
     <div class="form-area">  
     <H2 align="center">Guardar usuario</H2>
         	<form ng-submit="guardaruser()">
 		<div  class="form-group">
-			<label for="Identificacion">Identificacion*:</label>
+			<label for="Identificacion">Identificaci&oacute;n*:</label>
 			<input type="text" 
 				   placeholder="ID del usuario"
 				   class="form-control" 
@@ -22,7 +23,7 @@
 		</div>
 		
 		<div  class="form-group">
-			<label for="nombre">Nombre*:</label>
+			<label for="nombre">Nombre:</label>
 			<input type="text" 
 				   placeholder="nombre"
 				   class="form-control" 
@@ -31,7 +32,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="apellido">Apellido*:</label>
+			<label for="apellido">Apellido:</label>
 			<input type="text" 
 				   placeholder="apellido"
 				   required id="apellido"
@@ -40,7 +41,7 @@
 		</div>
 		
 		<div  class="form-group">
-			<label for="telefono">Telefono*:</label>
+			<label for="telefono">Telefono:</label>
 			<input type="text" 
 				   placeholder="telefono"
 				   required id="telefono"
@@ -49,7 +50,7 @@
 		</div>
 		
 		<div  class="form-group">
-			<label for="email">Email*:</label>
+			<label for="email">Email:</label>
 			<input type="text" 
 				   placeholder="email"
 				   required id="email"
@@ -57,7 +58,7 @@
 				   ng-model="usuario.email"/>
 		</div>
 		<div   class="form-group">
-			<label for="login">login*:</label>
+			<label for="login">Login:</label>
 			<input type="text" 
 				   placeholder="login"
 				   required id="login"
@@ -65,7 +66,7 @@
 				   ng-model="usuario.login"/>
 		</div>
 		<div  class="form-group">
-			<label for="pw">Password*:</label>
+			<label for="pw">Password:</label>
 			<input type="text" 
 				   placeholder="Password"
 				   required id="pw"
@@ -74,14 +75,14 @@
 		</div>	
 
 		<div  class="form-group">
-			<label for="estadoUsuario">Estado Usuario*:</label>
+			<label for="estadoUsuario">Estado Usuario:</label>
 				   	<select name="nombre" size="1"  class="form-control" ng-model="usuario.estadoUsuario">
 				    <option value="1">Habilitado</option>
 				    <option value="2">No habilitado</option>
 					</select>
 		</div>
 		<div  class="form-group">
-			<label for="rol">Rol*:</label>
+			<label for="rol">Rol:</label>
 			        <select name="nombre" size="1"  class="form-control" ng-model="usuario.rol">
 				    <option value="1">Administrador</option>
 				    <option value="2">Usuario</option>

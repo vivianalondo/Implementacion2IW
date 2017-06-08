@@ -5,34 +5,9 @@
     <table class="table table-striped custab">
     <thead>
      <tr>
-		<th>ID</th>
-		<th>Nombre</th>
-		<th>Estado</th>
-		<th>Descripci&ograve;n</th>
-	</tr>
-    </thead>
-        <tr ng-repeat="disp in listaDispositivosResultante" >
-		<td>{{disp.idDispositivo}}</td>
-		<td>{{disp.nombre}}</td>
-		<td>{{disp.estadoDispositivo}}</td>
-		<td>{{disp.descripcion}}</td>
-		</tr>
-    </table>
-    <button class='btn btn-info' ng-click="backListD()">Regresar</button>
-    </div>
-
-</div>
-
-
-<div ng-if="listaDispositivosResultante.idDispositivo" class="container" id="#scroll">
-    <div class="row col-lg-10 col-lg-offset-2 custyle">
-    <img src="resources\img\laboratorio5.png">
-    <table class="table table-striped custab">
-    <thead>
-     <tr>
 	    <th>ID Reserva</th>
 		<th>Estado</th>
-		<th>Fecha Realización</th>
+		<th>Fecha Realizaci&oacute;n</th>
 		<th>Hora Inicio</th>
 		<th>Hora Final</th>
 		<th>Hora Realizado</th>
@@ -43,7 +18,7 @@
 	</tr>
     </thead>
         <tr>
-	    <td>{{listaReservaResultante.idReserva}}</td>
+        <td>{{listaReservaResultante.idReserva}}</td>
 		<td>{{listaReservaResultante.estadoReserva}}</td>
 		<td>{{listaReservaResultante.fechaRealizacion}}</td>
 		<td>{{listaReservaResultante.horaInicio}}</td>
