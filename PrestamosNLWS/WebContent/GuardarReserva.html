@@ -1,32 +1,41 @@
-<div>
-
-	<form ng-submit="guardar()">
+<div class="row">
+<div class="col-md-5">
+    <div class="form-area">  
+    <H2 align="center">Editar Reserva</H2>
+    		<p>Usuario {{ nombreUsuario }}</p>
+        	<form ng-submit="guardar()">
 	<p>Usuario {{ nombreUsuario }}</p>
-		<div>
+		<div class="form-group">
 			<label for="nombre">Fecha de Reserva*:</label>
 			<input type="text" 
 				   placeholder="Fecha de la reserva"
+				   class="form-control" 
 				   required id="fechaReserva"
 				   ng-model="reserva.fechaReserva"/>
 		</div>
 		
-		<div>
+		<div class="form-group">
 			<label for="nombre">Hora Inicio*:</label>
 			<input type="text" 
 				   placeholder="Hora inicio"
+				   class="form-control" 
 				   required id="horaInicio"
 				   ng-model="reserva.horaInicio"/>
 		</div>
 		
-		<div>
+		<div class="form-group">
 			<label for="nombre">Hora Final*:</label>
 			<input type="text" 
 				   placeholder="Hora final"
+				   class="form-control" 
 				   required id="horaFinal"
 				   ng-model="reserva.horaFinal"/>
 		</div>
 		
-		<button type="submit">Save</button>
+		<button  class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
 		<button  ng-click="backListD()">Regresar</button>
 	</form>
+    </div>
+    <button  class='btn btn-info' ng-click="backListD()">Regresar</button>
+</div>
 </div>
