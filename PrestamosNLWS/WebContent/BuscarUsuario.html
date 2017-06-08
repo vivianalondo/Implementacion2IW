@@ -1,4 +1,4 @@
-<div ng-if= "!listaDispositivosResultante.idDispositivo" class="container" id="#scroll">
+<div class="container" id="#scroll">
     <div class="row col-lg-10 col-lg-offset-2 custyle">
     <img src="resources\img\usuarios.png">
     <table class="table table-striped custab">
@@ -14,6 +14,7 @@
 		<th>Días de sanci&oacute;n</th>
 		<th>Estado Usuario</th>
 		<th>Rol</th>
+		<th align="center" colspan="3">Acciones</th>
 	</tr>
     </thead>
         <tr>
@@ -27,34 +28,11 @@
 		<td>{{listaUsuariosResultante.diasSanciones}}</td>
 		<td>{{listaUsuariosResultante.estadoUsuario}}</td>
 		<td>{{listaUsuariosResultante.rol}}</td>
+		<td class="text-center"><a class='btn btn-info btn-xs' ng-click=editarB(listaUsuariosResultante)><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
+        <td class="text-center"><a ng-click="eliminarB(listaUsuariosResultante)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
 		</tr>
     </table>
-    <button class='btn btn-info' ng-click="backListD()">Regresar</button>
-    </div>
-
-</div>
-
-
-<div ng-if="listaDispositivosResultante.idDispositivo" class="container" id="#scroll">
-    <div class="row col-lg-10 col-lg-offset-2 custyle">
-    <img src="resources\img\laboratorio5.png">
-    <table class="table table-striped custab">
-    <thead>
-     <tr>
-		<th>ID</th>
-		<th>Nombre</th>
-		<th>Estado</th>
-		<th>Descripci&ograve;n</th>
-	</tr>
-    </thead>
-        <tr>
-		<td>{{listaDispositivosResultante.idDispositivo}}</td>
-		<td>{{listaDispositivosResultante.nombre}}</td>
-		<td>{{listaDispositivosResultante.estadoDispositivo}}</td>
-		<td>{{listaDispositivosResultante.descripcion}}</td>
-		</tr>
-    </table>
-    <button class='btn btn-info' ng-click="backListD()">Regresar</button>
+    <button class='btn btn-info' ng-click="backListU()">Regresar</button>
     </div>
 
 </div>

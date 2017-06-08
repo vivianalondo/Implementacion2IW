@@ -1,4 +1,5 @@
-<div class="row">
+<div ng-if="!banderaU" >
+	<div class="row">
 <div class="col-md-5 col-sm-offset-1">
 <img src="http://hotelcasamolina.com/wp-content/uploads/2016/03/logo-transparente-pq.png">
     <div class="form-area">  
@@ -91,6 +92,107 @@
 		<button  class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
 	</form>
     </div>
-    <button  class='btn btn-info' ng-click="backListD()">Regresar</button>
+    <button  class='btn btn-info' ng-click="backListU()">Regresar</button>
 </div>
+</div>
+</div>
+
+<div ng-if="banderaU" >
+	<div class="row">
+<div class="col-md-5 col-sm-offset-1">
+<img src="http://hotelcasamolina.com/wp-content/uploads/2016/03/logo-transparente-pq.png">
+    <div class="form-area">  
+    <H2 align="center">Editar usuario</H2>
+       <form ng-submit="modificaruserB(usuarioModificar)">
+		<div  class="form-group">
+			<label for="Identificacion">Identificaci&oacute;n:</label>
+			<input type="text" 
+				   placeholder="ID del usuario"
+				   class="form-control" 
+				   value="{{usuarioModificar.identificacion}}"
+				   required id="idUsusario"
+				   readonly="readonly"
+				   ng-model="usuarioModificar.identificacion"/>
+		</div>
+		
+		<div  class="form-group">
+			<label for="tipoDocumento">Tipo Documento:</label>
+			<input type="text" 
+				   placeholder="Tipo Documento"
+				   class="form-control" 
+				   required id="tipoDocumento"
+				   value="{{usuarioModificar.tipoDocumento}}"
+				   ng-model="usuarioModificar.tipoDocumento"/>
+		</div>
+		
+		<div  class="form-group">
+			<label for="nombre">Nombre:</label>
+			<input type="text" 
+				   placeholder="nombre"
+				   class="form-control" 
+				   ng-model="usuarioModificar.nombre"
+				   value="{{usuarioModificar.nombre}}"
+/>
+		</div>
+		
+		<div class="form-group">
+			<label for="apellido">Apellido*:</label>
+			<input type="text" 
+				   placeholder="apellido"
+				   required id="apellido"
+				   class="form-control" 
+				   ng-model="usuarioModificar.apellido"
+				   value="{{usuarioModificar.apellido}}"/>
+		</div>
+		
+		<div  class="form-group">
+			<label for="telefono">Telefono:</label>
+			<input type="text" 
+				   placeholder="telefono"
+				   required id="telefono"
+				   class="form-control" 
+				   ng-model="usuarioModificar.telefono"
+				   value="{{usuarioModificar.telefono}}"/>
+		</div>
+		
+		<div  class="form-group">
+			<label for="email">Email:</label>
+			<input type="text" 
+				   placeholder="email"
+				   required id="email"
+				   class="form-control" 
+				   ng-model="usuarioModificar.email"
+				   value="{{usuarioModificar.email}}"/>
+		</div>
+		<div   class="form-group">
+			<label for="login">login:</label>
+			<input type="text" 
+				   placeholder="login"
+				   required id="login"
+				   class="form-control" 
+				   ng-model="usuarioModificar.login"
+				   value="{{usuarioModificar.login}}"/>
+		</div>
+
+		<div  class="form-group">
+			<label for="estadoUsuario">Estado Usuario:</label>
+				   	<select name="nombre" size="1"  class="form-control" ng-model="usuarioModificar.estadoUsuario">
+				    <option value="1">Habilitado</option>
+				    <option value="2">No habilitado</option>
+					</select>
+		</div>
+		<div  class="form-group">
+			<label for="rol">Rol*:</label>
+			        <select name="nombre" size="1"  class="form-control" ng-model="usuarioModificar.rol">
+				    <option value="1">Administrador</option>
+				    <option value="2">Usuario</option>
+					</select>
+		</div>
+		<button  class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+	</form>
+    </div>
+    <button  class='btn btn-info' ng-click="backListUB()">Regresar</button>
+</div>
+</div>
+	
 </div>
