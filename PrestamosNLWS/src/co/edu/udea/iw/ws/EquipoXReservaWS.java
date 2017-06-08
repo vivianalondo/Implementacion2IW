@@ -114,7 +114,7 @@ public class EquipoXReservaWS {
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("listarequipos")
+	@Path("listarxreserva")
 	public List<EquipoXReservaJersey> listaObtenerXreserva(@QueryParam("reservaid")int reservaid) throws RemoteException{
 		List<EquipoXReservaJersey> respuesta = new ArrayList<EquipoXReservaJersey>();
 		
@@ -134,5 +134,33 @@ public class EquipoXReservaWS {
 		
 		return respuesta;
 	}
-	
+
+	/***
+	 * Método que implementa WS para obtener los equipos x reservas
+	 * @return respuesta, retorna lista con todos los equipos x reservas
+	 * @throws RemoteException
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("listarxdispositivo")
+	public List<EquipoXReservaJersey> listaObtenerXdispositivo(@QueryParam("dispositivoid")int dispositivoid) throws RemoteException{
+		List<EquipoXReservaJersey> respuesta = new ArrayList<EquipoXReservaJersey>();
+		
+		try{
+			for(EquipoXReserva equipoXReserva: equipoXReservaBl.obtenerXDispositivo(dispositivoid)){
+				EquipoXReservaJersey equipoXReservaJersey = new EquipoXReservaJersey(
+						equipoXReserva.getEquiposXReservaId().getIdReserva().getIdReserva(),
+						equipoXReserva.getEquiposXReservaId().getIdDispositivo().getIdDispositivo(),
+						equipoXReserva.getEstadoReserva().getIdEstadoReserva()
+						);
+				
+				respuesta.add(equipoXReservaJersey);
+			}
+		}catch(MyException e){
+			throw new RemoteException("Problema consultando los equipos x reserva", e);
+		}
+		
+		return respuesta;
+	}
+
 }

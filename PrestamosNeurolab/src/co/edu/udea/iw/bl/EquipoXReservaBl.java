@@ -199,16 +199,20 @@ public EquipoXReserva obtenerBl(EquipoXReservaId idEquipoXReserva) throws MyExce
 }
 		
 public List<EquipoXReserva> obtenerXReserva(int reservaId) throws MyException{
+	if(reservaId==0){
+		throw new MyException("El id de la reserva no puede estar vac�a");
+	}
+	
 	return equipoXReservaDAO.obtenerPorReserva(reservaId);
 }
 
 public List<EquipoXReserva> obtenerXDispositivo(int dispositivoId) throws MyException{
 	
 	if(dispositivoId==0){
-		throw new MyException("El id dispositivo no puede estar vac�a");
+		throw new MyException("El id del dispositivo no puede estar vac�a");
 	}
 	
-	return equipoXReservaDAO.obtenerPorReserva(dispositivoId);
+	return equipoXReservaDAO.obtenerPorDispositivo(dispositivoId);
 }
 
 }
