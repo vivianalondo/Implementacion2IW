@@ -64,14 +64,14 @@ moduloReservas.service('reservasServices', function($http, $cookies, $location){
 			url:'http://localhost:8080/PrestamosNLWS/neurolab/Reserva/obtener',
 			method:'GET',
 			params:{
-				identificacion : id	
+				idReserva : id	
 			}
 		});
 	}
 	
 });
 
-moduloReservas.controller('reservaController', function($scope, $rootScope, $cookies, $location, reservasServices){
+moduloReservas.controller('reservaController', function($scope, $rootScope, $cookies, $location, reservasServices, productService){
 	
 	//Lista reservas
 	reservasServices.listaReservas().then(
@@ -116,10 +116,37 @@ moduloReservas.controller('reservaController', function($scope, $rootScope, $coo
 			});
 		};
 
+		//Buscar reserva por id
+		$scope.buscarReserva = function(idReserva){
+			productService.addProduct(idReserva);
+			$location.url('/buscarReserva');
+		}
 	
 	//Función que me lleva al inicio
 	$scope.back = function(){
 		$location.url('/inicio');
+	}
+});
+
+
+//controlador para buscar usuarios
+moduloReservas.controller('buscarReserva', function($scope, $location, reservasServices, productService){
+	
+	$scope.products = productService.getProducts();
+	alert($scope.products)
+
+	reservasServices.buscar($scope.products).then(
+		function success(data){		
+			$scope.listaReservaResultante = data.data;
+			console.log(data.data);
+		});	
+	
+	alert($scope.listaReservaResultante);
+	
+	
+	//Función que me lleva a la lista dispositivos
+	$scope.backListD = function(){
+		$location.url('/listaReservas');
 	}
 });
 
@@ -169,5 +196,10 @@ moduloReservas.config(['$routeProvider', function($routeProvider){
 		controller: 'reservaController'
 	});
 	
+	
+	$routeProvider.when('/buscarReserva', {
+		templateUrl : 'BuscarReserva.html',
+		controller: 'buscarReserva'
+	});
 	
 }]);

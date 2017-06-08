@@ -45,9 +45,16 @@ public class ReservaWS {
 	@Path("obtener")
 	public ReservaJersey obtener(@QueryParam("idReserva")int idReserva){
 		ReservaJersey reservaJersey = null;
+		String fEntrega;
 		
 		try{
 			reserva = reservaBL.obtener(idReserva);
+			
+			if (reserva.getFechaEntrega()==null) {
+				fEntrega = "";
+			}else{
+				fEntrega = reserva.getFechaEntrega().toString();
+			}
 			
 			reservaJersey = new ReservaJersey(
 				reserva.getIdReserva(),
@@ -58,7 +65,7 @@ public class ReservaWS {
 				reserva.getHoraRealizado(),
 				reserva.getFechaReserva().toString(),
 				reserva.getUsuario().getIdentificacion(),
-				reserva.getFechaEntrega().toString(),
+				fEntrega,
 				reserva.getHoraEntrega()
 					
 			);
