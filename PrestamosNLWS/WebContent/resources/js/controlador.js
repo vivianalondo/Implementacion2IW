@@ -285,18 +285,42 @@ appNeurolab.controller('listaDispositivos', function($scope, $location,$rootScop
 
 
 //controlador para eliminar de dispositivos
-appNeurolab.controller('busqueda', function($scope, $location, dispositivos,productService){
+appNeurolab.controller('busqueda', function($scope, $rootScope, $location, dispositivos,productService){
 	
 	$scope.products = productService.getProducts();
 	
 	dispositivos.buscar($scope.products).then(
 		function success(data){				
 			$scope.listaDispositivosResultante = data.data.dispositivoJersey;
-			alert($scope.listaDispositivosResultante);
-			alert(data);
-			alert("edit")
-		});	
+		});
 	
+	//Función para eliminar dispositivo
+	$scope.eliminarB = function(dispositivo) {
+		dispositivos.eliminar(dispositivo.idDispositivo).then(
+			function success(data){
+				alert('El dispositivo ha sido eliminado correctamente');
+				dispositivos.buscar(dispositivo.nombre).then(
+						function success(data){	
+							alert(data);
+							$scope.listaDispositivosResultante = data.data.dispositivoJersey;
+						});	
+			});
+	};
+	
+	//Funciones para editar
+	$scope.editarB = function(dispositivoM){			
+		$rootScope.dispositivoModificar = dispositivoM;
+		$location.url('/editarDispositivo');
+	};
+	
+	//Función para modificar
+	$scope.modificar = function(dispositivoMod) {				
+		dispositivos.modificar(dispositivoMod).then(
+			function success(data){
+				alert('Se ha modificado el dispositivo');
+				$location.url('/buscardispositivo')
+			});
+	};
 	
 	//Función que me lleva a la lista dispositivos
 	$scope.backListD = function(){

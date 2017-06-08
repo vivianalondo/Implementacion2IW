@@ -9,6 +9,7 @@
 		<th>Nombre</th>
 		<th>Estado</th>
 		<th>Descripci&ograve;n</th>
+		<th align="center" colspan="3">Acciones</th>
 	</tr>
     </thead>
         <tr ng-repeat="disp in listaDispositivosResultante" >
@@ -16,6 +17,8 @@
 		<td>{{disp.nombre}}</td>
 		<td>{{disp.estadoDispositivo}}</td>
 		<td>{{disp.descripcion}}</td>
+		<td class="text-center"><a class='btn btn-info btn-xs' ng-click=editarB(disp)><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
+        <td class="text-center"><a ng-click="eliminarB(disp)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
 		</tr>
     </table>
     <button class='btn btn-info' ng-click="backListD()">Regresar</button>
@@ -34,6 +37,7 @@
 		<th>Nombre</th>
 		<th>Estado</th>
 		<th>Descripci&ograve;n</th>
+		<th align="center" colspan="3">Acciones</th>
 	</tr>
     </thead>
         <tr>
@@ -41,6 +45,8 @@
 		<td>{{listaDispositivosResultante.nombre}}</td>
 		<td>{{listaDispositivosResultante.estadoDispositivo}}</td>
 		<td>{{listaDispositivosResultante.descripcion}}</td>
+		<td class="text-center"><a class='btn btn-info btn-xs' ng-click=editar(dispositivo)><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
+        <td class="text-center"><a ng-click="eliminar(dispositivo)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
 		</tr>
     </table>
     <button class='btn btn-info' ng-click="backListD()">Regresar</button>

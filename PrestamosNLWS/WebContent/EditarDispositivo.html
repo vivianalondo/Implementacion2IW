@@ -1,5 +1,55 @@
 
-<div class="container">
+<div ng-if="!bandera" class="container">
+<div class="col-md-5">
+    <div class="form-area">  
+    <H2 align="center">Editar dispositivo</H2>
+        <form ng-submit="modificar(dispositivoModificar)">
+		<div class="form-group" >
+			<label for="nombre">Id dispositivo:</label>
+			<input type="text" 
+				   required id="idDispositivo"
+				   ng-model="dispositivoModificar.idDispositivo"
+				   value="{{dispositivoModificar.idDispositivo}}"
+				   readonly="readonly"
+				   class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label for="nombre">Nombre:</label>
+			<input type="text" 
+				   class="form-control"
+				   required id="nombre"
+				   ng-model="dispositivoModificar.nombre"
+				   value="{{dispositivoModificar.nombre}}"/>
+		</div>
+		<div class="form-group">
+			<label for="estado">Estado:</label>
+			<select name="nombre" size="1"  class="form-control"  ng-model="dispositivoModificar.estadoDispositivo">
+				<option value="1">Disponible</option>
+				<option value="2">Ocupado</option>
+				<option value="3">Dado de baja</option>
+			</select>
+			
+		</div>
+		<div class="form-group">
+			<label for="descripción">Descripci&ograve;n:</label>
+			 <textarea
+				   placeholder="Descripción"
+				   required id="descripción"
+				   ng-model="dispositivoModificar.descripcion"
+				   value="{{dispositivoModificar.descripcion}}"
+				   class="form-control" 
+				   type="textarea"
+				   maxlength="140" rows="5"></textarea>
+		</div>
+		
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Enviar modificaci&ograve;n</button>
+	</form>
+    </div>
+    <button  class='btn btn-info' ng-click="backListD()">Regresar</button>
+</div>
+</div>
+
+<div ng-if="bandera" class="container">
 <div class="col-md-5">
     <div class="form-area">  
     <H2 align="center">Editar dispositivo</H2>
