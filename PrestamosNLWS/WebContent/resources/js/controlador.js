@@ -158,8 +158,6 @@ appNeurolab.controller('Login', function($scope, $location, $cookies, usuarios){
 appNeurolab.controller('inicio', function($scope, $location, $cookies, auth){
 	
 	$scope.nombreUsuario = $cookies.nombreUsuario;
-	console.log($cookies.nombreUsuario);
-	console.log($scope.nombreUsuario);
 	
 	$scope.listarDispositivos = function(){
 		$location.url('/listaDispositivos');
@@ -230,14 +228,13 @@ appNeurolab.controller('listaDispositivos', function($scope, $location,$rootScop
 
 	//Función para eliminar dispositivo
 	$scope.eliminar = function(dispositivo) {
-		alert('acá en eliminar');
+
 		dispositivos.eliminar(dispositivo.idDispositivo).then(
 			function success(data){
 				alert('Se ha eliminado el dispositivo');
 				dispositivos.listaDispositivos().then(
 						function success(data){
 							$scope.listaDispositivos = data.data.dispositivoJersey;	
-						console.log($scope.listaDispositivos);
 						});	
 			});
 	};
@@ -248,8 +245,7 @@ appNeurolab.controller('listaDispositivos', function($scope, $location,$rootScop
 	}
 	
 	//$scope.listaDispositivosResultante
-	$scope.buscardispositivo = function(nombre){
-		
+	$scope.buscardispositivo = function(nombre){	
 		productService.addProduct(nombre);
 		$location.url('/buscardispositivo');
 	}
@@ -271,6 +267,14 @@ appNeurolab.controller('listaDispositivos', function($scope, $location,$rootScop
 			});
 	};
 	
+	//Función para modificar en buscar
+	$scope.modificarB = function(dispositivoMo) {
+		dispositivos.modificar(dispositivoMo).then(
+			function success(data){
+				alert('Se ha modificado el dispositivo');
+				$location.url('/buscardispositivo')
+			});
+	};
 	
 	//Función que me lleva al inicio
 	$scope.back = function(){
@@ -301,26 +305,18 @@ appNeurolab.controller('busqueda', function($scope, $rootScope, $location, dispo
 				alert('El dispositivo ha sido eliminado correctamente');
 				dispositivos.buscar(dispositivo.nombre).then(
 						function success(data){	
-							alert(data);
 							$scope.listaDispositivosResultante = data.data.dispositivoJersey;
 						});	
 			});
 	};
 	
 	//Funciones para editar
-	$scope.editarB = function(dispositivoM){			
-		$rootScope.dispositivoModificar = dispositivoM;
+	$scope.editarB = function(dispositivoMo){
+		$rootScope.bandera = 1;
+		$rootScope.dispositivoModificar2 = dispositivoMo;
 		$location.url('/editarDispositivo');
 	};
 	
-	//Función para modificar
-	$scope.modificar = function(dispositivoMod) {				
-		dispositivos.modificar(dispositivoMod).then(
-			function success(data){
-				alert('Se ha modificado el dispositivo');
-				$location.url('/buscardispositivo')
-			});
-	};
 	
 	//Función que me lleva a la lista dispositivos
 	$scope.backListD = function(){
