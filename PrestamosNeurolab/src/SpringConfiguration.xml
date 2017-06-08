@@ -16,7 +16,7 @@
 		</property>
 		<property name="username" value="root">
 		</property>
-		<property name="password" value="root">
+		<property name="password" value="">
 		</property>
 	</bean>
 	
