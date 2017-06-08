@@ -7,11 +7,13 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 import co.edu.udea.iw.dao.EquipoXReservaDAO;
 import co.edu.udea.iw.dto.EquipoXReserva;
 import co.edu.udea.iw.dto.EquipoXReservaId;
 import co.edu.udea.iw.dto.EstadoDispositivo;
+import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.exception.MyException;
 
 /**
@@ -46,6 +48,7 @@ public class EquipoXReservaDAOImplement implements EquipoXReservaDAO {
 		try{
 			session = sessionFactory.getCurrentSession();
 			equipoXReserva = (EquipoXReserva) session.get(EquipoXReserva.class, equiposXReservaId);
+			System.out.println(equipoXReserva.getEstadoReserva().getTipoEstadoReserva());
 		}
 		catch(HibernateException e)
 		{
@@ -115,5 +118,47 @@ public class EquipoXReservaDAOImplement implements EquipoXReservaDAO {
 			throw new MyException("Error modificando el Rol", e);
 		}
 	}
+
+	/**
+	 * Implementación del método que obtiene un equipoxreserva a partir de un id de reserva ingresado.
+	 * @param ReservaId
+	 * @return EquipoxReserva
+	 * @throws MyException
+	 */
+	@Override
+	public List<EquipoXReserva> obtenerPorReserva(int ReservaId) throws MyException {
+		List<EquipoXReserva> equiposXReserva = new ArrayList();
+		Session session = null;
+		
+		try{
+			session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(EquipoXReserva.class).add(Restrictions.like("equiposXReservaId.idReserva.idReserva", ReservaId));
+			equiposXReserva = criteria.list();
+		}
+		catch(HibernateException e)
+		{
+			throw new MyException("Error consultando la lista de esquipos asignados a la reserva", e);
+		}
+		return equiposXReserva;
+	}
+
+	@Override
+	public List<EquipoXReserva> obtenerPorDispositivo(int dispositivoId) throws MyException {
+		List<EquipoXReserva> equiposXReserva = new ArrayList();
+		Session session = null;
+		
+		try{
+			session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(EquipoXReserva.class).add(Restrictions.like("equiposXReservaId.idDispositivo.idDispositivo", dispositivoId));
+			equiposXReserva = criteria.list();
+		}
+		catch(HibernateException e)
+		{
+			throw new MyException("Error consultando la lista de esquipos asignados a la reserva", e);
+		}
+		return equiposXReserva;
+	}
+
+
 
 }

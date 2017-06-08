@@ -29,11 +29,10 @@ public class EquipoXReservaDAOImpTest {
 	@Autowired //Para indicar la inyeccion
 	private EquipoXReservaDAO equipoXReservaDAO;
 
-	//@Test
+//	@Test
 	public void testObtener() {
 		
-		EquipoXReserva equipoXReserva = null;
-		
+		EquipoXReserva equipoXReserva = null;	
 		Reserva reserva = null;
 		Dispositivo dispositivo = null;
 		EstadoReserva estadoReserva = null;
@@ -47,8 +46,8 @@ public class EquipoXReservaDAOImpTest {
 			equipoXReserva = new EquipoXReserva();
 			
 			reserva.setIdReserva(2);
-			dispositivo.setIdDispositivo(1);
-			estadoReserva.setIdEstadoReserva(1);
+			dispositivo.setIdDispositivo(2);
+			//estadoReserva.setIdEstadoReserva(1);
 		
 			equipoXReservaId.setIdReserva(reserva);
 			equipoXReservaId.setIdDispositivo(dispositivo);
@@ -59,7 +58,7 @@ public class EquipoXReservaDAOImpTest {
 			equipoXReservaId = equipoXReserva.getEquiposXReservaId();
 			reserva = equipoXReservaId.getIdReserva();
 			dispositivo = equipoXReservaId.getIdDispositivo();
-			
+			System.out.println(equipoXReserva.getEstadoReserva().getTipoEstadoReserva());
 			System.out.println("Este es tu número de reserva: "+reserva.getIdReserva());
 			System.out.println("Este es el dispositivo que prestaste: "+dispositivo.getNombre());
 			
@@ -77,7 +76,7 @@ public class EquipoXReservaDAOImpTest {
 		List<EquipoXReserva> resultado = null;
 		
 		try{
-			resultado = equipoXReservaDAO.listaObtener();
+			resultado = equipoXReservaDAO.obtenerPorDispositivo(3);
 			for(EquipoXReserva equipoXReserva:resultado){
 				System.out.println("El id de la reserva es: "+equipoXReserva.getEquiposXReservaId().getIdReserva().getIdReserva());
 				System.out.println("El id del dispositivo es: "+equipoXReserva.getEquiposXReservaId().getIdDispositivo().getIdDispositivo());
@@ -85,7 +84,6 @@ public class EquipoXReservaDAOImpTest {
 			}
 			assertTrue(resultado.size()>0);
 		}catch(MyException e){
-			System.out.println("Pasó por donde yeifer dijo que iba a pasar");
 			e.printStackTrace();
 			fail(e.getMessage());
 		}

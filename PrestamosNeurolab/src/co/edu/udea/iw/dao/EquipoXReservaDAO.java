@@ -22,4 +22,8 @@ public interface EquipoXReservaDAO {
 	
 	public void modificar(EquipoXReserva equipoXReserva) throws MyException;
 
+	public List<EquipoXReserva> obtenerPorReserva(int ReservaId) throws MyException;
+	
+	public List<EquipoXReserva> obtenerPorDispositivo(int dispositivoId) throws MyException;
+	
 }

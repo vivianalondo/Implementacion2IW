@@ -147,7 +147,7 @@ public void modificarBl(int reserva, int dispositivo, int estadoReserva) throws 
 			throw new MyException("La reserva no puede estar vac�a");
 		}
 		if(dispositivo==0){
-			throw new MyException("El sispositivo no puede estar vac�a");
+			throw new MyException("El dispositivo no puede estar vac�a");
 		}
 
 		EquipoXReserva equipoXReserva = null;
@@ -198,5 +198,17 @@ public EquipoXReserva obtenerBl(EquipoXReservaId idEquipoXReserva) throws MyExce
 	
 }
 		
+public List<EquipoXReserva> obtenerXReserva(int reservaId) throws MyException{
+	return equipoXReservaDAO.obtenerPorReserva(reservaId);
+}
+
+public List<EquipoXReserva> obtenerXDispositivo(int dispositivoId) throws MyException{
+	
+	if(dispositivoId==0){
+		throw new MyException("El id dispositivo no puede estar vac�a");
+	}
+	
+	return equipoXReservaDAO.obtenerPorReserva(dispositivoId);
+}
 
 }
